@@ -1,0 +1,279 @@
+C166 COMPILER V7.53.0.0, GPT2                                                              09/03/2014 17:57:04 PAGE 1   
+
+
+C166 COMPILER V7.53.0.0, COMPILATION OF MODULE GPT2
+OBJECT MODULE PLACED IN .\obj\GPT2.obj
+COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE GPT2.C MODV2 BROWSE INCDIR(.\source;.\CANopen\include;.\CANopen\include\
+                    -XC164_CANopen;..\keil4;.\CANopen\examples\XC164\Slave) MODV2 DEBUG PRINT(.\list\GPT2.lst) TABS(2) OBJECT(.\obj\GPT2.obj)
+                    - 
+
+ stmt lvl     source
+
+    1         //****************************************************************************
+    2         // @Module        General Purpose Timer Unit (GPT2)
+    3         // @Filename      GPT2.C
+    4         // @Project       EBCU_CPU.dav
+    5         //----------------------------------------------------------------------------
+    6         // @Controller    Infineon XC164CS-16F20
+    7         //
+    8         // @Compiler      Keil
+    9         //
+   10         // @Codegenerator 3.0
+   11         //
+   12         // @Description   This file contains functions that use the GPT2 module.
+   13         //
+   14         //----------------------------------------------------------------------------
+   15         // @Date          2014/9/3 17:56:09
+   16         //
+   17         //****************************************************************************
+   18         
+   19         // USER CODE BEGIN (GPT2_General,1)
+   20         
+   21         // USER CODE END
+   22         
+   23         
+   24         
+   25         //****************************************************************************
+   26         // @Project Includes
+   27         //****************************************************************************
+   28         
+   29         #include "MAIN.H"
+   30         
+   31         // USER CODE BEGIN (GPT2_General,2)
+   32         
+   33         // USER CODE END
+   34         
+   35         
+   36         //****************************************************************************
+   37         // @Macros
+   38         //****************************************************************************
+   39         
+   40         // USER CODE BEGIN (GPT2_General,3)
+   41         
+   42         // USER CODE END
+   43         
+   44         
+   45         //****************************************************************************
+   46         // @Defines
+   47         //****************************************************************************
+   48         
+   49         // USER CODE BEGIN (GPT2_General,4)
+   50         
+   51         // USER CODE END
+   52         
+   53         
+C166 COMPILER V7.53.0.0, GPT2                                                              09/03/2014 17:57:04 PAGE 2   
+
+   54         //****************************************************************************
+   55         // @Typedefs
+   56         //****************************************************************************
+   57         
+   58         // USER CODE BEGIN (GPT2_General,5)
+   59         
+   60         // USER CODE END
+   61         
+   62         
+   63         //****************************************************************************
+   64         // @Imported Global Variables
+   65         //****************************************************************************
+   66         
+   67         // USER CODE BEGIN (GPT2_General,6)
+   68         
+   69         // USER CODE END
+   70         
+   71         
+   72         //****************************************************************************
+   73         // @Global Variables
+   74         //****************************************************************************
+   75         
+   76         // USER CODE BEGIN (GPT2_General,7)
+   77         
+   78         // USER CODE END
+   79         
+   80         
+   81         //****************************************************************************
+   82         // @External Prototypes
+   83         //****************************************************************************
+   84         
+   85         // USER CODE BEGIN (GPT2_General,8)
+   86         
+   87         // USER CODE END
+   88         
+   89         
+   90         //****************************************************************************
+   91         // @Prototypes Of Local Functions
+   92         //****************************************************************************
+   93         
+   94         // USER CODE BEGIN (GPT2_General,9)
+   95         
+   96         // USER CODE END
+   97         
+   98         
+   99         //****************************************************************************
+  100         // @Function      void GPT2_vInit(void) 
+  101         //
+  102         //----------------------------------------------------------------------------
+  103         // @Description   This is the initialization function of the GPT2 function 
+  104         //                library. It is assumed that the SFRs used by this library 
+  105         //                are in its reset state. 
+  106         //
+  107         //----------------------------------------------------------------------------
+  108         // @Returnvalue   None
+  109         //
+  110         //----------------------------------------------------------------------------
+  111         // @Parameters    None
+  112         //
+  113         //----------------------------------------------------------------------------
+  114         // @Date          2014/9/3
+  115         //
+C166 COMPILER V7.53.0.0, GPT2                                                              09/03/2014 17:57:04 PAGE 3   
+
+  116         //****************************************************************************
+  117         
+  118         // USER CODE BEGIN (Init,1)
+  119         
+  120         // USER CODE END
+  121         
+  122         void GPT2_vInit(void)
+  123         {
+  124  1        // USER CODE BEGIN (Init,2)
+  125  1      
+  126  1        // USER CODE END
+  127  1      
+  128  1        ///  -----------------------------------------------------------------------
+  129  1        ///  Configuration of Timer Block Prescaler 2:
+  130  1        ///  -----------------------------------------------------------------------
+  131  1        ///  - prescaler for timer block 2 is 4
+  132  1      
+  133  1      
+  134  1        ///  -----------------------------------------------------------------------
+  135  1        ///  Configuration of the GPT2 Core Timer 5:
+  136  1        ///  -----------------------------------------------------------------------
+  137  1        ///  - timer 5 works in timer mode
+  138  1        ///  - prescaler factor is 32
+  139  1        ///  - up/down control bit is reset
+  140  1        ///  - external up/down control is disabled
+  141  1        ///  - timer 5 remote control is disabled
+  142  1      
+  143  1        GPT12E_T5CON   =  0x0003;      // load timer 5 control register
+  144  1        GPT12E_T5      =  0xE796;      // load timer 5 register
+  145  1      
+  146  1        ///  -----------------------------------------------------------------------
+  147  1        ///  Configuration of the GPT2 Core Timer 6:
+  148  1        ///  -----------------------------------------------------------------------
+  149  1        ///  - timer 6 works in timer mode
+  150  1        ///  - prescaler factor is 4
+  151  1        ///  - up/down control bit is reset
+  152  1        ///  - external up/down control is disabled
+  153  1        ///  - alternate output function T6OUT (P3.1) is disabled
+  154  1        ///  - timer 6 output toggle latch (T6OTL) is set to 0
+  155  1        ///  - timer 6 run bit is reset
+  156  1        ///  - timer 6 is not cleared on a capture
+  157  1      
+  158  1        GPT12E_T6CON   =  0x0000;      // load timer 6 control register
+  159  1        GPT12E_T6      =  0x0000;      // load timer 6 register
+  160  1      
+  161  1        ///  -----------------------------------------------------------------------
+  162  1        ///  Configuration of the GPT2 CAPREL:
+  163  1        ///  -----------------------------------------------------------------------
+  164  1        ///  - capture T5 into CAPREL is disabled
+  165  1        ///  - capture trigger from pin CAPIN
+  166  1        ///  - capure is disabled
+  167  1        ///  - timer 5 is not cleared on a capture
+  168  1        ///  - timer 5 is just captured without any correction
+  169  1      
+  170  1        GPT12E_T5CON  |=  0x0000;      // load timer 5 control register
+  171  1        GPT12E_CAPREL  =  0x0000;      // load CAPREL register
+  172  1      
+  173  1        ///  -----------------------------------------------------------------------
+  174  1        ///  Configuration of the used GPT2 Port Pins:
+  175  1        ///  -----------------------------------------------------------------------
+  176  1      
+  177  1      
+C166 COMPILER V7.53.0.0, GPT2                                                              09/03/2014 17:57:04 PAGE 4   
+
+  178  1        ///  -----------------------------------------------------------------------
+  179  1        ///  Configuration of the used GPT2 Interrupts:
+  180  1        ///  -----------------------------------------------------------------------
+  181  1        ///  timer 5 service request node configuration:
+  182  1        ///  - timer 5 interrupt priority level (ILVL) = 5
+  183  1        ///  - timer 5 interrupt group level (GLVL) = 0
+  184  1        ///  - timer 5 group priority extension (GPX) = 0
+  185  1      
+  186  1        GPT12E_T5IC    =  0x0054;     
+  187  1      
+  188  1      
+  189  1        // USER CODE BEGIN (GPT2_Function,3)
+  190  1      
+  191  1        // USER CODE END
+  192  1      
+  193  1        GPT12E_T5CON_T5R  =  1;        // set timer 5 run bit
+  194  1      
+  195  1      } //  End of function GPT2_vInit
+  196         
+  197         //****************************************************************************
+  198         // @Function      void GPT2_viTmr5(void) 
+  199         //
+  200         //----------------------------------------------------------------------------
+  201         // @Description   This is the interrupt service routine for the GPT2 timer 5. 
+  202         //                It is called up in the case of over or underflow of the 
+  203         //                timer 5 register.
+  204         //                
+  205         //                Please note that you have to add application specific code 
+  206         //                to this function.
+  207         //
+  208         //----------------------------------------------------------------------------
+  209         // @Returnvalue   None
+  210         //
+  211         //----------------------------------------------------------------------------
+  212         // @Parameters    None
+  213         //
+  214         //----------------------------------------------------------------------------
+  215         // @Date          2014/9/3
+  216         //
+  217         //****************************************************************************
+  218         
+  219         // USER CODE BEGIN (Tmr5,1)
+  220         
+  221         // USER CODE END
+  222         
+  223         void GPT2_viTmr5(void) interrupt T5INT using RB_LEVEL5
+  224         {
+  225  1        // USER CODE BEGIN (Tmr5,2)
+  226  1        GPT12E_T3 = 0xE796;   
+  227  1        TFlag = 1;
+  228  1      
+  229  1        // USER CODE END
+  230  1      
+  231  1      } //  End of function GPT2_viTmr5
+  232         
+  233         
+  234         
+  235         
+  236         // USER CODE BEGIN (GPT2_General,10)
+  237         
+  238         // USER CODE END
+  239         
+C166 COMPILER V7.53.0.0, GPT2                                                              09/03/2014 17:57:04 PAGE 5   
+
+
+
+MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
+  CODE SIZE        =          64     --------
+  NEAR-CONST SIZE  =    --------     --------
+  FAR-CONST SIZE   =    --------     --------
+  HUGE-CONST SIZE  =    --------     --------
+  XHUGE-CONST SIZE =    --------     --------
+  NEAR-DATA SIZE   =    --------     --------
+  FAR-DATA SIZE    =    --------     --------
+  XHUGE-DATA SIZE  =    --------     --------
+  IDATA-DATA SIZE  =    --------     --------
+  SDATA-DATA SIZE  =    --------     --------
+  BDATA-DATA SIZE  =    --------     --------
+  HUGE-DATA SIZE   =    --------     --------
+  BIT SIZE         =    --------     --------
+  INIT'L SIZE      =    --------     --------
+END OF MODULE INFORMATION.
+
+
+C166 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

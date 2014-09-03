@@ -39,7 +39,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 s_timer_entry timers[MAX_NB_TIMER] = {{TIMER_FREE, NULL, NULL, 0, 0, 0},};
 
 TIMEVAL total_sleep_time = TIMEVAL_MAX;
-TIMER_HANDLE last_timer_raw = -1;
+TIMER_HANDLE last_timer_raw = -1;  //最后一个存在的timer的编号
 
 #define min_val(a,b) ((a<b)?a:b)
 
@@ -68,9 +68,9 @@ TIMER_HANDLE SetAlarm(CO_Data* d, UNS32 id, TimerCallback_t callback, TIMEVAL va
 			TIMEVAL real_timer_value;
 			TIMEVAL elapsed_time;
 
-			if (row_number == last_timer_raw + 1) last_timer_raw++;
+			if (row_number == last_timer_raw + 1) last_timer_raw++; //如果前面的都被占了，则加一个新的timer
 
-			elapsed_time = getElapsedTime();
+			elapsed_time = getElapsedTime(); //获取当前时间
 			/* set next wakeup alarm if new entry is sooner than others, or if it is alone */
 			real_timer_value = value;
 			real_timer_value = min_val(real_timer_value, TIMEVAL_MAX);
@@ -78,7 +78,7 @@ TIMER_HANDLE SetAlarm(CO_Data* d, UNS32 id, TimerCallback_t callback, TIMEVAL va
 			if (total_sleep_time > elapsed_time && total_sleep_time - elapsed_time > real_timer_value)
 			{
 				total_sleep_time = elapsed_time + real_timer_value;
-				setTimer(real_timer_value);
+				setTimer(real_timer_value); //重设时钟
 			}
 			row->callback = callback;
 			row->d = d;
@@ -160,7 +160,7 @@ void TimeDispatch(void)
 				if(row->val < next_wakeup)
 					next_wakeup = row->val;
 			}
-		}
+		} 
 	}
 
 	/* Remember how much time we should sleep. */

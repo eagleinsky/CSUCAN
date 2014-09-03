@@ -1,4 +1,4 @@
-C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 10:38:10 PAGE 1   
+C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 17:57:05 PAGE 1   
 
 
 C166 COMPILER V7.53.0.0, COMPILATION OF MODULE PELI
@@ -62,7 +62,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\drivers\XC164\PELI.c MOD
    45  2          can_select = SELECT_ADDR2;
    46  2          can_data = DATA_ADDR2;
    47  2        }
-C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 10:38:10 PAGE 2   
+C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 17:57:05 PAGE 2   
 
    48  1        else
    49  1        {
@@ -126,7 +126,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\drivers\XC164\PELI.c MOD
   103  2        }
   104  1        return 0x00;
   105  1      }
-C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 10:38:10 PAGE 3   
+C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 17:57:05 PAGE 3   
 
   106         /*
   107         **********************************************************************************************************
@@ -190,7 +190,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\drivers\XC164\PELI.c MOD
   161  1        while(--ErrorCount){
   162  2          if((status = SetBitMask(REG_CAN_MOD,RM_RR_BIT)) == 0){
   163  3            ErrorFlag =0;
-C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 10:38:10 PAGE 4   
+C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 17:57:05 PAGE 4   
 
   164  3            break;
   165  3          }
@@ -254,7 +254,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\drivers\XC164\PELI.c MOD
   221         {
   222  1          char      status=0;
   223  1          unsigned  char    ErrorFlag =1;
-C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 10:38:10 PAGE 5   
+C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 17:57:05 PAGE 5   
 
   224  1        unsigned  char  ErrorCount = 0x20;              //32次报错
   225  1        while(--ErrorCount){
@@ -318,7 +318,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\drivers\XC164\PELI.c MOD
   279  1          temp1 = ReadSJAReg(RegAdr);
   280  1          temp = ReadSJAReg(RegAdr)|BitValue;
   281  1          WriteSJAReg(RegAdr,temp);
-C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 10:38:10 PAGE 6   
+C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 17:57:05 PAGE 6   
 
   282  1          temp2 = ReadSJAReg(RegAdr);
   283  1          if(ReadSJAReg(RegAdr) == temp){
@@ -382,7 +382,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\drivers\XC164\PELI.c MOD
   337         {
   338  1          char    SjaFlag;
   339  1          if((ReadSJAReg(REG_CAN_MOD)&RM_RR_BIT) ==  RM_RR_BIT){
-C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 10:38:10 PAGE 7   
+C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 17:57:05 PAGE 7   
 
   340  2              SjaFlag  =  0;
   341  2          }
@@ -446,7 +446,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\drivers\XC164\PELI.c MOD
   395         char    SJASetClockDivision(unsigned  char  clockdiv)
   396         {
   397  1        char    status=0,temp = 0, temp1 = 0;
-C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 10:38:10 PAGE 8   
+C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 17:57:05 PAGE 8   
 
   398  1        bit     ErrorFlag=1;
   399  1        unsigned  char  ErrorCount =0x20;       //32次，报错
@@ -510,7 +510,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\drivers\XC164\PELI.c MOD
   455  3            if(ReadSJAReg(REG_CAN_ACR2) != acr2)continue;
   456  3            if(ReadSJAReg(REG_CAN_ACR3) != acr3)continue;
   457  3            ErrorFlag=0;
-C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 10:38:10 PAGE 9   
+C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 17:57:05 PAGE 9   
 
   458  3            break;
   459  3          }
@@ -574,7 +574,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\drivers\XC164\PELI.c MOD
   515         **********************************************************************************************************
              -**************
   516         **函数原型:  char SJASetBandRateStandard(unsigned char  BandRateSize)
-C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 10:38:10 PAGE 10  
+C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 17:57:05 PAGE 10  
 
   517         **参数说明:  BandRateSize     标准常用波特率(Kbps)
   518         **        0         5
@@ -638,7 +638,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\drivers\XC164\PELI.c MOD
   575  3              break;
   576  3      
   577  3          }//while结束
-C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 10:38:10 PAGE 11  
+C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 17:57:05 PAGE 11  
 
   578  2          if(ErrorFlag){
   579  3            status =SJA_SETBTR_ERR;
@@ -702,7 +702,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\drivers\XC164\PELI.c MOD
   634         **函数原型:  char SJASendData(unsigned  char      *databuf,
   635         **                  unsigned  char  cmd
   636         **                  )
-C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 10:38:10 PAGE 12  
+C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 17:57:05 PAGE 12  
 
   637         **参数说明:  databuf  存放要发送到总线的特定帧格式的数据的缓冲区首地址
   638         **       cmd    sj1000发送命令
@@ -766,7 +766,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\drivers\XC164\PELI.c MOD
   695  1      }
   696         /*
   697         **********************************************************************************************************
-C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 10:38:10 PAGE 13  
+C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 17:57:05 PAGE 13  
 
              -**************
   698         **函数原型:  char SJARcvData(unsigned char      *databuf)
@@ -830,7 +830,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\drivers\XC164\PELI.c MOD
   755         **********************************************************************************************************
              -**************
   756         **函数原型:     unsigned  char  ReadALCReg(void)
-C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 10:38:10 PAGE 14  
+C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 17:57:05 PAGE 14  
 
   757         **参数说明:     无
   758         **返回值:   错误仲裁寄存器(alc)的内容
@@ -894,7 +894,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\drivers\XC164\PELI.c MOD
   811  2          SJASetAccMask(AMR[0],AMR[1]|0x0F,AMR[2],AMR[3]); 
   812  2         }
   813  1       else                         //如果是扩展帧
-C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 10:38:10 PAGE 15  
+C166 COMPILER V7.53.0.0, PELI                                                              09/03/2014 17:57:05 PAGE 15  
 
   814  1         {
   815  2          ACR[0] = (unsigned char)((ChipConfig.ACR >> 21) & 0xFF); //ID.28-ID.21

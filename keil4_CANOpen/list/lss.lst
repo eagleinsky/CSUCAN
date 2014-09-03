@@ -1,4 +1,4 @@
-C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 10:38:10 PAGE 1   
+C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 17:57:05 PAGE 1   
 
 
 C166 COMPILER V7.53.0.0, COMPILATION OF MODULE LSS
@@ -62,7 +62,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\lss.c MODV2 BROWSE I
               #define getLSSIdent(msg) (((UNS32)msg->data[4] << 24) | ((UNS32)msg->data[3] << 16) | (msg->data[2] << 8) 
              -| (msg->data[1]))
               
-C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 10:38:10 PAGE 2   
+C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 17:57:05 PAGE 2   
 
               
               /* Returns the LSS switch delay field from a Message struct */
@@ -126,7 +126,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\lss.c MODV2 BROWSE I
                         UNS32 Mask=0xFFFFFFFF;
                         d->lss_transfer.LSSanswer=0;
                         d->lss_transfer.BitChecked=d->lss_transfer.lss_fs_transfer.FS_BitChecked[0];
-C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 10:38:10 PAGE 3   
+C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 17:57:05 PAGE 3   
 
                         Mask=(UNS32)((UNS64)Mask<<(d->lss_transfer.BitChecked+1));
                         d->lss_transfer.IDNumber=d->lss_transfer.lss_fs_transfer.FS_LSS_ID[0] & Mask;
@@ -190,7 +190,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\lss.c MODV2 BROWSE I
                   if(d->lss_transfer.switchDelayState==SDELAY_FIRST){
                     MSG_WAR(0x3D0B, "LSS switch delay first period expired",0);
                     d->lss_transfer.switchDelayState=SDELAY_SECOND;
-C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 10:38:10 PAGE 4   
+C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 17:57:05 PAGE 4   
 
                     //(*d->lss_ChangeBaudRate)(d,d->lss_transfer.baudRate);
                     canChangeBaudRate(d->lss_transfer.canHandle_t, d->lss_transfer.baudRate);
@@ -254,7 +254,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\lss.c MODV2 BROWSE I
                     sendMasterLSSMessage(d,LSS_IDENT_FASTSCAN,0,0);
                     return;
                   }
-C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 10:38:10 PAGE 5   
+C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 17:57:05 PAGE 5   
 
                 break;
                 case LSS_FS_CONFIRMATION:
@@ -318,7 +318,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\lss.c MODV2 BROWSE I
               **/ 
               void startLSS(CO_Data* d)
               {
-C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 10:38:10 PAGE 6   
+C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 17:57:05 PAGE 6   
 
                 /*MSG_WAR(0x3D09, "LSS services started",0);*/
               }
@@ -382,7 +382,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\lss.c MODV2 BROWSE I
                 case LSS_IDENT_NON_CONF_SLAVE: /* LSS identify non-configured remote slave */
                   break;
                 default:
-C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 10:38:10 PAGE 7   
+C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 17:57:05 PAGE 7   
 
                   MSG_ERR(0x1D18, "send Slave LSS command not implemented", command);
                   return 0xFF;
@@ -446,7 +446,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\lss.c MODV2 BROWSE I
                 MSG_ERR(0x1D19, "Master-> Baud rate not supported",0);
                 d->lss_transfer.dat1=0xFF;
                 
-C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 10:38:10 PAGE 8   
+C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 17:57:05 PAGE 8   
 
                 /* if bit timing is not supported comment the previous code and uncomment the following one*/
                 /*{
@@ -510,7 +510,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\lss.c MODV2 BROWSE I
                 case LSS_INQ_NODE_ID: /* Inquire Node-ID */
                  hasResponse=1;
                   break;
-C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 10:38:10 PAGE 9   
+C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 17:57:05 PAGE 9   
 
               #ifdef CO_ENABLE_LSS_FS
                 case LSS_IDENT_FASTSCAN:
@@ -574,7 +574,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\lss.c MODV2 BROWSE I
                 else {/* It is a Master */
                   res = sendMasterLSSMessage(d, command,dat1,dat2);
                 }
-C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 10:38:10 PAGE 10  
+C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 17:57:05 PAGE 10  
 
                 return res ;
               }
@@ -638,7 +638,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\lss.c MODV2 BROWSE I
                       d->lss_transfer.command!=LSS_IDENT_REMOTE_SERIAL_LOW && \
                       d->lss_transfer.command!=LSS_IDENT_REMOTE_SERIAL_HIGH )
                         goto ErrorProcessMaster;
-C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 10:38:10 PAGE 11  
+C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 17:57:05 PAGE 11  
 
                     break;
                   case LSS_SM_SELECTIVE_RESP: /* Switch Mode Selective response */
@@ -702,7 +702,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\lss.c MODV2 BROWSE I
                     d->lss_transfer.mode=LSS_CONFIGURATION_MODE;
                   }
                   else if(m->data[1]==LSS_WAITING_MODE){
-C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 10:38:10 PAGE 12  
+C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 17:57:05 PAGE 12  
 
                     MSG_WAR(0x3D24, "SlaveLSS switching to operational mode ", 0);
                     
@@ -766,7 +766,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\lss.c MODV2 BROWSE I
                   }
                   else{
                     MSG_WAR(0x3D2A, "SlaveLSS not in configuration mode",0);
-C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 10:38:10 PAGE 13  
+C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 17:57:05 PAGE 13  
 
                     //error_code=0xFF;
                     break;
@@ -830,7 +830,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\lss.c MODV2 BROWSE I
                   UNS32 errorCode;
                     const indextable *ptrTable;
                     ODCallback_t *Callback;
-C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 10:38:10 PAGE 14  
+C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 17:57:05 PAGE 14  
 
                     UNS32 _SpecificNodeInfo;
                 
@@ -894,7 +894,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\lss.c MODV2 BROWSE I
                   case LSS_IDENT_REMOTE_SERIAL_HIGH:d->lss_transfer.addr_ident_match=(_SpecificNodeInfo >= *(UNS32*)ptrTab
              -le->pSubindex[4].pObject)? d->lss_transfer.addr_ident_match|0x20:0; break;
                   }
-C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 10:38:10 PAGE 15  
+C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 17:57:05 PAGE 15  
 
                   /* If all the fields has been set.. */
                   if(d->lss_transfer.addr_ident_match==0x3F){
@@ -958,7 +958,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\lss.c MODV2 BROWSE I
                   if(getLSSBitCheck(m)==128)d->lss_transfer.FastScan_SM=LSS_FS_RESET;
                   
                     switch(d->lss_transfer.FastScan_SM){
-C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 10:38:10 PAGE 16  
+C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 17:57:05 PAGE 16  
 
                     case LSS_FS_RESET:
                     {
@@ -1022,7 +1022,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\lss.c MODV2 BROWSE I
                           d->lss_transfer.LSSPos=getLSSNext(m);
                           ptrTable = (*d->scanIndexOD)(0x1018, &errorCode, &Callback);
                             d->lss_transfer.IDNumber=*(UNS32*)ptrTable->pSubindex[d->lss_transfer.LSSPos+1].pObject;
-C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 10:38:10 PAGE 17  
+C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 17:57:05 PAGE 17  
 
                           d->lss_transfer.FastScan_SM=LSS_FS_PROCESSING;            
                         }
@@ -1086,7 +1086,7 @@ MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
   HUGE-DATA SIZE   =    --------     --------
   BIT SIZE         =    --------     --------
   INIT'L SIZE      =    --------     --------
-C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 10:38:10 PAGE 18  
+C166 COMPILER V7.53.0.0, LSS                                                               09/03/2014 17:57:05 PAGE 18  
 
 END OF MODULE INFORMATION.
 

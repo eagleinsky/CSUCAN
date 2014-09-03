@@ -1,4 +1,4 @@
-C166 COMPILER V7.53.0.0, MVB                                                               09/03/2014 10:38:10 PAGE 1   
+C166 COMPILER V7.53.0.0, MVB                                                               09/03/2014 17:57:05 PAGE 1   
 
 
 C166 COMPILER V7.53.0.0, COMPILATION OF MODULE MVB
@@ -62,7 +62,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE source\mvb.c MODV2 BROWSE INCDIR
    51  1        unsigned char i = 0;
    52  1        if(port_num==1)
    53  1        {
-C166 COMPILER V7.53.0.0, MVB                                                               09/03/2014 10:38:10 PAGE 2   
+C166 COMPILER V7.53.0.0, MVB                                                               09/03/2014 17:57:05 PAGE 2   
 
    54  2        for(i = 0; i < 32; i++)
    55  2        {

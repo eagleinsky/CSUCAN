@@ -1,4 +1,4 @@
-C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 10:38:11 PAGE 1   
+C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 17:57:05 PAGE 1   
 
 
 C166 COMPILER V7.53.0.0, COMPILATION OF MODULE PDO
@@ -62,7 +62,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\pdo.c MODV2 BROWSE I
    51  1        const indextable *TPDO_com = d->objdict + d->firstIndex->PDO_TRS + numPdo;
    52  1        const indextable *TPDO_map = d->objdict + d->firstIndex->PDO_TRS_MAP + numPdo;
    53  1      
-C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 10:38:11 PAGE 2   
+C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 17:57:05 PAGE 2   
 
    54  1        UNS8 prp_j = 0x00;
    55  1        UNS32 offset = 0x00000000;
@@ -126,7 +126,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\pdo.c MODV2 BROWSE I
   113         **
   114         **
   115         ** @param d
-C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 10:38:11 PAGE 3   
+C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 17:57:05 PAGE 3   
 
   116         ** @param cobId
   117         **
@@ -190,7 +190,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\pdo.c MODV2 BROWSE I
   175  1        /* pointer to the var which is mapped to a pdo... */
   176  1        /*  void *     pMappedAppObject = NULL;   */
   177  1        /* pointer fo the var which holds the mapping parameter of an
-C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 10:38:11 PAGE 4   
+C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 17:57:05 PAGE 4   
 
   178  1           mapping entry */
   179  1        UNS32 *pMappingParameter = NULL;
@@ -254,7 +254,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\pdo.c MODV2 BROWSE I
   237  5                          UNS8 tmp[] = { 0, 0, 0, 0, 0, 0, 0, 0 };
   238  5                          UNS32 ByteSize;
   239  5                          pMappingParameter =
-C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 10:38:11 PAGE 5   
+C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 17:57:05 PAGE 5   
 
   240  5                            (UNS32 *) (d->objdict + offsetObjdict +
   241  5                                       numPdo)->pSubindex[numMap + 1].pObject;
@@ -318,7 +318,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\pdo.c MODV2 BROWSE I
   299  6                              DelAlarm (d->RxPDO_EventTimers[numPdo]);
   300  6                              d->RxPDO_EventTimers[numPdo] = SetAlarm (d, numPdo, d->RxPDO_EventTimers_Handler,
   301  6                              MS_TO_TIMEVAL (EventTimerDuration), 0);
-C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 10:38:11 PAGE 6   
+C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 17:57:05 PAGE 6   
 
   302  6                          }
   303  5                      }
@@ -382,7 +382,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\pdo.c MODV2 BROWSE I
   361  6                              return 0;
   362  6                            }
   363  5                          else
-C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 10:38:11 PAGE 7   
+C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 17:57:05 PAGE 7   
 
   364  5                            {
   365  6                              /* if SYNC did never occur, transmit current data */
@@ -446,7 +446,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\pdo.c MODV2 BROWSE I
   423         ** @param DestByteIndex
   424         ** @param DestBitIndex
   425         ** @param DestBigEndian
-C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 10:38:11 PAGE 8   
+C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 17:57:05 PAGE 8   
 
   426         **/
   427         void
@@ -510,7 +510,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\pdo.c MODV2 BROWSE I
   483         static void sendPdo(CO_Data * d, UNS32 pdoNum, Message * pdo)
   484         {
   485  1        /*store_as_last_message */
-C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 10:38:11 PAGE 9   
+C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 17:57:05 PAGE 9   
 
   486  1        d->PDO_status[pdoNum].last_message = *pdo;
   487  1        MSG_WAR (0x396D, "sendPDO cobId :", UNS16_LE(pdo->cob_id));
@@ -574,7 +574,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\pdo.c MODV2 BROWSE I
   545  2      
   546  2            TIMEVAL EventTimerDuration;
   547  2            TIMEVAL InhibitTimerDuration;
-C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 10:38:11 PAGE 10  
+C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 17:57:05 PAGE 10  
 
   548  2      
   549  2            MSG_WAR (0x306A, "Changes TPDO number : ", pdoNum);
@@ -638,7 +638,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\pdo.c MODV2 BROWSE I
   607  1      }
 *** WARNING C47 IN LINE 605 OF CANopen\src\pdo.c: 'd': unreferenced parameter
 *** WARNING C47 IN LINE 605 OF CANopen\src\pdo.c: 'pdoNum': unreferenced parameter
-C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 10:38:11 PAGE 11  
+C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 17:57:05 PAGE 11  
 
   608         
   609         /*!
@@ -702,7 +702,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\pdo.c MODV2 BROWSE I
   667  4                      {
   668  5                        /*Reset count of SYNC */
   669  5                        d->PDO_status[pdoNum].transmit_type_parameter = 0;
-C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 10:38:11 PAGE 12  
+C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 17:57:05 PAGE 12  
 
   670  5                        MSG_WAR (0x3964, "  PDO is on SYNCHRO. Trans type : ",
   671  5                                 *pTransmissionType);
@@ -766,7 +766,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\pdo.c MODV2 BROWSE I
   728  4                    pdoNum++;
   729  4                    offsetObjdict++;
   730  4                    offsetObjdictMap++;
-C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 10:38:11 PAGE 13  
+C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 17:57:05 PAGE 13  
 
   731  4                    MSG_WAR (0x3970, "next pdo index : ", pdoNum);
   732  4                    status = state3;
@@ -830,7 +830,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\pdo.c MODV2 BROWSE I
   790  1        /* For each TPDO mapping parameters */
   791  1        UNS16 pdoIndex = 0x1800;      /* OD index of TDPO */
   792  1      
-C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 10:38:11 PAGE 14  
+C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 17:57:05 PAGE 14  
 
   793  1        UNS16 offsetObjdict = d->firstIndex->PDO_TRS;
   794  1        UNS16 lastIndex = d->lastIndex->PDO_TRS;
@@ -894,7 +894,7 @@ MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
   FAR-DATA SIZE    =    --------     --------
   XHUGE-DATA SIZE  =    --------     --------
   IDATA-DATA SIZE  =    --------     --------
-C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 10:38:11 PAGE 15  
+C166 COMPILER V7.53.0.0, PDO                                                               09/03/2014 17:57:05 PAGE 15  
 
   SDATA-DATA SIZE  =    --------     --------
   BDATA-DATA SIZE  =    --------     --------

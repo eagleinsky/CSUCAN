@@ -1,4 +1,4 @@
-C166 COMPILER V7.53.0.0, OBJDICT                                                           09/03/2014 10:38:12 PAGE 1   
+C166 COMPILER V7.53.0.0, OBJDICT                                                           09/03/2014 17:57:06 PAGE 1   
 
 
 C166 COMPILER V7.53.0.0, COMPILATION OF MODULE OBJDICT
@@ -62,7 +62,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\examples\XC164\Slave\Obj
    51         /**************************************************************************/
    52         /* Declaration of the value range types                                   */
    53         /**************************************************************************/
-C166 COMPILER V7.53.0.0, OBJDICT                                                           09/03/2014 10:38:12 PAGE 2   
+C166 COMPILER V7.53.0.0, OBJDICT                                                           09/03/2014 17:57:06 PAGE 2   
 
    54         
    55         #define valueRange_EMC 0x9F /* Type for index 0x1003 subindex 0x00 (only set of value 0 is possible) */
@@ -126,7 +126,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\examples\XC164\Slave\Obj
   113                              {
   114                                { RW, valueRange_EMC, sizeof (UNS8), (void*)&ObjDict_highestSubIndex_obj1003 },
   115                                { RO, uint32, sizeof (UNS32), (void*)&ObjDict_obj1003[0] }
-C166 COMPILER V7.53.0.0, OBJDICT                                                           09/03/2014 10:38:12 PAGE 3   
+C166 COMPILER V7.53.0.0, OBJDICT                                                           09/03/2014 17:57:06 PAGE 3   
 
   116                              };
   117         
@@ -190,7 +190,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\examples\XC164\Slave\Obj
   172                             UNS32 ObjDict_obj1011_Restore_Application_Default_Parameters = 0x0; /* 0 */
   173                             UNS32 ObjDict_obj1011_Restore_Manufacturer_Default_Parameters = 0x0;  /* 0 */
   174                             subindex ObjDict_Index1011[] = 
-C166 COMPILER V7.53.0.0, OBJDICT                                                           09/03/2014 10:38:12 PAGE 4   
+C166 COMPILER V7.53.0.0, OBJDICT                                                           09/03/2014 17:57:06 PAGE 4   
 
   175                              {
   176                                { RO, uint8, sizeof (UNS8), (void*)&ObjDict_highestSubIndex_obj1011 },
@@ -254,7 +254,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\examples\XC164\Slave\Obj
   230                             UNS32 ObjDict_obj1200_COB_ID_Client_to_Server_Receive_SDO = 0x600;  /* 1536 */
   231                             UNS32 ObjDict_obj1200_COB_ID_Server_to_Client_Transmit_SDO = 0x580; /* 1408 */
   232                             subindex ObjDict_Index1200[] = 
-C166 COMPILER V7.53.0.0, OBJDICT                                                           09/03/2014 10:38:12 PAGE 5   
+C166 COMPILER V7.53.0.0, OBJDICT                                                           09/03/2014 17:57:06 PAGE 5   
 
   233                              {
   234                                { RO, uint8, sizeof (UNS8), (void*)&ObjDict_highestSubIndex_obj1200 },
@@ -318,7 +318,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\examples\XC164\Slave\Obj
   290                                { RW, uint16, sizeof (UNS16), (void*)&ObjDict_obj1800_Inhibit_Time },
   291                                { RW, uint8, sizeof (UNS8), (void*)&ObjDict_obj1800_Compatibility_Entry },
   292                                { RW, uint16, sizeof (UNS16), (void*)&ObjDict_obj1800_Event_Timer }
-C166 COMPILER V7.53.0.0, OBJDICT                                                           09/03/2014 10:38:12 PAGE 6   
+C166 COMPILER V7.53.0.0, OBJDICT                                                           09/03/2014 17:57:06 PAGE 6   
 
   293                              };
   294         
@@ -382,7 +382,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\examples\XC164\Slave\Obj
   352         
   353         /* index 0x6008 :   Mapped variable Interrupt Mask High to Low 8 Bit */
   354                             UNS8 ObjDict_highestSubIndex_obj6008 = 1; /* number of subindex - 1*/
-C166 COMPILER V7.53.0.0, OBJDICT                                                           09/03/2014 10:38:12 PAGE 7   
+C166 COMPILER V7.53.0.0, OBJDICT                                                           09/03/2014 17:57:06 PAGE 7   
 
   355                             subindex ObjDict_Index6008[] = 
   356                              {
@@ -446,7 +446,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\examples\XC164\Slave\Obj
   414           { (subindex*)ObjDict_Index6002,sizeof(ObjDict_Index6002)/sizeof(ObjDict_Index6002[0]), 0x6002},
   415           { (subindex*)ObjDict_Index6003,sizeof(ObjDict_Index6003)/sizeof(ObjDict_Index6003[0]), 0x6003},
   416           { (subindex*)ObjDict_Index6005,sizeof(ObjDict_Index6005)/sizeof(ObjDict_Index6005[0]), 0x6005},
-C166 COMPILER V7.53.0.0, OBJDICT                                                           09/03/2014 10:38:12 PAGE 8   
+C166 COMPILER V7.53.0.0, OBJDICT                                                           09/03/2014 17:57:06 PAGE 8   
 
   417           { (subindex*)ObjDict_Index6006,sizeof(ObjDict_Index6006)/sizeof(ObjDict_Index6006[0]), 0x6006},
   418           { (subindex*)ObjDict_Index6007,sizeof(ObjDict_Index6007)/sizeof(ObjDict_Index6007[0]), 0x6007},
@@ -510,7 +510,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\examples\XC164\Slave\Obj
   476           13, /* SDO_SVR */
   477           0, /* SDO_CLT */
   478           14, /* PDO_RCV */
-C166 COMPILER V7.53.0.0, OBJDICT                                                           09/03/2014 10:38:12 PAGE 9   
+C166 COMPILER V7.53.0.0, OBJDICT                                                           09/03/2014 17:57:06 PAGE 9   
 
   479           15, /* PDO_RCV_MAP */
   480           16, /* PDO_TRS */

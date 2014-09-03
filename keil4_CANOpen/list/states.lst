@@ -1,4 +1,4 @@
-C166 COMPILER V7.53.0.0, STATES                                                            09/03/2014 10:38:11 PAGE 1   
+C166 COMPILER V7.53.0.0, STATES                                                            09/03/2014 17:57:05 PAGE 1   
 
 
 C166 COMPILER V7.53.0.0, COMPILATION OF MODULE STATES
@@ -62,7 +62,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\states.c MODV2 BROWS
    51         **/    
    52         e_nodeState getState(CO_Data* d)
    53         {
-C166 COMPILER V7.53.0.0, STATES                                                            09/03/2014 10:38:11 PAGE 2   
+C166 COMPILER V7.53.0.0, STATES                                                            09/03/2014 17:57:05 PAGE 2   
 
    54  1        return d->nodeState;
    55  1      }
@@ -126,7 +126,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\states.c MODV2 BROWS
                       proceedLSS_Master(d,m);
                     }
                     break;
-C166 COMPILER V7.53.0.0, STATES                                                            09/03/2014 10:38:11 PAGE 3   
+C166 COMPILER V7.53.0.0, STATES                                                            09/03/2014 17:57:05 PAGE 3   
 
               #endif
   117  2        }
@@ -190,7 +190,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\states.c MODV2 BROWS
   175  3            /* is automatic as defined in DS301. */
   176  3            /* App don't have to call SetState(d, Pre_operational) */
   177  3                      
-C166 COMPILER V7.53.0.0, STATES                                                            09/03/2014 10:38:11 PAGE 4   
+C166 COMPILER V7.53.0.0, STATES                                                            09/03/2014 17:57:05 PAGE 4   
 
   178  3            case Pre_operational:
   179  3      //      {
@@ -254,7 +254,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\states.c MODV2 BROWS
   237         **/   
   238         void setNodeId(CO_Data* d, UNS8 nodeId)
   239         {
-C166 COMPILER V7.53.0.0, STATES                                                            09/03/2014 10:38:11 PAGE 5   
+C166 COMPILER V7.53.0.0, STATES                                                            09/03/2014 17:57:05 PAGE 5   
 
   240  1        UNS16 offset = d->firstIndex->SDO_SVR;
   241  1        
@@ -318,7 +318,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\states.c MODV2 BROWS
   295  2          if( offset ) while ((offset <= lastIndex) && (i < 4)) {
   296  3            if((*(UNS32*)d->objdict[offset].pSubindex[1].pObject == cobID[i] + *d->bDeviceNodeId)||(*d->bDeviceN
              -odeId==0xFF))
-C166 COMPILER V7.53.0.0, STATES                                                            09/03/2014 10:38:11 PAGE 6   
+C166 COMPILER V7.53.0.0, STATES                                                            09/03/2014 17:57:05 PAGE 6   
 
   297  3              *(UNS32*)d->objdict[offset].pSubindex[1].pObject = cobID[i] + nodeId;
   298  3            i ++;

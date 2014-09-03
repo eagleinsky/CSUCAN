@@ -1,4 +1,4 @@
-C166 COMPILER V7.53.0.0, CAN_XC164                                                         09/03/2014 10:38:10 PAGE 1   
+C166 COMPILER V7.53.0.0, CAN_XC164                                                         09/03/2014 17:57:05 PAGE 1   
 
 
 C166 COMPILER V7.53.0.0, COMPILATION OF MODULE CAN_XC164
@@ -62,7 +62,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\drivers\XC164\CAN_Xc164.
    49  1        UNS8 i,state;
    50  1      
    51  1        state = SJARcvData(port,databuf);
-C166 COMPILER V7.53.0.0, CAN_XC164                                                         09/03/2014 10:38:10 PAGE 2   
+C166 COMPILER V7.53.0.0, CAN_XC164                                                         09/03/2014 17:57:05 PAGE 2   
 
    52  1        
    53  1        if(state)

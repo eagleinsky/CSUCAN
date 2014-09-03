@@ -12,7 +12,7 @@
 // @Description   This file contains functions that use the GPT1 module.
 //
 //----------------------------------------------------------------------------
-// @Date          2014/7/1 15:42:50
+// @Date          2014/9/3 17:56:09
 //
 //****************************************************************************
 
@@ -29,7 +29,7 @@
 #include "MAIN.H"
 
 // USER CODE BEGIN (GPT1_General,2)
-
+#include "timer.h"
 // USER CODE END
 
 
@@ -38,7 +38,10 @@
 //****************************************************************************
 
 // USER CODE BEGIN (GPT1_General,3)
+/************************** Modul variables **********************************/
+// Store the last timer value to calculate the elapsed time
 
+static TIMEVAL last_time_set = TIMEVAL_MAX;     
 // USER CODE END
 
 
@@ -111,7 +114,7 @@
 // @Parameters    None
 //
 //----------------------------------------------------------------------------
-// @Date          2014/7/1
+// @Date          2014/9/3
 //
 //****************************************************************************
 
@@ -136,13 +139,13 @@ void GPT1_vInit(void)
   ///  -----------------------------------------------------------------------
   ///  - timer 3 works in timer mode
   ///  - external up/down control is disabled
-  ///  - prescaler factor is 32
+  ///  - prescaler factor is 128
   ///  - up/down control bit is reset
   ///  - alternate output function T3OUT (P3.3) is disabled
   ///  - timer 3 output toggle latch (T3OTL) is set to 0
 
-  GPT12E_T3CON   =  0x1000;      // load timer 3 control register
-  GPT12E_T3      =  0xE796;      // load timer 3 register
+  GPT12E_T3CON   =  0x1002;      // load timer 3 control register
+  GPT12E_T3      =  0x0000;      // load timer 3 register
 
   ///  -----------------------------------------------------------------------
   ///  Configuration of the GPT1 Auxiliary Timer 2:
@@ -160,12 +163,11 @@ void GPT1_vInit(void)
   ///  -----------------------------------------------------------------------
   ///  - timer 4 works in timer mode
   ///  - external up/down control is disabled
-  ///  - prescaler factor is 32
-  ///  - up/down control bit is reset
-  ///  - timer 4 run bit is reset
+  ///  - prescaler factor is 128
+  ///  - up/down control bit is set
 
-  GPT12E_T4CON   =  0x0000;      // load timer 4 control register
-  GPT12E_T4      =  0x0000;      // load timer 4 register
+  GPT12E_T4CON   =  0x0082;      // load timer 4 control register
+  GPT12E_T4      =  0xFFFF;      // load timer 4 register
 
   ///  -----------------------------------------------------------------------
   ///  Configuration of the used GPT1 Port Pins:
@@ -176,28 +178,25 @@ void GPT1_vInit(void)
   ///  Configuration of the used GPT1 Interrupts:
   ///  -----------------------------------------------------------------------
   ///  timer 2 service request node configuration:
-  ///  - timer 2 interrupt priority level (ILVL) = 14
+  ///  - timer 2 interrupt priority level (ILVL) = 6
   ///  - timer 2 interrupt group level (GLVL) = 0
   ///  - timer 2 group priority extension (GPX) = 0
 
-  GPT12E_T2IC    =  0x0078;     
-
-  ///  Use PEC channel 0 for GPT1 T2 INT:
-  ///  - normal interrupt
-  ///  - pointers are not modified
-  ///  - transfer a word
-  ///  - service End of PEC interrrupt by a EOP interrupt node is disabled
-  ///  - channel link mode is disabled
-
-  PECC0          =  0x0000;      // load PECC0 control register
-
+  GPT12E_T2IC    =  0x0058;     
 
   ///  timer 3 service request node configuration:
-  ///  - timer 3 interrupt priority level (ILVL) = 13
+  ///  - timer 3 interrupt priority level (ILVL) = 9
   ///  - timer 3 interrupt group level (GLVL) = 0
   ///  - timer 3 group priority extension (GPX) = 0
 
-  GPT12E_T3IC    =  0x0074;     
+  GPT12E_T3IC    =  0x0064;     
+
+  ///  timer 4 service request node configuration:
+  ///  - timer 4 interrupt priority level (ILVL) = 10
+  ///  - timer 4 interrupt group level (GLVL) = 0
+  ///  - timer 4 group priority extension (GPX) = 0
+
+  GPT12E_T4IC    =  0x0068;     
 
 
   // USER CODE BEGIN (GPT1_Function,3)
@@ -205,6 +204,8 @@ void GPT1_vInit(void)
   // USER CODE END
 
   GPT12E_T2CON_T2R  =  1;        // set timer 2 run bit
+
+  GPT12E_T4CON_T4R  =  1;        // set timer 4 run bit
 
   GPT12E_T3CON_T3R  =  1;        // set timer 3 run bit
 
@@ -231,7 +232,7 @@ void GPT1_vInit(void)
 // @Parameters    None
 //
 //----------------------------------------------------------------------------
-// @Date          2014/7/1
+// @Date          2014/9/3
 //
 //****************************************************************************
 
@@ -239,7 +240,7 @@ void GPT1_vInit(void)
 
 // USER CODE END
 
-void GPT1_viTmr3(void) interrupt T3INT using RB_LEVEL13
+void GPT1_viTmr3(void) interrupt T3INT using RB_LEVEL9
 {
   // USER CODE BEGIN (Tmr3,2)
 
@@ -247,8 +248,8 @@ void GPT1_viTmr3(void) interrupt T3INT using RB_LEVEL13
 
 
   // USER CODE BEGIN (Tmr3,5)  
-	 GPT12E_T3      =  0xE796;   
-  TFlag = 1;
+	 GPT12E_T3      =  0x0000;   
+  //TFlag = 1;
 
   // USER CODE END
 
@@ -276,7 +277,7 @@ void GPT1_viTmr3(void) interrupt T3INT using RB_LEVEL13
 // @Parameters    None
 //
 //----------------------------------------------------------------------------
-// @Date          2014/7/1
+// @Date          2014/9/3
 //
 //****************************************************************************
 
@@ -284,7 +285,7 @@ void GPT1_viTmr3(void) interrupt T3INT using RB_LEVEL13
 
 // USER CODE END
 
-void GPT1_viTmr2(void) interrupt T2INT using RB_LEVEL14
+void GPT1_viTmr2(void) interrupt T2INT using RB_LEVEL6
 {
   // USER CODE BEGIN (Tmr2,2)
 
@@ -301,9 +302,84 @@ void GPT1_viTmr2(void) interrupt T2INT using RB_LEVEL14
 } //  End of function GPT1_viTmr2
 
 
+//****************************************************************************
+// @Function      void GPT1_viTmr4(void) 
+//
+//----------------------------------------------------------------------------
+// @Description   This is the interrupt service routine for the GPT1 timer 4. 
+//                It is called up in the case of over or underflow of the 
+//                timer 4 register.
+//                If the incremental interface mode is selected and the 
+//                interrupt for this mode is not disabled it is called up if 
+//                count edge or count direction was detected.
+//                
+//                Please note that you have to add application specific code 
+//                to this function.
+//
+//----------------------------------------------------------------------------
+// @Returnvalue   None
+//
+//----------------------------------------------------------------------------
+// @Parameters    None
+//
+//----------------------------------------------------------------------------
+// @Date          2014/9/3
+//
+//****************************************************************************
+
+// USER CODE BEGIN (Tmr4,1)
+
+// USER CODE END
+
+void GPT1_viTmr4(void) interrupt T4INT using RB_LEVEL10
+{
+  // USER CODE BEGIN (Tmr4,2)
+
+  // USER CODE END
+
+
+  // USER CODE BEGIN (Tmr4,5)
+	last_time_set = GPT1_uwReadTmr(GPT1_TIMER_3);
+  TimeDispatch();                               // Call the time handler of the stack to adapt the elapsed time
+	
+  // USER CODE END
+
+} //  End of function GPT1_viTmr4
+
+
 
 
 // USER CODE BEGIN (GPT1_General,10)
+
+void setTimer(TIMEVAL value)
+/******************************************************************************
+Set the timer for the next alarm.
+INPUT	value TIMEVAL (unsigned long)
+OUTPUT	void
+******************************************************************************/
+{
+  //TimerAlarm += (int)value;	// Add the desired time to timer interrupt time
+  //TimerAlarm = last_time_set + (int)value;	// Add the desired time to timer interrupt time
+	GPT1_vLoadTmr(CANOpen_TIMER, value);
+}
+
+TIMEVAL getElapsedTime(void)
+/******************************************************************************
+Return the elapsed time to tell the Stack how much time is spent since last call.
+INPUT	void
+OUTPUT	value TIMEVAL (unsigned long) the elapsed time
+******************************************************************************/
+{
+  unsigned int timer;            // Copy the value of the running timer
+
+	timer = GPT1_uwReadTmr(GPT1_TIMER_3);
+	if (timer > last_time_set)                    // In case the timer value is higher than the last time.
+    return (timer - last_time_set);             // Calculate the time difference
+  else if (timer < last_time_set)
+    return (TIMEVAL_MAX - last_time_set + timer);             // Calculate the time difference
+  else
+    return TIMEVAL_MAX;
+}
 
 // USER CODE END
 

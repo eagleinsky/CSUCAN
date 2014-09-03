@@ -1,4 +1,4 @@
-C166 COMPILER V7.53.0.0, SYNC                                                              09/03/2014 10:38:11 PAGE 1   
+C166 COMPILER V7.53.0.0, SYNC                                                              09/03/2014 17:57:06 PAGE 1   
 
 
 C166 COMPILER V7.53.0.0, COMPILATION OF MODULE SYNC
@@ -62,7 +62,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\sync.c MODV2 BROWSE 
    51         **/  
    52         void SyncAlarm(CO_Data* d, UNS32 id);
    53         UNS32 OnCOB_ID_SyncUpdate(CO_Data* d, const indextable * unsused_indextable, 
-C166 COMPILER V7.53.0.0, SYNC                                                              09/03/2014 10:38:11 PAGE 2   
+C166 COMPILER V7.53.0.0, SYNC                                                              09/03/2014 17:57:06 PAGE 2   
 
    54           UNS8 unsused_bSubindex);
    55         
@@ -126,7 +126,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\sync.c MODV2 BROWSE 
   109         **                                                                                                 
   110         ** @param d                                                                                        
   111         **/   
-C166 COMPILER V7.53.0.0, SYNC                                                              09/03/2014 10:38:11 PAGE 3   
+C166 COMPILER V7.53.0.0, SYNC                                                              09/03/2014 17:57:06 PAGE 3   
 
   112         void stopSYNC(CO_Data* d)
   113         {
@@ -190,7 +190,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\sync.c MODV2 BROWSE 
   171  1        MSG_WAR(0x3002, "SYNC received. Proceed. ", 0);
   172  1        
   173  1        (*d->post_sync)(d);
-C166 COMPILER V7.53.0.0, SYNC                                                              09/03/2014 10:38:11 PAGE 4   
+C166 COMPILER V7.53.0.0, SYNC                                                              09/03/2014 17:57:06 PAGE 4   
 
   174  1      
   175  1        /* only operational state allows PDO transmission */

@@ -1,4 +1,4 @@
-C166 COMPILER V7.53.0.0, OBJACCES                                                          09/03/2014 10:38:11 PAGE 1   
+C166 COMPILER V7.53.0.0, OBJACCES                                                          09/03/2014 17:57:05 PAGE 1   
 
 
 C166 COMPILER V7.53.0.0, COMPILATION OF MODULE OBJACCES
@@ -62,7 +62,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\objacces.c MODV2 BRO
                 switch (code) {
                 case  OD_NO_SUCH_OBJECT:
                   MSG_WAR(0x2B11,"Index not found ", index);
-C166 COMPILER V7.53.0.0, OBJACCES                                                          09/03/2014 10:38:11 PAGE 2   
+C166 COMPILER V7.53.0.0, OBJACCES                                                          09/03/2014 17:57:05 PAGE 2   
 
                   break;
                 case OD_NO_SUCH_SUBINDEX :
@@ -126,7 +126,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\objacces.c MODV2 BRO
   108  2          MSG_WAR(0x2B30, "Access Type : ", ptrTable->pSubindex[bSubindex].bAccessType);
   109  2          accessDictionaryError(wIndex, bSubindex, 0, 0, OD_READ_NOT_ALLOWED);
   110  2          return OD_READ_NOT_ALLOWED;
-C166 COMPILER V7.53.0.0, OBJACCES                                                          09/03/2014 10:38:11 PAGE 3   
+C166 COMPILER V7.53.0.0, OBJACCES                                                          09/03/2014 17:57:05 PAGE 3   
 
   111  2        }
   112  1      
@@ -190,7 +190,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\objacces.c MODV2 BRO
   169  1        return OD_SUCCESSFUL;
   170  1      }
 *** WARNING C47 IN LINE 89 OF CANopen\src\objacces.c: 'endianize': unreferenced parameter
-C166 COMPILER V7.53.0.0, OBJACCES                                                          09/03/2014 10:38:11 PAGE 4   
+C166 COMPILER V7.53.0.0, OBJACCES                                                          09/03/2014 17:57:05 PAGE 4   
 
   171         
   172         UNS32 _setODentry( CO_Data* d,
@@ -254,7 +254,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\objacces.c MODV2 BRO
               #endif
   230  2            errorCode = (*d->valueRangeTest)(dataType, pSourceData);
   231  2            if (errorCode) {
-C166 COMPILER V7.53.0.0, OBJACCES                                                          09/03/2014 10:38:11 PAGE 5   
+C166 COMPILER V7.53.0.0, OBJACCES                                                          09/03/2014 17:57:05 PAGE 5   
 
   232  3              accessDictionaryError(wIndex, bSubindex, szData, *pExpectedSize, errorCode);
   233  3              return errorCode;
@@ -318,7 +318,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\objacces.c MODV2 BRO
 
 MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
   CODE SIZE        =        1238     --------
-C166 COMPILER V7.53.0.0, OBJACCES                                                          09/03/2014 10:38:11 PAGE 6   
+C166 COMPILER V7.53.0.0, OBJACCES                                                          09/03/2014 17:57:05 PAGE 6   
 
   NEAR-CONST SIZE  =    --------     --------
   FAR-CONST SIZE   =    --------     --------

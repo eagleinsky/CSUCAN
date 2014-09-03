@@ -1,4 +1,4 @@
-C166 COMPILER V7.53.0.0, EMCY                                                              09/03/2014 10:38:10 PAGE 1   
+C166 COMPILER V7.53.0.0, EMCY                                                              09/03/2014 17:57:05 PAGE 1   
 
 
 C166 COMPILER V7.53.0.0, COMPILATION OF MODULE EMCY
@@ -62,7 +62,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\emcy.c MODV2 BROWSE 
    51         ** @param d
    52         ** @param unsused_indextable
    53         ** @param unsused_bSubindex
-C166 COMPILER V7.53.0.0, EMCY                                                              09/03/2014 10:38:10 PAGE 2   
+C166 COMPILER V7.53.0.0, EMCY                                                              09/03/2014 17:57:05 PAGE 2   
 
    54         **
    55         ** @return
@@ -126,7 +126,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\emcy.c MODV2 BROWSE 
   109  1        m.Data[1] = (errCode >> 8) & 0xFF; /* MSB */
 *** WARNING C192 IN LINE 109 OF CANopen\src\emcy.c: '=': value truncated
   110  1        m.Data[2] = errRegister;
-C166 COMPILER V7.53.0.0, EMCY                                                              09/03/2014 10:38:10 PAGE 3   
+C166 COMPILER V7.53.0.0, EMCY                                                              09/03/2014 17:57:05 PAGE 3   
 
   111  1      
   112  1        if(Specific==NULL)
@@ -190,7 +190,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\emcy.c MODV2 BROWSE 
   168  1        d->error_data[index].active = 1;
   169  1        
   170  1        /* set the new state in the error state machine */
-C166 COMPILER V7.53.0.0, EMCY                                                              09/03/2014 10:38:10 PAGE 4   
+C166 COMPILER V7.53.0.0, EMCY                                                              09/03/2014 17:57:05 PAGE 4   
 
   171  1        d->error_state = Error_occurred;
   172  1      
@@ -254,7 +254,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\emcy.c MODV2 BROWSE 
   229  1          MSG_WAR(0x3054, "recovered error was not active", 0);
   230  1      }
   231         
-C166 COMPILER V7.53.0.0, EMCY                                                              09/03/2014 10:38:10 PAGE 5   
+C166 COMPILER V7.53.0.0, EMCY                                                              09/03/2014 17:57:05 PAGE 5   
 
   232         /*! This function is responsible to process an EMCY canopen-message.
   233          **

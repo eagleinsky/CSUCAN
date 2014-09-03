@@ -12,7 +12,7 @@
 // @Description   This file contains functions that use the CC2 module.
 //
 //----------------------------------------------------------------------------
-// @Date          2014/7/1 15:42:51
+// @Date          2014/9/3 17:56:09
 //
 //****************************************************************************
 
@@ -111,7 +111,7 @@
 // @Parameters    None
 //
 //----------------------------------------------------------------------------
-// @Date          2014/7/1
+// @Date          2014/9/3
 //
 //****************************************************************************
 
@@ -313,19 +313,19 @@ void CC2_vInit(void)
   ///  Configuration of the used CAPCOM2 Channels Interrupts:
   ///  -----------------------------------------------------------------------
   ///  CC16 service request node configuration:
-  ///  - CC16 interrupt priority level (ILVL) = 12
+  ///  - CC16 interrupt priority level (ILVL) = 7
   ///  - CC16 interrupt group level (GLVL) = 0
   ///  - CC16 group priority extension (GPX) = 0
 
-  CC2_CC16IC     =  0x0070;     
+  CC2_CC16IC     =  0x005C;     
 
 
   ///  CC17 service request node configuration:
-  ///  - CC17 interrupt priority level (ILVL) = 11
+  ///  - CC17 interrupt priority level (ILVL) = 8
   ///  - CC17 interrupt group level (GLVL) = 0
   ///  - CC17 group priority extension (GPX) = 0
 
-  CC2_CC17IC     =  0x006C;     
+  CC2_CC17IC     =  0x0060;     
 
 
 
@@ -356,7 +356,7 @@ void CC2_vInit(void)
 // @Parameters    None
 //
 //----------------------------------------------------------------------------
-// @Date          2014/7/1
+// @Date          2014/9/3
 //
 //****************************************************************************
 
@@ -364,7 +364,7 @@ void CC2_vInit(void)
 
 // USER CODE END
 
-void CC2_viCC16(void) interrupt CC2_CC16INT using RB_LEVEL12
+void CC2_viCC16(void) interrupt CC2_CC16INT using RB_LEVEL7
 {
   // USER CODE BEGIN (CC16,2)
 	can1_recv_flag=1;
@@ -393,7 +393,7 @@ void CC2_viCC16(void) interrupt CC2_CC16INT using RB_LEVEL12
 // @Parameters    None
 //
 //----------------------------------------------------------------------------
-// @Date          2014/7/1
+// @Date          2014/9/3
 //
 //****************************************************************************
 
@@ -401,7 +401,7 @@ void CC2_viCC16(void) interrupt CC2_CC16INT using RB_LEVEL12
 
 // USER CODE END
 
-void CC2_viCC17(void) interrupt CC2_CC17INT using RB_LEVEL11
+void CC2_viCC17(void) interrupt CC2_CC17INT using RB_LEVEL8
 {
   // USER CODE BEGIN (CC17,2)
   can2_recv_flag=1;	

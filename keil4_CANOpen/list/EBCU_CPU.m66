@@ -1,17 +1,17 @@
-L166 LINKER/LOCATER V5.25                                                               09/03/2014  10:38:12  PAGE 1
+L166 LINKER/LOCATER V5.25                                                               09/03/2014  17:57:06  PAGE 1
 
 
 L166 LINKER/LOCATER V5.25, INVOKED BY:
-C:\KEIL4\C166\BIN\L166.EXE .\obj\Start_V2.obj, .\obj\MAIN.obj, .\obj\GPT1.obj, .\obj\IO.obj, .\obj\CC2.obj, .\obj\global
->> .obj, .\obj\8255.obj, .\obj\delay.obj, .\obj\dpram.obj, .\obj\dio.obj, .\obj\mvb.obj, .\obj\CAN_Xc164.obj, .\obj\PELI
->> .obj, .\obj\timer_XC164.obj, .\obj\emcy.obj, .\obj\lss.obj, .\obj\objacces.obj, .\obj\pdo.obj, .\obj\states.obj, .\ob
->> j\sync.obj, .\obj\temp.obj, .\obj\timer.obj, .\obj\ds401.obj, .\obj\ObjDict.obj TO .\obj\EBCU_CPU PRINT (.\list\EBCU_
->> CPU.m66) CLASSES (ICODE (0XC00000-0XC1FFFF), NCODE (0XC00000-0XC0FFFF), FCONST (0XC00000-0XC1FFFF), HCONST (0XC00000-
->> 0XC1FFFF), XCONST (0XC00000-0XC1FFFF), NCONST (0XC04000-0XC07FFF), NDATA (0XC000-0XCFFF, 0XF600-0XFDFF), NDATA0 (0XC0
->> 00-0XCFFF, 0XF600-0XFDFF), SDATA (0XC000-0XCFFF, 0XF600-0XFDFF), SDATA0 (0XC000-0XCFFF, 0XF600-0XFDFF), IDATA (0XF600
->> -0XFDFF), IDATA0 (0XF600-0XFDFF), FDATA (0XC000-0XCFFF, 0XF600-0XFDFF), FDATA0 (0XC000-0XCFFF, 0XF600-0XFDFF), HDATA 
->> (0XC000-0XCFFF, 0XF600-0XFDFF), HDATA0 (0XC000-0XCFFF, 0XF600-0XFDFF), XDATA (0XC000-0XCFFF, 0XF600-0XFDFF), XDATA0 (
->> 0XC000-0XCFFF, 0XF600-0XFDFF)) CINITTAB (0XC00000-0XC1FFFF)
+C:\KEIL4\C166\BIN\L166.EXE .\obj\Start_V2.obj, .\obj\MAIN.obj, .\obj\GPT1.obj, .\obj\IO.obj, .\obj\CC2.obj, .\obj\GPT2.o
+>> bj, .\obj\global.obj, .\obj\8255.obj, .\obj\delay.obj, .\obj\dpram.obj, .\obj\dio.obj, .\obj\mvb.obj, .\obj\CAN_Xc164
+>> .obj, .\obj\PELI.obj, .\obj\emcy.obj, .\obj\lss.obj, .\obj\objacces.obj, .\obj\pdo.obj, .\obj\states.obj, .\obj\sync.
+>> obj, .\obj\temp.obj, .\obj\timer.obj, .\obj\ds401.obj, .\obj\ObjDict.obj TO .\obj\EBCU_CPU PRINT (.\list\EBCU_CPU.m66
+>> ) CLASSES (ICODE (0XC00000-0XC1FFFF), NCODE (0XC00000-0XC0FFFF), FCONST (0XC00000-0XC1FFFF), HCONST (0XC00000-0XC1FFF
+>> F), XCONST (0XC00000-0XC1FFFF), NCONST (0XC04000-0XC07FFF), NDATA (0XC000-0XCFFF, 0XF600-0XFDFF), NDATA0 (0XC000-0XCF
+>> FF, 0XF600-0XFDFF), SDATA (0XC000-0XCFFF, 0XF600-0XFDFF), SDATA0 (0XC000-0XCFFF, 0XF600-0XFDFF), IDATA (0XF600-0XFDFF
+>> ), IDATA0 (0XF600-0XFDFF), FDATA (0XC000-0XCFFF, 0XF600-0XFDFF), FDATA0 (0XC000-0XCFFF, 0XF600-0XFDFF), HDATA (0XC000
+>> -0XCFFF, 0XF600-0XFDFF), HDATA0 (0XC000-0XCFFF, 0XF600-0XFDFF), XDATA (0XC000-0XCFFF, 0XF600-0XFDFF), XDATA0 (0XC000-
+>> 0XCFFF, 0XF600-0XFDFF)) CINITTAB (0XC00000-0XC1FFFF)
 
 
 CPU TYPE:     C167 or derivative
@@ -30,6 +30,8 @@ INPUT MODULES INCLUDED:
          COMMENT TYPE 128: C166 V7.53.0.0
   .\obj\CC2.obj (CC2)
          COMMENT TYPE 128: C166 V7.53.0.0
+  .\obj\GPT2.obj (GPT2)
+         COMMENT TYPE 128: C166 V7.53.0.0
   .\obj\global.obj (GLOBAL)
          COMMENT TYPE 128: C166 V7.53.0.0
   .\obj\8255.obj (8255)
@@ -46,8 +48,6 @@ INPUT MODULES INCLUDED:
          COMMENT TYPE 128: C166 V7.53.0.0
   .\obj\PELI.obj (PELI)
          COMMENT TYPE 128: C166 V7.53.0.0
-  .\obj\timer_XC164.obj (TIMER_XC164)
-         COMMENT TYPE 128: C166 V7.53.0.0
   .\obj\emcy.obj (EMCY)
          COMMENT TYPE 128: C166 V7.53.0.0
   .\obj\lss.obj (LSS)
@@ -59,7 +59,7 @@ INPUT MODULES INCLUDED:
   .\obj\states.obj (STATES)
          COMMENT TYPE 128: C166 V7.53.0.0
   .\obj\sync.obj (SYNC)
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 2
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 2
 
 
          COMMENT TYPE 128: C166 V7.53.0.0
@@ -93,8 +93,10 @@ INTERRUPT PROCEDURE                 INT  INTERRUPT NAME
 ?C_RESET                              0  RESET
 GPT1_viTmr3                          35  ---  
 GPT1_viTmr2                          34  ---  
+GPT1_viTmr4                          36  ---  
 CC2_viCC16                           48  ---  
 CC2_viCC17                           49  ---  
+GPT2_viTmr5                          37  ---  
 
 
 MEMORY MAP OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
@@ -110,25 +112,26 @@ START     STOP      LENGTH    TYPE  RTYP  ALIGN  TGR  GRP  COMB  CLASS   SECTION
 00C842H   00C8C1H   000080H   DATA  REL   WORD   ---    1  PUBL  NDATA0  ?ND0?MAIN
 00C8C2H   00C90DH   00004CH   DATA  REL   WORD   ---    1  PUBL  NDATA0  ?ND0?GLOBAL
 00C90EH   00C92FH   000022H   DATA  REL   WORD   ---    1  PUBL  NDATA0  ?ND0?PELI
-00C930H   00C933H   000004H   DATA  REL   WORD   ---    1  PUBL  NDATA0  ?ND0?TIMER_XC164
+00C930H   00C933H   000004H   DATA  REL   WORD   ---    1  PUBL  NDATA0  ?ND0?GPT1
 00F600H   00F7FFH   000200H   DATA  REL   WORD   ---    2  PUBL  IDATA   ?C_SYSSTACK
 00FC00H   00FC1FH   000020H   DATA  ---   BYTE   ---  ---  ---   *REG*   ?C_MAINREGISTERS
-00FC20H   00FC3FH   000020H   DATA  ---   BYTE   ---  ---  ---   *REG*   RB_LEVEL13
-00FC40H   00FC5FH   000020H   DATA  ---   BYTE   ---  ---  ---   *REG*   RB_LEVEL14
-00FC60H   00FC7FH   000020H   DATA  ---   BYTE   ---  ---  ---   *REG*   RB_LEVEL12
-00FC80H   00FC9FH   000020H   DATA  ---   BYTE   ---  ---  ---   *REG*   RB_LEVEL11
+00FC20H   00FC3FH   000020H   DATA  ---   BYTE   ---  ---  ---   *REG*   RB_LEVEL9
+00FC40H   00FC5FH   000020H   DATA  ---   BYTE   ---  ---  ---   *REG*   RB_LEVEL6
+00FC60H   00FC7FH   000020H   DATA  ---   BYTE   ---  ---  ---   *REG*   RB_LEVEL10
+00FC80H   00FC9FH   000020H   DATA  ---   BYTE   ---  ---  ---   *REG*   RB_LEVEL7
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 3
+
+
+00FCA0H   00FCBFH   000020H   DATA  ---   BYTE   ---  ---  ---   *REG*   RB_LEVEL8
+00FCC0H   00FCDFH   000020H   DATA  ---   BYTE   ---  ---  ---   *REG*   RB_LEVEL5
 C00000H   C00003H   000004H   ---   ---   ---    ---  ---  ---   * INTVECTOR TABLE *
 C00004H   C0001DH   00001AH   CONST ABS   WORD   ---  ---  PRIV  ---     ?C_CLRMEMSEC
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 3
-
-
-C0001EH   C0004BH   00002EH   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?DELAY
-C0004CH   C00067H   00001CH   CODE  REL   WORD   ---    3  PRIV  NCODE   ?PR?MEMCMP
-C00068H   C00079H   000012H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?MEMSET
+C0001EH   C0005DH   000040H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?GPT2
+C0005EH   C00079H   00001CH   CODE  REL   WORD   ---    3  PRIV  NCODE   ?PR?MEMCMP
 C0007AH   C00087H   00000EH   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?TEMP
-C00088H   C0008FH   000008H   ---   ---   ---    ---  ---  ---   * INTVECTOR TABLE *
-C00090H   C0009DH   00000EH   CODE  REL   WORD   ---    3  PRIV  NCODE   ?PR?MEMCPY
-C0009EH   C000A7H   00000AH   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?TIMER_XC164
+C00088H   C00097H   000010H   ---   ---   ---    ---  ---  ---   * INTVECTOR TABLE *
+C00098H   C000A9H   000012H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?MEMSET
+C000AAH   C000B7H   00000EH   CODE  REL   WORD   ---    3  PRIV  NCODE   ?PR?MEMCPY
 C000C0H   C000C7H   000008H   ---   ---   ---    ---  ---  ---   * INTVECTOR TABLE *
 C000C8H   C009B7H   0008F0H   XDATA REL   WORD   ---  ---  GLOB  ---     ?C_INITSEC
 C009B8H   C018E1H   000F2AH   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?PDO
@@ -140,17 +143,18 @@ C02D62H   C0302FH   0002CEH   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?EMC
 C03030H   C031BFH   000190H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?8255
 C031C0H   C0332FH   000170H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?OBJDICT
 C03330H   C0349DH   00016EH   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?MVB
-C0349EH   C03601H   000164H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?MAIN
-C03602H   C03749H   000148H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?DS401
-C0374AH   C03877H   00012EH   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?SYNC
-C03878H   C03977H   000100H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?CAN_XC164
-C03978H   C03A37H   0000C0H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?CC2
-C03A38H   C03AEDH   0000B6H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?DIO
-C03AEEH   C03B97H   0000AAH   CODE  REL   WORD   ---    3  PUBL  NCODE   ?C_LIB_CODE
-C03B98H   C03C3DH   0000A6H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?IO
-C03C3EH   C03CBDH   000080H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?DPRAM
-C03CBEH   C03D2BH   00006EH   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?GPT1
-C03D2CH   C03E9BH   000170H   CODE  REL   WORD   ---  ---  PRIV  ICODE   ?C_STARTUP_CODE
+C0349EH   C03605H   000168H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?MAIN
+C03606H   C0374DH   000148H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?DS401
+C0374EH   C0387BH   00012EH   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?SYNC
+C0387CH   C0397BH   000100H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?GPT1
+C0397CH   C03A7BH   000100H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?CAN_XC164
+C03A7CH   C03B3BH   0000C0H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?CC2
+C03B3CH   C03BF1H   0000B6H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?DIO
+C03BF2H   C03C9BH   0000AAH   CODE  REL   WORD   ---    3  PUBL  NCODE   ?C_LIB_CODE
+C03C9CH   C03D41H   0000A6H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?IO
+C03D42H   C03DC1H   000080H   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?DPRAM
+C03DC2H   C03DEFH   00002EH   CODE  REL   WORD   ---    3  PUBL  NCODE   ?PR?DELAY
+C03DF0H   C03F5FH   000170H   CODE  REL   WORD   ---  ---  PRIV  ICODE   ?C_STARTUP_CODE
 C04000H   C040AEH   0000AFH   DATA  REL   WORD   ---    4  PUBL  NCONST  ?NC?OBJDICT
 C040B0H   C040D6H   000027H   DATA  REL   WORD   ---    4  PUBL  NCONST  ?NC?STATES
 C040D8H   C040FCH   000025H   DATA  REL   WORD   ---    4  PUBL  NCONST  ?NC?MAIN
@@ -169,21 +173,22 @@ NDATA                                DATA  ---    1  NDATA       ?C_USERSTACK
                                                      NDATA       ?C_USERSTACK1
                                                      NDATA       ?C_USERSTACK2
                                                      NDATA0      ?ND0?MAIN
+                                                     NDATA0      ?ND0?GPT1
                                                      NDATA0      ?ND0?GLOBAL
                                                      NDATA0      ?ND0?PELI
-                                                     NDATA0      ?ND0?TIMER_XC164
                                                      NDATA0      ?ND0?TIMER
                                                      NDATA0      ?ND0?OBJDICT
+
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 4
+
 
 SDATA                                DATA  ---    2  IDATA       ?C_SYSSTACK
 
 NCODE                                CODE  ---    3  NCODE       ?PR?MAIN
                                                      NCODE       ?PR?GPT1
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 4
-
-
                                                      NCODE       ?PR?IO
                                                      NCODE       ?PR?CC2
+                                                     NCODE       ?PR?GPT2
                                                      NCODE       ?PR?8255
                                                      NCODE       ?PR?DELAY
                                                      NCODE       ?PR?DPRAM
@@ -191,7 +196,6 @@ NCODE                                CODE  ---    3  NCODE       ?PR?MAIN
                                                      NCODE       ?PR?MVB
                                                      NCODE       ?PR?CAN_XC164
                                                      NCODE       ?PR?PELI
-                                                     NCODE       ?PR?TIMER_XC164
                                                      NCODE       ?PR?EMCY
                                                      NCODE       ?PR?OBJACCES
                                                      NCODE       ?PR?PDO
@@ -224,7 +228,7 @@ PUBLIC SYMBOLS OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C00004H     ?C_CLRMEMSECSTART                VAR   ---  ---     ---
       C009B6H     ?C_ENDINIT                       VAR   ---  ---     ?C_INITSEC
       C000C8H     ?C_INITSECSTART                  VAR   ---  ---     ---
-      C03AEEH     ?C_LMUL                          LABEL ---  NCODE   ?C_LIB_CODE
+      C03BF2H     ?C_LMUL                          LABEL ---  NCODE   ?C_LIB_CODE
       C00000H     ?C_NCONSTBASE                    CONST ---  ---     ---
       0000C0H     ?C_NCONSTBASESEG                 CONST ---  ---     ---
       004000H     ?C_NDATABASE                     CONST ---  ---     ---
@@ -232,44 +236,47 @@ PUBLIC SYMBOLS OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       000000H     ?C_PAGEDPP0                      CONST ---  ---     ---
       000301H     ?C_PAGEDPP1                      CONST ---  ---     ---
       000003H     ?C_PAGEDPP2                      CONST ---  ---     ---
-      C03D2CH     ?C_STARTUP                       LABEL ---  ICODE   ?C_STARTUP_CODE
+      C03DF0H     ?C_STARTUP                       LABEL ---  ICODE   ?C_STARTUP_CODE
       00F600H     ?C_SYSSTKBOT                     VAR   ---  IDATA   ?C_SYSSTACK
       00F800H     ?C_SYSSTKTOP                     VAR   ---  IDATA   ?C_SYSSTACK
-      C03B06H     ?C_ULDIV                         LABEL ---  NCODE   ?C_LIB_CODE
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 5
+
+
+      C03C0AH     ?C_ULDIV                         LABEL ---  NCODE   ?C_LIB_CODE
       00C000H     ?C_USRSTKBOT                     VAR   ---  NDATA   ?C_USERSTACK
       000000H     ?L?VECSC                         CONST ---  ---     ---
       00C8CCH     ADIO                             VAR   ---  NDATA0  ?ND0?GLOBAL
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 5
-
-
-      C03978H     CC2_vInit                        LABEL ---  NCODE   ?PR?CC2
-      C03A00H     CC2_viCC16                       LABEL ---  NCODE   ?PR?CC2
-      C03A1CH     CC2_viCC17                       LABEL ---  NCODE   ?PR?CC2
+      C03A7CH     CC2_vInit                        LABEL ---  NCODE   ?PR?CC2
+      C03B04H     CC2_viCC16                       LABEL ---  NCODE   ?PR?CC2
+      C03B20H     CC2_viCC17                       LABEL ---  NCODE   ?PR?CC2
       00C797H     Change_Polarity_Outputs_8_Bit    VAR   ---  NDATA0  ?ND0?OBJDICT
       C01B32H     ClearBitMask                     LABEL ---  NCODE   ?PR?PELI
       C010ECH     CopyBits                         LABEL ---  NCODE   ?PR?PDO
-      C03AACH     DERROR                           LABEL ---  NCODE   ?PR?DIO
-      C03A7EH     DIN                              LABEL ---  NCODE   ?PR?DIO
+      C03BB0H     DERROR                           LABEL ---  NCODE   ?PR?DIO
+      C03B82H     DIN                              LABEL ---  NCODE   ?PR?DIO
       00C8C2H     DIO                              VAR   ---  NDATA0  ?ND0?GLOBAL
       00C8ECH     DIO_ALL                          VAR   ---  NDATA0  ?ND0?GLOBAL
-      C03A38H     DOUT                             LABEL ---  NCODE   ?PR?DIO
+      C03B3CH     DOUT                             LABEL ---  NCODE   ?PR?DIO
       C02BF4H     DelAlarm                         LABEL ---  NCODE   ?PR?TIMER
-      C0001EH     DelayMs                          LABEL ---  NCODE   ?PR?DELAY
+      C03DC2H     DelayMs                          LABEL ---  NCODE   ?PR?DELAY
       C02F68H     EMCY_errorRecovered              LABEL ---  NCODE   ?PR?EMCY
       C02E36H     EMCY_setError                    LABEL ---  NCODE   ?PR?EMCY
       00C785H     Error_Mode_Outputs_8_Bit         VAR   ---  NDATA0  ?ND0?OBJDICT
       00C787H     Error_Value_Outputs_8_Bit        VAR   ---  NDATA0  ?ND0?OBJDICT
       00C78CH     Filter_Constant_Input_8_Bit      VAR   ---  NDATA0  ?ND0?OBJDICT
-      C03CBEH     GPT1_vInit                       LABEL ---  NCODE   ?PR?GPT1
-      C03D08H     GPT1_viTmr2                      LABEL ---  NCODE   ?PR?GPT1
-      C03CE8H     GPT1_viTmr3                      LABEL ---  NCODE   ?PR?GPT1
+      C0387CH     GPT1_vInit                       LABEL ---  NCODE   ?PR?GPT1
+      C038C2H     GPT1_viTmr2                      LABEL ---  NCODE   ?PR?GPT1
+      C038A8H     GPT1_viTmr3                      LABEL ---  NCODE   ?PR?GPT1
+      C038E6H     GPT1_viTmr4                      LABEL ---  NCODE   ?PR?GPT1
+      C0001EH     GPT2_vInit                       LABEL ---  NCODE   ?PR?GPT2
+      C0003EH     GPT2_viTmr5                      LABEL ---  NCODE   ?PR?GPT2
       00C789H     Global_Interrupt_Enable_Digital  VAR   ---  NDATA0  ?ND0?OBJDICT
-      C03B98H     IO_vInit                         LABEL ---  NCODE   ?PR?IO
+      C03C9CH     IO_vInit                         LABEL ---  NCODE   ?PR?IO
       00C790H     Interrupt_Mask_Any_Change_8_Bit  VAR   ---  NDATA0  ?ND0?OBJDICT
       00C78EH     Interrupt_Mask_High_to_Low_8_Bit VAR   ---  NDATA0  ?ND0?OBJDICT
       00C78DH     Interrupt_Mask_Low_to_High_8_Bit VAR   ---  NDATA0  ?ND0?OBJDICT
       C0349EH     MAIN_vInit                       LABEL ---  NCODE   ?PR?MAIN
-      C034B6H     MAIN_vUnlockProtecReg            LABEL ---  NCODE   ?PR?MAIN
+      C034BAH     MAIN_vUnlockProtecReg            LABEL ---  NCODE   ?PR?MAIN
       00C522H     ObjDict_Data                     VAR   ---  NDATA0  ?ND0?OBJDICT
       00C4A0H     ObjDict_Index1000                VAR   ---  NDATA0  ?ND0?OBJDICT
       00C470H     ObjDict_Index1001                VAR   ---  NDATA0  ?ND0?OBJDICT
@@ -292,6 +299,9 @@ PUBLIC SYMBOLS OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       00C3BCH     ObjDict_Index1600                VAR   ---  NDATA0  ?ND0?OBJDICT
       00C348H     ObjDict_Index1800                VAR   ---  NDATA0  ?ND0?OBJDICT
       00C282H     ObjDict_Index1800_callbacks      VAR   ---  NDATA0  ?ND0?OBJDICT
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 6
+
+
       00C26AH     ObjDict_Index1A00                VAR   ---  NDATA0  ?ND0?OBJDICT
       00C3DCH     ObjDict_Index6000                VAR   ---  NDATA0  ?ND0?OBJDICT
       00C39CH     ObjDict_Index6002                VAR   ---  NDATA0  ?ND0?OBJDICT
@@ -299,9 +309,6 @@ PUBLIC SYMBOLS OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       00C2F0H     ObjDict_Index6005                VAR   ---  NDATA0  ?ND0?OBJDICT
       00C2D8H     ObjDict_Index6006                VAR   ---  NDATA0  ?ND0?OBJDICT
       00C2C4H     ObjDict_Index6007                VAR   ---  NDATA0  ?ND0?OBJDICT
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 6
-
-
       00C2A2H     ObjDict_Index6008                VAR   ---  NDATA0  ?ND0?OBJDICT
       00C3ACH     ObjDict_Index6200                VAR   ---  NDATA0  ?ND0?OBJDICT
       00C328H     ObjDict_Index6202                VAR   ---  NDATA0  ?ND0?OBJDICT
@@ -352,6 +359,9 @@ PUBLIC SYMBOLS OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       00C2ECH     ObjDict_obj1011_Restore_Manuf... VAR   ---  NDATA0  ?ND0?OBJDICT
       00C516H     ObjDict_obj1014                  VAR   ---  NDATA0  ?ND0?OBJDICT
       00C506H     ObjDict_obj1016                  VAR   ---  NDATA0  ?ND0?OBJDICT
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 7
+
+
       00C504H     ObjDict_obj1017                  VAR   ---  NDATA0  ?ND0?OBJDICT
       00C4C0H     ObjDict_obj1018_Product_Code     VAR   ---  NDATA0  ?ND0?OBJDICT
       00C4E8H     ObjDict_obj1018_Revision_Number  VAR   ---  NDATA0  ?ND0?OBJDICT
@@ -359,9 +369,6 @@ PUBLIC SYMBOLS OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       00C2D4H     ObjDict_obj1018_Vendor_ID        VAR   ---  NDATA0  ?ND0?OBJDICT
       00C240H     ObjDict_obj1200_COB_ID_Client... VAR   ---  NDATA0  ?ND0?OBJDICT
       00C4F6H     ObjDict_obj1200_COB_ID_Server... VAR   ---  NDATA0  ?ND0?OBJDICT
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 7
-
-
       00C4A8H     ObjDict_obj1400_COB_ID_used_b... VAR   ---  NDATA0  ?ND0?OBJDICT
       00C78BH     ObjDict_obj1400_Compatibility... VAR   ---  NDATA0  ?ND0?OBJDICT
       00C27EH     ObjDict_obj1400_Event_Timer      VAR   ---  NDATA0  ?ND0?OBJDICT
@@ -377,7 +384,7 @@ PUBLIC SYMBOLS OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C04000H     ObjDict_objdict                  VAR   ---  NCONST  ?NC?OBJDICT
       C031DCH     ObjDict_scanIndexOD              LABEL ---  NCODE   ?PR?OBJDICT
       C031C0H     ObjDict_valueRangeTest           LABEL ---  NCODE   ?PR?OBJDICT
-      C03750H     OnCOB_ID_SyncUpdate              LABEL ---  NCODE   ?PR?SYNC
+      C03754H     OnCOB_ID_SyncUpdate              LABEL ---  NCODE   ?PR?SYNC
       C02D62H     OnNumberOfErrorsUpdate           LABEL ---  NCODE   ?PR?EMCY
       C013D0H     PDOEventTimerAlarm               LABEL ---  NCODE   ?PR?PDO
       C01418H     PDOInhibitTimerAlarm             LABEL ---  NCODE   ?PR?PDO
@@ -410,8 +417,11 @@ PUBLIC SYMBOLS OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       00C90EH     SJA_BTR_CODETAB                  VAR   ---  NDATA0  ?ND0?PELI
       C02A78H     SetAlarm                         LABEL ---  NCODE   ?PR?TIMER
       C01AFCH     SetBitMask                       LABEL ---  NCODE   ?PR?PELI
-      C0374AH     SyncAlarm                        LABEL ---  NCODE   ?PR?SYNC
+      C0374EH     SyncAlarm                        LABEL ---  NCODE   ?PR?SYNC
       00C8F2H     TFlag                            VAR   ---  NDATA0  ?ND0?GLOBAL
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 8
+
+
       C016C8H     TPDO_Communication_Parameter_... LABEL ---  NCODE   ?PR?PDO
       C02C18H     TimeDispatch                     LABEL ---  NCODE   ?PR?TIMER
       00C8F3H     TimerMsFlag                      VAR   ---  NDATA0  ?ND0?GLOBAL
@@ -419,9 +429,6 @@ PUBLIC SYMBOLS OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C01944H     WriteSJARegBlock                 LABEL ---  NCODE   ?PR?PELI
       00C78FH     Write_Outputs_8_Bit              VAR   ---  NDATA0  ?ND0?OBJDICT
       C01460H     _RxPDO_EventTimers_Handler       LABEL ---  NCODE   ?PR?PDO
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 8
-
-
       C021E2H     _getODentry                      LABEL ---  NCODE   ?PR?OBJACCES
       C0007AH     _heartbeatError                  LABEL ---  NCODE   ?PR?TEMP
       C02A5CH     _initialisation                  LABEL ---  NCODE   ?PR?STATES
@@ -429,42 +436,41 @@ PUBLIC SYMBOLS OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C02A74H     _operational                     LABEL ---  NCODE   ?PR?STATES
       C0007CH     _post_SlaveBootup                LABEL ---  NCODE   ?PR?TEMP
       C0007EH     _post_SlaveStateChange           LABEL ---  NCODE   ?PR?TEMP
-      C03876H     _post_TPDO                       LABEL ---  NCODE   ?PR?SYNC
+      C0387AH     _post_TPDO                       LABEL ---  NCODE   ?PR?SYNC
       C0302EH     _post_emcy                       LABEL ---  NCODE   ?PR?EMCY
-      C03874H     _post_sync                       LABEL ---  NCODE   ?PR?SYNC
+      C03878H     _post_sync                       LABEL ---  NCODE   ?PR?SYNC
       C02A5EH     _preOperational                  LABEL ---  NCODE   ?PR?STATES
       C01462H     _sendPDOevent                    LABEL ---  NCODE   ?PR?PDO
       C023C4H     _setODentry                      LABEL ---  NCODE   ?PR?OBJACCES
       C02A76H     _stopped                         LABEL ---  NCODE   ?PR?STATES
       C026AEH     _storeODSubIndex                 LABEL ---  NCODE   ?PR?OBJACCES
       C021DAH     accessDictionaryError            LABEL ---  NCODE   ?PR?OBJACCES
-      C03742H     analog_input_handler             LABEL ---  NCODE   ?PR?DS401
-      C03746H     analog_output_handler            LABEL ---  NCODE   ?PR?DS401
+      C03746H     analog_input_handler             LABEL ---  NCODE   ?PR?DS401
+      C0374AH     analog_output_handler            LABEL ---  NCODE   ?PR?DS401
       C009B8H     buildPDO                         LABEL ---  NCODE   ?PR?PDO
       00C8F1H     can1_recv_flag                   VAR   ---  NDATA0  ?ND0?GLOBAL
       00C8F0H     can2_recv_flag                   VAR   ---  NDATA0  ?ND0?GLOBAL
       C026B6H     canDispatch                      LABEL ---  NCODE   ?PR?STATES
-      C038E8H     canReceive                       LABEL ---  NCODE   ?PR?CAN_XC164
-      C03878H     canSend                          LABEL ---  NCODE   ?PR?CAN_XC164
+      C039ECH     canReceive                       LABEL ---  NCODE   ?PR?CAN_XC164
+      C0397CH     canSend                          LABEL ---  NCODE   ?PR?CAN_XC164
       00C92CH     can_data                         VAR   ---  NDATA0  ?ND0?PELI
       00C8CAH     can_nod                          VAR   ---  NDATA0  ?ND0?GLOBAL
       00C92EH     can_select                       VAR   ---  NDATA0  ?ND0?PELI
-      C00036H     delay                            LABEL ---  NCODE   ?PR?DELAY
-      C03602H     digital_input_handler            LABEL ---  NCODE   ?PR?DS401
-      C03694H     digital_output_handler           LABEL ---  NCODE   ?PR?DS401
+      C03DDAH     delay                            LABEL ---  NCODE   ?PR?DELAY
+      C03606H     digital_input_handler            LABEL ---  NCODE   ?PR?DS401
+      C03698H     digital_output_handler           LABEL ---  NCODE   ?PR?DS401
       00C8EEH     dpram_data                       VAR   ---  NDATA0  ?ND0?GLOBAL
       C02D92H     emergencyInit                    LABEL ---  NCODE   ?PR?EMCY
       C02DB0H     emergencyStop                    LABEL ---  NCODE   ?PR?EMCY
-      C000A2H     getElapsedTime                   LABEL ---  NCODE   ?PR?TIMER_XC164
+      C03926H     getElapsedTime                   LABEL ---  NCODE   ?PR?GPT1
       C0280AH     getNodeId                        LABEL ---  NCODE   ?PR?STATES
       C026B0H     getState                         LABEL ---  NCODE   ?PR?STATES
-      C0009EH     initTimer                        LABEL ---  NCODE   ?PR?TIMER_XC164
       00C7AAH     last_timer_raw                   VAR   ---  NDATA0  ?ND0?TIMER
-      C0353EH     main                             LABEL ---  NCODE   ?PR?MAIN
+      C03542H     main                             LABEL ---  NCODE   ?PR?MAIN
       C00086H     masterSendNMTstateChange         LABEL ---  NCODE   ?PR?TEMP
-      C0004CH     memcmp                           LABEL ---  NCODE   ?PR?MEMCMP
-      C00090H     memcpy                           LABEL ---  NCODE   ?PR?MEMCPY
-      C00068H     memset                           LABEL ---  NCODE   ?PR?MEMSET
+      C0005EH     memcmp                           LABEL ---  NCODE   ?PR?MEMCMP
+      C000AAH     memcpy                           LABEL ---  NCODE   ?PR?MEMCPY
+      C00098H     memset                           LABEL ---  NCODE   ?PR?MEMSET
       00C8A2H     mvb_buf_si                       VAR   ---  NDATA0  ?ND0?MAIN
       00C882H     mvb_buf_si2                      VAR   ---  NDATA0  ?ND0?MAIN
       00C862H     mvb_buf_so1                      VAR   ---  NDATA0  ?ND0?MAIN
@@ -473,15 +479,15 @@ PUBLIC SYMBOLS OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C02FF4H     proceedEMCY                      LABEL ---  NCODE   ?PR?EMCY
       C00082H     proceedNMTstateChange            LABEL ---  NCODE   ?PR?TEMP
       C00C04H     proceedPDO                       LABEL ---  NCODE   ?PR?PDO
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 9
+
+
       C00084H     proceedSDO                       LABEL ---  NCODE   ?PR?TEMP
-      C03844H     proceedSYNC                      LABEL ---  NCODE   ?PR?SYNC
+      C03848H     proceedSYNC                      LABEL ---  NCODE   ?PR?SYNC
       C03078H     read_8255                        LABEL ---  NCODE   ?PR?8255
-      C03C5EH     read_AD_ram                      LABEL ---  NCODE   ?PR?DPRAM
+      C03D62H     read_AD_ram                      LABEL ---  NCODE   ?PR?DPRAM
       C0313AH     read_Data                        LABEL ---  NCODE   ?PR?8255
       C03432H     read_sink_port                   LABEL ---  NCODE   ?PR?MVB
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 9
-
-
       00C901H     recv_buf1                        VAR   ---  NDATA0  ?ND0?GLOBAL
       00C8F4H     recv_buf2                        VAR   ---  NDATA0  ?ND0?GLOBAL
       C02652H     scanIndexOD                      LABEL ---  NCODE   ?PR?OBJACCES
@@ -490,19 +496,19 @@ PUBLIC SYMBOLS OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C011E6H     sendOnePDOevent                  LABEL ---  NCODE   ?PR?PDO
       C011DCH     sendPDOevent                     LABEL ---  NCODE   ?PR?PDO
       C00B94H     sendPDOrequest                   LABEL ---  NCODE   ?PR?PDO
-      C0382EH     sendSYNC                         LABEL ---  NCODE   ?PR?SYNC
-      C03806H     sendSYNCMessage                  LABEL ---  NCODE   ?PR?SYNC
+      C03832H     sendSYNC                         LABEL ---  NCODE   ?PR?SYNC
+      C0380AH     sendSYNCMessage                  LABEL ---  NCODE   ?PR?SYNC
       C02810H     setNodeId                        LABEL ---  NCODE   ?PR?STATES
       C027A2H     setState                         LABEL ---  NCODE   ?PR?STATES
-      C000A0H     setTimer                         LABEL ---  NCODE   ?PR?TIMER_XC164
-      C0375AH     startSYNC                        LABEL ---  NCODE   ?PR?SYNC
-      C037D8H     stopSYNC                         LABEL ---  NCODE   ?PR?SYNC
+      C03920H     setTimer                         LABEL ---  NCODE   ?PR?GPT1
+      C0375EH     startSYNC                        LABEL ---  NCODE   ?PR?SYNC
+      C037DCH     stopSYNC                         LABEL ---  NCODE   ?PR?SYNC
       C02760H     switchCommunicationState         LABEL ---  NCODE   ?PR?STATES
       00C840H     tdcount                          VAR   ---  NDATA0  ?ND0?TIMER
       00C7B0H     timers                           VAR   ---  NDATA0  ?ND0?TIMER
       00C7ACH     total_sleep_time                 VAR   ---  NDATA0  ?ND0?TIMER
       C03030H     write_8255                       LABEL ---  NCODE   ?PR?8255
-      C03C3EH     write_AD_ram                     LABEL ---  NCODE   ?PR?DPRAM
+      C03D42H     write_AD_ram                     LABEL ---  NCODE   ?PR?DPRAM
       C030ACH     write_Data                       LABEL ---  NCODE   ?PR?8255
       C033C8H     write_source_port                LABEL ---  NCODE   ?PR?MVB
 
@@ -512,7 +518,7 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
 
       VALUE       TYPE      REP       LENGTH  TGR   SYMBOL NAME
       =========================================================
-      C03D2CH     PUBLIC    LABEL     ---     ---   ?C_STARTUP
+      C03DF0H     PUBLIC    LABEL     ---     ---   ?C_STARTUP
       000000H     PUBLIC    CONST     ---     ---   ?L?VECSC
       00C000H     PUBLIC    VAR       ---     ---   ?C_USRSTKBOT
       00F600H     PUBLIC    VAR       ---     ---   ?C_SYSSTKBOT
@@ -533,15 +539,15 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       000000H     SYMBOL    CONST     ---     ---   CC2DIS
       000001H     SYMBOL    CONST     ---     ---   CC6DIS
       00FE10H     SYMBOL    SFR       ---     ---   CP
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 10
+
+
       00FE00H     SYMBOL    SFR       ---     ---   DPP0
       00FE02H     SYMBOL    SFR       ---     ---   DPP1
       00FE04H     SYMBOL    SFR       ---     ---   DPP2
       00FE06H     SYMBOL    SFR       ---     ---   DPP3
       00EE00H     SYMBOL    CONST     ---     ---   EBCMOD0
       00EE02H     SYMBOL    CONST     ---     ---   EBCMOD1
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 10
-
-
       00EE12H     SYMBOL    CONST     ---     ---   FCONCS0
       00EE4AH     SYMBOL    CONST     ---     ---   FCONCS7
       000000H     SYMBOL    CONST     ---     ---   FMDIS
@@ -593,15 +599,15 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       000000H     SYMBOL    CONST     ---     ---   _PHB7
       000001H     SYMBOL    CONST     ---     ---   _PHC0
       000000H     SYMBOL    CONST     ---     ---   _PHC7
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 11
+
+
       000001H     SYMBOL    CONST     ---     ---   _PHD0
       000000H     SYMBOL    CONST     ---     ---   _PHD7
       00000EH     SYMBOL    CONST     ---     ---   _PHE0
       000000H     SYMBOL    CONST     ---     ---   _PHE7
       007814H     SYMBOL    CONST     ---     ---   _PLLCON
       000003H     SYMBOL    CONST     ---     ---   _PLLCTRL
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 11
-
-
       000001H     SYMBOL    CONST     ---     ---   _PLLIDIV
       000018H     SYMBOL    CONST     ---     ---   _PLLMUL
       000004H     SYMBOL    CONST     ---     ---   _PLLODIV
@@ -628,169 +634,169 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       000003H     SYMBOL    CONST     ---     ---   _WRPHF0
       000000H     SYMBOL    CONST     ---     ---   _WRPHF7
 
-      C03D2CH     BLOCK     LVL=0     0170H   ---   ?C_RESET
-      C03D2CH     LINE      ---       ---     ---   #1453
-      C03D30H     LINE      ---       ---     ---   #1492
-      C03D32H     LINE      ---       ---     ---   #1493
-      C03D36H     LINE      ---       ---     ---   #1500
-      C03D3AH     LINE      ---       ---     ---   #1501
-      C03D3EH     LINE      ---       ---     ---   #1506
-      C03D42H     LINE      ---       ---     ---   #1507
-      C03D46H     LINE      ---       ---     ---   #1514
-      C03D4AH     LINE      ---       ---     ---   #1515
-      C03D4EH     LINE      ---       ---     ---   #1518
-      C03D50H     LINE      ---       ---     ---   #1519
-      C03D54H     LINE      ---       ---     ---   #1628
-      C03D56H     LINE      ---       ---     ---   #1629
-      C03D5AH     LINE      ---       ---     ---   #1632
-      C03D5EH     LINE      ---       ---     ---   #1633
-      C03D62H     LINE      ---       ---     ---   #1636
-      C03D66H     LINE      ---       ---     ---   #1637
-      C03D6AH     LINE      ---       ---     ---   #1651
-      C03D6CH     LINE      ---       ---     ---   #1652
-      C03D70H     LINE      ---       ---     ---   #1660
-      C03D74H     LINE      ---       ---     ---   #1661
-      C03D78H     LINE      ---       ---     ---   #1662
-      C03D7CH     LINE      ---       ---     ---   #1663
-      C03D80H     LINE      ---       ---     ---   #1672
-      C03D84H     LINE      ---       ---     ---   #1674
-      C03D88H     LINE      ---       ---     ---   #1675
-      C03D8CH     LINE      ---       ---     ---   #1679
-      C03D90H     LINE      ---       ---     ---   #1686
-      C03D94H     LINE      ---       ---     ---   #1690
-      C03D98H     LINE      ---       ---     ---   #1691
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 12
+      C03DF0H     BLOCK     LVL=0     0170H   ---   ?C_RESET
+      C03DF0H     LINE      ---       ---     ---   #1453
+      C03DF4H     LINE      ---       ---     ---   #1492
+      C03DF6H     LINE      ---       ---     ---   #1493
+      C03DFAH     LINE      ---       ---     ---   #1500
+      C03DFEH     LINE      ---       ---     ---   #1501
+      C03E02H     LINE      ---       ---     ---   #1506
+      C03E06H     LINE      ---       ---     ---   #1507
+      C03E0AH     LINE      ---       ---     ---   #1514
+      C03E0EH     LINE      ---       ---     ---   #1515
+      C03E12H     LINE      ---       ---     ---   #1518
+      C03E14H     LINE      ---       ---     ---   #1519
+      C03E18H     LINE      ---       ---     ---   #1628
+      C03E1AH     LINE      ---       ---     ---   #1629
+      C03E1EH     LINE      ---       ---     ---   #1632
+      C03E22H     LINE      ---       ---     ---   #1633
+      C03E26H     LINE      ---       ---     ---   #1636
+      C03E2AH     LINE      ---       ---     ---   #1637
+      C03E2EH     LINE      ---       ---     ---   #1651
+      C03E30H     LINE      ---       ---     ---   #1652
+      C03E34H     LINE      ---       ---     ---   #1660
+      C03E38H     LINE      ---       ---     ---   #1661
+      C03E3CH     LINE      ---       ---     ---   #1662
+      C03E40H     LINE      ---       ---     ---   #1663
+      C03E44H     LINE      ---       ---     ---   #1672
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 12
 
 
-      C03D9CH     LINE      ---       ---     ---   #1695
-      C03DA0H     LINE      ---       ---     ---   #1696
-      C03DA4H     LINE      ---       ---     ---   #1700
-      C03DA8H     LINE      ---       ---     ---   #1703
-      C03DACH     LINE      ---       ---     ---   #1755
-      C03DB0H     LINE      ---       ---     ---   #1756
-      C03DB4H     LINE      ---       ---     ---   #1757
-      C03DB6H     LINE      ---       ---     ---   #1758
-      C03DB8H     LINE      ---       ---     ---   #1759
-      C03DBAH     LINE      ---       ---     ---   #1765
-      C03DBCH     LINE      ---       ---     ---   #1766
-      C03DBEH     LINE      ---       ---     ---   #1767
-      C03DC0H     LINE      ---       ---     ---   #1768
-      C03DC2H     LINE      ---       ---     ---   #1769
-      C03DC4H     LINE      ---       ---     ---   #1770
-      C03DC6H     LINE      ---       ---     ---   #1771
-      C03DC8H     LINE      ---       ---     ---   #1772
-      C03DCCH     LINE      ---       ---     ---   #1773
-      C03DD0H     LINE      ---       ---     ---   #1775
-      C03DD2H     LINE      ---       ---     ---   #1776
-      C03DD4H     LINE      ---       ---     ---   #1777
-      C03DD6H     LINE      ---       ---     ---   #1778
-      C03DDAH     LINE      ---       ---     ---   #1779
-      C03DDCH     LINE      ---       ---     ---   #1780
-      C03DDEH     LINE      ---       ---     ---   #1781
-      C03DE0H     LINE      ---       ---     ---   #1782
-      C03DE2H     LINE      ---       ---     ---   #1783
-      C03DE4H     LINE      ---       ---     ---   #1784
-      C03DE6H     LINE      ---       ---     ---   #1785
-      C03DE8H     LINE      ---       ---     ---   #1786
-      C03DEAH     LINE      ---       ---     ---   #1787
-      C03DECH     LINE      ---       ---     ---   #1789
-      C03DEEH     LINE      ---       ---     ---   #1790
-      C03DF0H     LINE      ---       ---     ---   #1795
-      C03DF2H     LINE      ---       ---     ---   #1796
-      C03DF4H     LINE      ---       ---     ---   #1797
-      C03DF6H     LINE      ---       ---     ---   #1798
-      C03DF8H     LINE      ---       ---     ---   #1799
-      C03DFCH     LINE      ---       ---     ---   #1800
-      C03DFEH     LINE      ---       ---     ---   #1801
-      C03E00H     LINE      ---       ---     ---   #1802
-      C03E02H     LINE      ---       ---     ---   #1808
-      C03E04H     LINE      ---       ---     ---   #1809
-      C03E06H     LINE      ---       ---     ---   #1810
-      C03E08H     LINE      ---       ---     ---   #1811
-      C03E0AH     LINE      ---       ---     ---   #1812
-      C03E0CH     LINE      ---       ---     ---   #1873
-      C03E10H     LINE      ---       ---     ---   #1874
-      C03E14H     LINE      ---       ---     ---   #1880
-      C03E18H     LINE      ---       ---     ---   #1881
-      C03E1AH     LINE      ---       ---     ---   #1882
-      C03E1CH     LINE      ---       ---     ---   #1883
-      C03E1EH     LINE      ---       ---     ---   #1884
-      C03E20H     LINE      ---       ---     ---   #1885
-      C03E22H     LINE      ---       ---     ---   #1886
-      C03E26H     LINE      ---       ---     ---   #1887
-      C03E28H     LINE      ---       ---     ---   #1888
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 13
+      C03E48H     LINE      ---       ---     ---   #1674
+      C03E4CH     LINE      ---       ---     ---   #1675
+      C03E50H     LINE      ---       ---     ---   #1679
+      C03E54H     LINE      ---       ---     ---   #1686
+      C03E58H     LINE      ---       ---     ---   #1690
+      C03E5CH     LINE      ---       ---     ---   #1691
+      C03E60H     LINE      ---       ---     ---   #1695
+      C03E64H     LINE      ---       ---     ---   #1696
+      C03E68H     LINE      ---       ---     ---   #1700
+      C03E6CH     LINE      ---       ---     ---   #1703
+      C03E70H     LINE      ---       ---     ---   #1755
+      C03E74H     LINE      ---       ---     ---   #1756
+      C03E78H     LINE      ---       ---     ---   #1757
+      C03E7AH     LINE      ---       ---     ---   #1758
+      C03E7CH     LINE      ---       ---     ---   #1759
+      C03E7EH     LINE      ---       ---     ---   #1765
+      C03E80H     LINE      ---       ---     ---   #1766
+      C03E82H     LINE      ---       ---     ---   #1767
+      C03E84H     LINE      ---       ---     ---   #1768
+      C03E86H     LINE      ---       ---     ---   #1769
+      C03E88H     LINE      ---       ---     ---   #1770
+      C03E8AH     LINE      ---       ---     ---   #1771
+      C03E8CH     LINE      ---       ---     ---   #1772
+      C03E90H     LINE      ---       ---     ---   #1773
+      C03E94H     LINE      ---       ---     ---   #1775
+      C03E96H     LINE      ---       ---     ---   #1776
+      C03E98H     LINE      ---       ---     ---   #1777
+      C03E9AH     LINE      ---       ---     ---   #1778
+      C03E9EH     LINE      ---       ---     ---   #1779
+      C03EA0H     LINE      ---       ---     ---   #1780
+      C03EA2H     LINE      ---       ---     ---   #1781
+      C03EA4H     LINE      ---       ---     ---   #1782
+      C03EA6H     LINE      ---       ---     ---   #1783
+      C03EA8H     LINE      ---       ---     ---   #1784
+      C03EAAH     LINE      ---       ---     ---   #1785
+      C03EACH     LINE      ---       ---     ---   #1786
+      C03EAEH     LINE      ---       ---     ---   #1787
+      C03EB0H     LINE      ---       ---     ---   #1789
+      C03EB2H     LINE      ---       ---     ---   #1790
+      C03EB4H     LINE      ---       ---     ---   #1795
+      C03EB6H     LINE      ---       ---     ---   #1796
+      C03EB8H     LINE      ---       ---     ---   #1797
+      C03EBAH     LINE      ---       ---     ---   #1798
+      C03EBCH     LINE      ---       ---     ---   #1799
+      C03EC0H     LINE      ---       ---     ---   #1800
+      C03EC2H     LINE      ---       ---     ---   #1801
+      C03EC4H     LINE      ---       ---     ---   #1802
+      C03EC6H     LINE      ---       ---     ---   #1808
+      C03EC8H     LINE      ---       ---     ---   #1809
+      C03ECAH     LINE      ---       ---     ---   #1810
+      C03ECCH     LINE      ---       ---     ---   #1811
+      C03ECEH     LINE      ---       ---     ---   #1812
+      C03ED0H     LINE      ---       ---     ---   #1873
+      C03ED4H     LINE      ---       ---     ---   #1874
+      C03ED8H     LINE      ---       ---     ---   #1880
+      C03EDCH     LINE      ---       ---     ---   #1881
+      C03EDEH     LINE      ---       ---     ---   #1882
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 13
 
 
-      C03E2CH     LINE      ---       ---     ---   #1889
-      C03E2EH     LINE      ---       ---     ---   #1890
-      C03E30H     LINE      ---       ---     ---   #1891
-      C03E32H     LINE      ---       ---     ---   #1892
-      C03E34H     LINE      ---       ---     ---   #1893
-      C03E36H     LINE      ---       ---     ---   #1894
-      C03E38H     LINE      ---       ---     ---   #1895
-      C03E3AH     LINE      ---       ---     ---   #1896
-      C03E3CH     LINE      ---       ---     ---   #1897
-      C03E3EH     LINE      ---       ---     ---   #1898
-      C03E40H     LINE      ---       ---     ---   #1899
-      C03E44H     LINE      ---       ---     ---   #1900
-      C03E48H     LINE      ---       ---     ---   #1901
-      C03E4AH     LINE      ---       ---     ---   #1902
-      C03E4CH     LINE      ---       ---     ---   #1903
-      C03E4EH     LINE      ---       ---     ---   #1904
-      C03E50H     LINE      ---       ---     ---   #1905
-      C03E52H     LINE      ---       ---     ---   #1906
-      C03E54H     LINE      ---       ---     ---   #1907
-      C03E56H     LINE      ---       ---     ---   #1908
-      C03E58H     LINE      ---       ---     ---   #1909
-      C03E5AH     LINE      ---       ---     ---   #1910
-      C03E5CH     LINE      ---       ---     ---   #1911
-      C03E60H     LINE      ---       ---     ---   #1912
-      C03E64H     LINE      ---       ---     ---   #1913
-      C03E68H     LINE      ---       ---     ---   #1914
-      C03E6CH     LINE      ---       ---     ---   #1919
-      C03E6EH     LINE      ---       ---     ---   #1920
-      C03E70H     LINE      ---       ---     ---   #1921
-      C03E74H     LINE      ---       ---     ---   #1922
-      C03E76H     LINE      ---       ---     ---   #1923
-      C03E78H     LINE      ---       ---     ---   #1924
-      C03E7AH     LINE      ---       ---     ---   #1926
-      C03E7CH     LINE      ---       ---     ---   #1927
-      C03E7EH     LINE      ---       ---     ---   #1928
-      C03E82H     LINE      ---       ---     ---   #1929
-      C03E84H     LINE      ---       ---     ---   #1930
-      C03E86H     LINE      ---       ---     ---   #1931
-      C03E88H     LINE      ---       ---     ---   #1932
-      C03E8CH     LINE      ---       ---     ---   #1933
-      C03E8EH     LINE      ---       ---     ---   #1934
-      C03E90H     LINE      ---       ---     ---   #1935
-      C03E92H     LINE      ---       ---     ---   #1936
-      C03E94H     LINE      ---       ---     ---   #1937
-      C03E96H     LINE      ---       ---     ---   #1938
-      C03E98H     LINE      ---       ---     ---   #2027
-      C03E98H     SYMBOL    LABEL     ---     ---   EndInit
-      C03E94H     SYMBOL    LABEL     ---     ---   StoreBit
-      C03E92H     SYMBOL    LABEL     ---     ---   SetBit
-      C03E7AH     SYMBOL    LABEL     ---     ---   InitBit
-      C03E6CH     SYMBOL    LABEL     ---     ---   NoDPP3Adj
-      C03E50H     SYMBOL    LABEL     ---     ---   CopyInitVal
-      C03E38H     SYMBOL    LABEL     ---     ---   LenLoad
-      C03E14H     SYMBOL    LABEL     ---     ---   RepeatInit
-      C03E0CH     SYMBOL    LABEL     ---     ---   Init_Vars
-      C03E0CH     SYMBOL    LABEL     ---     ---   EndClear
-      C03E02H     SYMBOL    LABEL     ---     ---   ClearNear
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 14
+      C03EE0H     LINE      ---       ---     ---   #1883
+      C03EE2H     LINE      ---       ---     ---   #1884
+      C03EE4H     LINE      ---       ---     ---   #1885
+      C03EE6H     LINE      ---       ---     ---   #1886
+      C03EEAH     LINE      ---       ---     ---   #1887
+      C03EECH     LINE      ---       ---     ---   #1888
+      C03EF0H     LINE      ---       ---     ---   #1889
+      C03EF2H     LINE      ---       ---     ---   #1890
+      C03EF4H     LINE      ---       ---     ---   #1891
+      C03EF6H     LINE      ---       ---     ---   #1892
+      C03EF8H     LINE      ---       ---     ---   #1893
+      C03EFAH     LINE      ---       ---     ---   #1894
+      C03EFCH     LINE      ---       ---     ---   #1895
+      C03EFEH     LINE      ---       ---     ---   #1896
+      C03F00H     LINE      ---       ---     ---   #1897
+      C03F02H     LINE      ---       ---     ---   #1898
+      C03F04H     LINE      ---       ---     ---   #1899
+      C03F08H     LINE      ---       ---     ---   #1900
+      C03F0CH     LINE      ---       ---     ---   #1901
+      C03F0EH     LINE      ---       ---     ---   #1902
+      C03F10H     LINE      ---       ---     ---   #1903
+      C03F12H     LINE      ---       ---     ---   #1904
+      C03F14H     LINE      ---       ---     ---   #1905
+      C03F16H     LINE      ---       ---     ---   #1906
+      C03F18H     LINE      ---       ---     ---   #1907
+      C03F1AH     LINE      ---       ---     ---   #1908
+      C03F1CH     LINE      ---       ---     ---   #1909
+      C03F1EH     LINE      ---       ---     ---   #1910
+      C03F20H     LINE      ---       ---     ---   #1911
+      C03F24H     LINE      ---       ---     ---   #1912
+      C03F28H     LINE      ---       ---     ---   #1913
+      C03F2CH     LINE      ---       ---     ---   #1914
+      C03F30H     LINE      ---       ---     ---   #1919
+      C03F32H     LINE      ---       ---     ---   #1920
+      C03F34H     LINE      ---       ---     ---   #1921
+      C03F38H     LINE      ---       ---     ---   #1922
+      C03F3AH     LINE      ---       ---     ---   #1923
+      C03F3CH     LINE      ---       ---     ---   #1924
+      C03F3EH     LINE      ---       ---     ---   #1926
+      C03F40H     LINE      ---       ---     ---   #1927
+      C03F42H     LINE      ---       ---     ---   #1928
+      C03F46H     LINE      ---       ---     ---   #1929
+      C03F48H     LINE      ---       ---     ---   #1930
+      C03F4AH     LINE      ---       ---     ---   #1931
+      C03F4CH     LINE      ---       ---     ---   #1932
+      C03F50H     LINE      ---       ---     ---   #1933
+      C03F52H     LINE      ---       ---     ---   #1934
+      C03F54H     LINE      ---       ---     ---   #1935
+      C03F56H     LINE      ---       ---     ---   #1936
+      C03F58H     LINE      ---       ---     ---   #1937
+      C03F5AH     LINE      ---       ---     ---   #1938
+      C03F5CH     LINE      ---       ---     ---   #2027
+      C03F5CH     SYMBOL    LABEL     ---     ---   EndInit
+      C03F58H     SYMBOL    LABEL     ---     ---   StoreBit
+      C03F56H     SYMBOL    LABEL     ---     ---   SetBit
+      C03F3EH     SYMBOL    LABEL     ---     ---   InitBit
+      C03F30H     SYMBOL    LABEL     ---     ---   NoDPP3Adj
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 14
 
 
-      C03DF0H     SYMBOL    LABEL     ---     ---   RepClearFar
-      C03DECH     SYMBOL    LABEL     ---     ---   ClearFar
-      C03DD0H     SYMBOL    LABEL     ---     ---   ClearBit
-      C03DBAH     SYMBOL    LABEL     ---     ---   RepeatClear
-      C03DACH     SYMBOL    LABEL     ---     ---   Clr_Memory
+      C03F14H     SYMBOL    LABEL     ---     ---   CopyInitVal
+      C03EFCH     SYMBOL    LABEL     ---     ---   LenLoad
+      C03ED8H     SYMBOL    LABEL     ---     ---   RepeatInit
+      C03ED0H     SYMBOL    LABEL     ---     ---   Init_Vars
+      C03ED0H     SYMBOL    LABEL     ---     ---   EndClear
+      C03EC6H     SYMBOL    LABEL     ---     ---   ClearNear
+      C03EB4H     SYMBOL    LABEL     ---     ---   RepClearFar
+      C03EB0H     SYMBOL    LABEL     ---     ---   ClearFar
+      C03E94H     SYMBOL    LABEL     ---     ---   ClearBit
+      C03E7EH     SYMBOL    LABEL     ---     ---   RepeatClear
+      C03E70H     SYMBOL    LABEL     ---     ---   Clr_Memory
       ---         BLOCKEND  LVL=0     ---     ---   
-      C0353EH     GLOBAL    LABEL     ---     ---   main
+      C03542H     GLOBAL    LABEL     ---     ---   main
       C0349EH     PUBLIC    LABEL     ---     ---   MAIN_vInit
-      C034B6H     PUBLIC    LABEL     ---     ---   MAIN_vUnlockProtecReg
+      C034BAH     PUBLIC    LABEL     ---     ---   MAIN_vUnlockProtecReg
       C040D8H     SYMBOL    VAR       ---     ---   ?tpl?0003
       C040E4H     SYMBOL    VAR       ---     ---   ?tpl?0002
       C040F0H     SYMBOL    VAR       ---     ---   ?tpl?0001
@@ -800,209 +806,268 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       00C882H     PUBLIC    VAR       ---     ---   mvb_buf_si2
       00C8A2H     PUBLIC    VAR       ---     ---   mvb_buf_si
 
-      C0349EH     BLOCK     LVL=0     0018H   ---   MAIN_vInit
+      C0349EH     BLOCK     LVL=0     001CH   ---   MAIN_vInit
       C0349EH     LINE      ---       ---     ---   #124
       C0349EH     LINE      ---       ---     ---   #138
       C034A0H     LINE      ---       ---     ---   #139
       C034A6H     LINE      ---       ---     ---   #256
       C034AAH     LINE      ---       ---     ---   #259
       C034AEH     LINE      ---       ---     ---   #262
-      C034B2H     LINE      ---       ---     ---   #269
-      C034B4H     LINE      ---       ---     ---   #271
+      C034B2H     LINE      ---       ---     ---   #265
+      C034B6H     LINE      ---       ---     ---   #272
+      C034B8H     LINE      ---       ---     ---   #274
       ---         BLOCKEND  LVL=0     ---     ---   
 
-      C034B6H     BLOCK     LVL=0     0088H   ---   MAIN_vUnlockProtecReg
-      C034B6H     BLOCK     LVL=1     0086H   ---   
+      C034BAH     BLOCK     LVL=0     0088H   ---   MAIN_vUnlockProtecReg
+      C034BAH     BLOCK     LVL=1     0086H   ---   
       000005H     SYMBOL    REG       ---     ---   uwPASSWORD
       ---         BLOCKEND  LVL=1     ---     ---   
-      C034B6H     LINE      ---       ---     ---   #298
-      C034B6H     LINE      ---       ---     ---   #299
-      C034B6H     LINE      ---       ---     ---   #302
-      C034C4H     LINE      ---       ---     ---   #305
-      C034CEH     LINE      ---       ---     ---   #306
-      C034D8H     LINE      ---       ---     ---   #307
-      C034E2H     LINE      ---       ---     ---   #309
-      C034E2H     LINE      ---       ---     ---   #311
-      C034F0H     LINE      ---       ---     ---   #313
-      C034F6H     LINE      ---       ---     ---   #314
-      C034FAH     LINE      ---       ---     ---   #316
-      C03504H     LINE      ---       ---     ---   #317
-      C0350EH     LINE      ---       ---     ---   #319
-      C03518H     LINE      ---       ---     ---   #320
-      C0351EH     LINE      ---       ---     ---   #322
-      C03528H     LINE      ---       ---     ---   #323
-      C03532H     LINE      ---       ---     ---   #324
-      C0353CH     LINE      ---       ---     ---   #326
+      C034BAH     LINE      ---       ---     ---   #301
+      C034BAH     LINE      ---       ---     ---   #302
+      C034BAH     LINE      ---       ---     ---   #305
+      C034C8H     LINE      ---       ---     ---   #308
+      C034D2H     LINE      ---       ---     ---   #309
+      C034DCH     LINE      ---       ---     ---   #310
+      C034E6H     LINE      ---       ---     ---   #312
+      C034E6H     LINE      ---       ---     ---   #314
+      C034F4H     LINE      ---       ---     ---   #316
+      C034FAH     LINE      ---       ---     ---   #317
+      C034FEH     LINE      ---       ---     ---   #319
+      C03508H     LINE      ---       ---     ---   #320
+      C03512H     LINE      ---       ---     ---   #322
+      C0351CH     LINE      ---       ---     ---   #323
+      C03522H     LINE      ---       ---     ---   #325
+      C0352CH     LINE      ---       ---     ---   #326
+      C03536H     LINE      ---       ---     ---   #327
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 15
+
+
+      C03540H     LINE      ---       ---     ---   #329
       ---         BLOCKEND  LVL=0     ---     ---   
 
-      C0353EH     BLOCK     LVL=0     00C4H   ---   main
-      C03542H     BLOCK     LVL=1     00C0H   ---   
+      C03542H     BLOCK     LVL=0     00C4H   ---   main
+      C03546H     BLOCK     LVL=1     00C0H   ---   
       000000H     SYMBOL    AUTO      ---     ---   Chip1_cfg
       00000CH     SYMBOL    AUTO      ---     ---   Sendm
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 15
-
-
       000018H     SYMBOL    AUTO      ---     ---   Rcvm
       00004DH     SYMBOL    REG       ---     ---   i
       000024H     SYMBOL    AUTO      ---     ---   digital_input
       ---         BLOCKEND  LVL=1     ---     ---   
-      C0353EH     LINE      ---       ---     ---   #352
-      C03542H     LINE      ---       ---     ---   #353
       C03542H     LINE      ---       ---     ---   #355
-      C03552H     LINE      ---       ---     ---   #356
-      C03564H     LINE      ---       ---     ---   #357
-      C03578H     LINE      ---       ---     ---   #358
-      C0357AH     LINE      ---       ---     ---   #359
-      C0358EH     LINE      ---       ---     ---   #362
-      C03590H     LINE      ---       ---     ---   #366
-      C035A8H     LINE      ---       ---     ---   #370
-      C035A8H     LINE      ---       ---     ---   #372
-      C035AEH     LINE      ---       ---     ---   #374
-      C035B2H     LINE      ---       ---     ---   #375
-      C035B4H     LINE      ---       ---     ---   #383
-      C035C2H     LINE      ---       ---     ---   #384
-      C035C2H     LINE      ---       ---     ---   #385
-      C035C8H     LINE      ---       ---     ---   #387
-      C035CCH     LINE      ---       ---     ---   #388
-      C035DCH     LINE      ---       ---     ---   #390
-      C035F0H     LINE      ---       ---     ---   #391
-      C035F6H     LINE      ---       ---     ---   #392
-      C03600H     LINE      ---       ---     ---   #393
-      C03600H     LINE      ---       ---     ---   #396
+      C03546H     LINE      ---       ---     ---   #356
+      C03546H     LINE      ---       ---     ---   #358
+      C03556H     LINE      ---       ---     ---   #359
+      C03568H     LINE      ---       ---     ---   #360
+      C0357CH     LINE      ---       ---     ---   #361
+      C0357EH     LINE      ---       ---     ---   #362
+      C03592H     LINE      ---       ---     ---   #365
+      C03594H     LINE      ---       ---     ---   #369
+      C035ACH     LINE      ---       ---     ---   #373
+      C035ACH     LINE      ---       ---     ---   #375
+      C035B2H     LINE      ---       ---     ---   #377
+      C035B6H     LINE      ---       ---     ---   #378
+      C035B8H     LINE      ---       ---     ---   #386
+      C035C6H     LINE      ---       ---     ---   #387
+      C035C6H     LINE      ---       ---     ---   #388
+      C035CCH     LINE      ---       ---     ---   #390
+      C035D0H     LINE      ---       ---     ---   #391
+      C035E0H     LINE      ---       ---     ---   #393
+      C035F4H     LINE      ---       ---     ---   #394
+      C035FAH     LINE      ---       ---     ---   #395
+      C03604H     LINE      ---       ---     ---   #396
+      C03604H     LINE      ---       ---     ---   #399
       ---         BLOCKEND  LVL=0     ---     ---   
-      C03CE8H     PUBLIC    LABEL     ---     ---   GPT1_viTmr3
-      C03D08H     PUBLIC    LABEL     ---     ---   GPT1_viTmr2
-      C03CBEH     PUBLIC    LABEL     ---     ---   GPT1_vInit
+      C03920H     PUBLIC    LABEL     ---     ---   setTimer
+      C038E6H     PUBLIC    LABEL     ---     ---   GPT1_viTmr4
+      C038A8H     PUBLIC    LABEL     ---     ---   GPT1_viTmr3
+      C038C2H     PUBLIC    LABEL     ---     ---   GPT1_viTmr2
+      C03926H     PUBLIC    LABEL     ---     ---   getElapsedTime
+      C0387CH     PUBLIC    LABEL     ---     ---   GPT1_vInit
+      00C930H     SYMBOL    VAR       ---     ---   last_time_set
 
-      C03CBEH     BLOCK     LVL=0     002AH   ---   GPT1_vInit
-      C03CBEH     LINE      ---       ---     ---   #122
-      C03CBEH     LINE      ---       ---     ---   #144
-      C03CC2H     LINE      ---       ---     ---   #145
-      C03CC6H     LINE      ---       ---     ---   #155
-      C03CCAH     LINE      ---       ---     ---   #156
-      C03CCEH     LINE      ---       ---     ---   #167
-      C03CD2H     LINE      ---       ---     ---   #168
-      C03CD6H     LINE      ---       ---     ---   #183
-      C03CDAH     LINE      ---       ---     ---   #192
-      C03CDEH     LINE      ---       ---     ---   #200
-      C03CE2H     LINE      ---       ---     ---   #207
-      C03CE4H     LINE      ---       ---     ---   #209
-      C03CE6H     LINE      ---       ---     ---   #211
-      ---         BLOCKEND  LVL=0     ---     ---   
-
-      C03CE8H     BLOCK     LVL=0     0020H   ---   GPT1_viTmr3
-      C03CE8H     LINE      ---       ---     ---   #242
-      C03CF8H     LINE      ---       ---     ---   #250
-      C03CFCH     LINE      ---       ---     ---   #251
-      C03D02H     LINE      ---       ---     ---   #255
-      ---         BLOCKEND  LVL=0     ---     ---   
-
-      C03D08H     BLOCK     LVL=0     0024H   ---   GPT1_viTmr2
-      C03D08H     LINE      ---       ---     ---   #287
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 16
+      C0387CH     BLOCK     LVL=0     002CH   ---   GPT1_vInit
+      C0387CH     LINE      ---       ---     ---   #125
+      C0387CH     LINE      ---       ---     ---   #147
+      C03880H     LINE      ---       ---     ---   #148
+      C03884H     LINE      ---       ---     ---   #158
+      C03888H     LINE      ---       ---     ---   #159
+      C0388CH     LINE      ---       ---     ---   #169
+      C03890H     LINE      ---       ---     ---   #170
+      C03894H     LINE      ---       ---     ---   #185
+      C03898H     LINE      ---       ---     ---   #192
+      C0389CH     LINE      ---       ---     ---   #199
+      C038A0H     LINE      ---       ---     ---   #206
+      C038A2H     LINE      ---       ---     ---   #208
+      C038A4H     LINE      ---       ---     ---   #210
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 16
 
 
-      C03D18H     LINE      ---       ---     ---   #295
-      C03D1CH     LINE      ---       ---     ---   #297
-      C03D20H     LINE      ---       ---     ---   #298
-      C03D26H     LINE      ---       ---     ---   #301
-      ---         BLOCKEND  LVL=0     ---     ---   
-      C03B98H     PUBLIC    LABEL     ---     ---   IO_vInit
-
-      C03B98H     BLOCK     LVL=0     00A6H   ---   IO_vInit
-      C03B98H     LINE      ---       ---     ---   #122
-      C03B98H     LINE      ---       ---     ---   #131
-      C03B9EH     LINE      ---       ---     ---   #147
-      C03BA2H     LINE      ---       ---     ---   #148
-      C03BA8H     LINE      ---       ---     ---   #149
-      C03BACH     LINE      ---       ---     ---   #169
-      C03BB0H     LINE      ---       ---     ---   #170
-      C03BB6H     LINE      ---       ---     ---   #171
-      C03BBAH     LINE      ---       ---     ---   #191
-      C03BBEH     LINE      ---       ---     ---   #192
-      C03BC4H     LINE      ---       ---     ---   #194
-      C03BC8H     LINE      ---       ---     ---   #195
-      C03BCCH     LINE      ---       ---     ---   #216
-      C03BD0H     LINE      ---       ---     ---   #217
-      C03BD6H     LINE      ---       ---     ---   #219
-      C03BDAH     LINE      ---       ---     ---   #220
-      C03BDEH     LINE      ---       ---     ---   #227
-      C03BE2H     LINE      ---       ---     ---   #228
-      C03BE6H     LINE      ---       ---     ---   #229
-      C03BECH     LINE      ---       ---     ---   #231
-      C03BF0H     LINE      ---       ---     ---   #233
-      C03BF4H     LINE      ---       ---     ---   #234
-      C03BF8H     LINE      ---       ---     ---   #256
-      C03BFEH     LINE      ---       ---     ---   #257
-      C03C02H     LINE      ---       ---     ---   #258
-      C03C08H     LINE      ---       ---     ---   #260
-      C03C0CH     LINE      ---       ---     ---   #262
-      C03C10H     LINE      ---       ---     ---   #263
-      C03C14H     LINE      ---       ---     ---   #289
-      C03C18H     LINE      ---       ---     ---   #290
-      C03C1CH     LINE      ---       ---     ---   #291
-      C03C22H     LINE      ---       ---     ---   #293
-      C03C26H     LINE      ---       ---     ---   #295
-      C03C2AH     LINE      ---       ---     ---   #296
-      C03C2EH     LINE      ---       ---     ---   #315
-      C03C32H     LINE      ---       ---     ---   #316
-      C03C38H     LINE      ---       ---     ---   #317
-      C03C3CH     LINE      ---       ---     ---   #324
-      ---         BLOCKEND  LVL=0     ---     ---   
-      C03A1CH     PUBLIC    LABEL     ---     ---   CC2_viCC17
-      C03A00H     PUBLIC    LABEL     ---     ---   CC2_viCC16
-      C03978H     PUBLIC    LABEL     ---     ---   CC2_vInit
-
-      C03978H     BLOCK     LVL=0     0088H   ---   CC2_vInit
-      C03978H     LINE      ---       ---     ---   #122
-      C03978H     LINE      ---       ---     ---   #134
-      C0397EH     LINE      ---       ---     ---   #151
-      C03982H     LINE      ---       ---     ---   #154
-      C03988H     LINE      ---       ---     ---   #156
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 17
-
-
-      C0398CH     LINE      ---       ---     ---   #158
-      C03990H     LINE      ---       ---     ---   #160
-      C03994H     LINE      ---       ---     ---   #181
-      C03998H     LINE      ---       ---     ---   #192
-      C0399CH     LINE      ---       ---     ---   #199
-      C039A0H     LINE      ---       ---     ---   #206
-      C039A4H     LINE      ---       ---     ---   #213
-      C039A8H     LINE      ---       ---     ---   #220
-      C039ACH     LINE      ---       ---     ---   #227
-      C039B0H     LINE      ---       ---     ---   #234
-      C039B4H     LINE      ---       ---     ---   #241
-      C039B8H     LINE      ---       ---     ---   #248
-      C039BCH     LINE      ---       ---     ---   #255
-      C039C0H     LINE      ---       ---     ---   #262
-      C039C4H     LINE      ---       ---     ---   #269
-      C039C8H     LINE      ---       ---     ---   #276
-      C039CCH     LINE      ---       ---     ---   #283
-      C039D0H     LINE      ---       ---     ---   #290
-      C039D4H     LINE      ---       ---     ---   #292
-      C039D8H     LINE      ---       ---     ---   #293
-      C039DCH     LINE      ---       ---     ---   #294
-      C039E0H     LINE      ---       ---     ---   #295
-      C039E4H     LINE      ---       ---     ---   #297
-      C039E8H     LINE      ---       ---     ---   #299
-      C039ECH     LINE      ---       ---     ---   #301
-      C039F0H     LINE      ---       ---     ---   #303
-      C039F4H     LINE      ---       ---     ---   #320
-      C039FAH     LINE      ---       ---     ---   #328
-      C039FEH     LINE      ---       ---     ---   #336
+      C038A6H     LINE      ---       ---     ---   #212
       ---         BLOCKEND  LVL=0     ---     ---   
 
-      C03A00H     BLOCK     LVL=0     001CH   ---   CC2_viCC16
-      C03A00H     LINE      ---       ---     ---   #367
-      C03A10H     LINE      ---       ---     ---   #370
-      C03A16H     LINE      ---       ---     ---   #373
+      C038A8H     BLOCK     LVL=0     001AH   ---   GPT1_viTmr3
+      C038A8H     LINE      ---       ---     ---   #243
+      C038B8H     LINE      ---       ---     ---   #251
+      C038BCH     LINE      ---       ---     ---   #256
       ---         BLOCKEND  LVL=0     ---     ---   
 
-      C03A1CH     BLOCK     LVL=0     001CH   ---   CC2_viCC17
-      C03A1CH     LINE      ---       ---     ---   #404
-      C03A2CH     LINE      ---       ---     ---   #407
-      C03A32H     LINE      ---       ---     ---   #410
+      C038C2H     BLOCK     LVL=0     0024H   ---   GPT1_viTmr2
+      C038C2H     LINE      ---       ---     ---   #288
+      C038D2H     LINE      ---       ---     ---   #296
+      C038D6H     LINE      ---       ---     ---   #298
+      C038DAH     LINE      ---       ---     ---   #299
+      C038E0H     LINE      ---       ---     ---   #302
+      ---         BLOCKEND  LVL=0     ---     ---   
+
+      C038E6H     BLOCK     LVL=0     003AH   ---   GPT1_viTmr4
+      C038E6H     LINE      ---       ---     ---   #334
+      C03900H     LINE      ---       ---     ---   #342
+      C0390EH     LINE      ---       ---     ---   #343
+      C03912H     LINE      ---       ---     ---   #347
+      ---         BLOCKEND  LVL=0     ---     ---   
+
+      C03920H     BLOCK     LVL=0     0006H   ---   setTimer
+      000008H     SYMBOL    REG       ---     ---   value
+      C03920H     LINE      ---       ---     ---   #354
+      C03920H     LINE      ---       ---     ---   #363
+      C03924H     LINE      ---       ---     ---   #364
+      ---         BLOCKEND  LVL=0     ---     ---   
+
+      C03926H     BLOCK     LVL=0     0056H   ---   getElapsedTime
+      C03926H     BLOCK     LVL=1     0054H   ---   
+      000008H     SYMBOL    REG       ---     ---   timer
+      ---         BLOCKEND  LVL=1     ---     ---   
+      C03926H     LINE      ---       ---     ---   #366
+      C03926H     LINE      ---       ---     ---   #372
+      C03926H     LINE      ---       ---     ---   #375
+      C0392AH     LINE      ---       ---     ---   #376
+      C0393CH     LINE      ---       ---     ---   #377
+      C0394EH     LINE      ---       ---     ---   #378
+      C0395CH     LINE      ---       ---     ---   #379
+      C03974H     LINE      ---       ---     ---   #381
+      C0397AH     LINE      ---       ---     ---   #382
+      ---         BLOCKEND  LVL=0     ---     ---   
+      C03C9CH     PUBLIC    LABEL     ---     ---   IO_vInit
+
+      C03C9CH     BLOCK     LVL=0     00A6H   ---   IO_vInit
+      C03C9CH     LINE      ---       ---     ---   #122
+      C03C9CH     LINE      ---       ---     ---   #131
+      C03CA2H     LINE      ---       ---     ---   #147
+      C03CA6H     LINE      ---       ---     ---   #148
+      C03CACH     LINE      ---       ---     ---   #149
+      C03CB0H     LINE      ---       ---     ---   #169
+      C03CB4H     LINE      ---       ---     ---   #170
+      C03CBAH     LINE      ---       ---     ---   #171
+      C03CBEH     LINE      ---       ---     ---   #191
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 17
+
+
+      C03CC2H     LINE      ---       ---     ---   #192
+      C03CC8H     LINE      ---       ---     ---   #194
+      C03CCCH     LINE      ---       ---     ---   #195
+      C03CD0H     LINE      ---       ---     ---   #216
+      C03CD4H     LINE      ---       ---     ---   #217
+      C03CDAH     LINE      ---       ---     ---   #219
+      C03CDEH     LINE      ---       ---     ---   #220
+      C03CE2H     LINE      ---       ---     ---   #227
+      C03CE6H     LINE      ---       ---     ---   #228
+      C03CEAH     LINE      ---       ---     ---   #229
+      C03CF0H     LINE      ---       ---     ---   #231
+      C03CF4H     LINE      ---       ---     ---   #233
+      C03CF8H     LINE      ---       ---     ---   #234
+      C03CFCH     LINE      ---       ---     ---   #256
+      C03D02H     LINE      ---       ---     ---   #257
+      C03D06H     LINE      ---       ---     ---   #258
+      C03D0CH     LINE      ---       ---     ---   #260
+      C03D10H     LINE      ---       ---     ---   #262
+      C03D14H     LINE      ---       ---     ---   #263
+      C03D18H     LINE      ---       ---     ---   #289
+      C03D1CH     LINE      ---       ---     ---   #290
+      C03D20H     LINE      ---       ---     ---   #291
+      C03D26H     LINE      ---       ---     ---   #293
+      C03D2AH     LINE      ---       ---     ---   #295
+      C03D2EH     LINE      ---       ---     ---   #296
+      C03D32H     LINE      ---       ---     ---   #315
+      C03D36H     LINE      ---       ---     ---   #316
+      C03D3CH     LINE      ---       ---     ---   #317
+      C03D40H     LINE      ---       ---     ---   #324
+      ---         BLOCKEND  LVL=0     ---     ---   
+      C03B20H     PUBLIC    LABEL     ---     ---   CC2_viCC17
+      C03B04H     PUBLIC    LABEL     ---     ---   CC2_viCC16
+      C03A7CH     PUBLIC    LABEL     ---     ---   CC2_vInit
+
+      C03A7CH     BLOCK     LVL=0     0088H   ---   CC2_vInit
+      C03A7CH     LINE      ---       ---     ---   #122
+      C03A7CH     LINE      ---       ---     ---   #134
+      C03A82H     LINE      ---       ---     ---   #151
+      C03A86H     LINE      ---       ---     ---   #154
+      C03A8CH     LINE      ---       ---     ---   #156
+      C03A90H     LINE      ---       ---     ---   #158
+      C03A94H     LINE      ---       ---     ---   #160
+      C03A98H     LINE      ---       ---     ---   #181
+      C03A9CH     LINE      ---       ---     ---   #192
+      C03AA0H     LINE      ---       ---     ---   #199
+      C03AA4H     LINE      ---       ---     ---   #206
+      C03AA8H     LINE      ---       ---     ---   #213
+      C03AACH     LINE      ---       ---     ---   #220
+      C03AB0H     LINE      ---       ---     ---   #227
+      C03AB4H     LINE      ---       ---     ---   #234
+      C03AB8H     LINE      ---       ---     ---   #241
+      C03ABCH     LINE      ---       ---     ---   #248
+      C03AC0H     LINE      ---       ---     ---   #255
+      C03AC4H     LINE      ---       ---     ---   #262
+      C03AC8H     LINE      ---       ---     ---   #269
+      C03ACCH     LINE      ---       ---     ---   #276
+      C03AD0H     LINE      ---       ---     ---   #283
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 18
+
+
+      C03AD4H     LINE      ---       ---     ---   #290
+      C03AD8H     LINE      ---       ---     ---   #292
+      C03ADCH     LINE      ---       ---     ---   #293
+      C03AE0H     LINE      ---       ---     ---   #294
+      C03AE4H     LINE      ---       ---     ---   #295
+      C03AE8H     LINE      ---       ---     ---   #297
+      C03AECH     LINE      ---       ---     ---   #299
+      C03AF0H     LINE      ---       ---     ---   #301
+      C03AF4H     LINE      ---       ---     ---   #303
+      C03AF8H     LINE      ---       ---     ---   #320
+      C03AFEH     LINE      ---       ---     ---   #328
+      C03B02H     LINE      ---       ---     ---   #336
+      ---         BLOCKEND  LVL=0     ---     ---   
+
+      C03B04H     BLOCK     LVL=0     001CH   ---   CC2_viCC16
+      C03B04H     LINE      ---       ---     ---   #367
+      C03B14H     LINE      ---       ---     ---   #370
+      C03B1AH     LINE      ---       ---     ---   #373
+      ---         BLOCKEND  LVL=0     ---     ---   
+
+      C03B20H     BLOCK     LVL=0     001CH   ---   CC2_viCC17
+      C03B20H     LINE      ---       ---     ---   #404
+      C03B30H     LINE      ---       ---     ---   #407
+      C03B36H     LINE      ---       ---     ---   #410
+      ---         BLOCKEND  LVL=0     ---     ---   
+      C0003EH     PUBLIC    LABEL     ---     ---   GPT2_viTmr5
+      C0001EH     PUBLIC    LABEL     ---     ---   GPT2_vInit
+
+      C0001EH     BLOCK     LVL=0     0020H   ---   GPT2_vInit
+      C0001EH     LINE      ---       ---     ---   #122
+      C0001EH     LINE      ---       ---     ---   #143
+      C00022H     LINE      ---       ---     ---   #144
+      C00026H     LINE      ---       ---     ---   #158
+      C0002AH     LINE      ---       ---     ---   #159
+      C0002EH     LINE      ---       ---     ---   #170
+      C00032H     LINE      ---       ---     ---   #171
+      C00036H     LINE      ---       ---     ---   #186
+      C0003AH     LINE      ---       ---     ---   #193
+      C0003CH     LINE      ---       ---     ---   #195
+      ---         BLOCKEND  LVL=0     ---     ---   
+
+      C0003EH     BLOCK     LVL=0     0020H   ---   GPT2_viTmr5
+      C0003EH     LINE      ---       ---     ---   #223
+      C0004EH     LINE      ---       ---     ---   #226
+      C00052H     LINE      ---       ---     ---   #227
+      C00058H     LINE      ---       ---     ---   #231
       ---         BLOCKEND  LVL=0     ---     ---   
       00C8C2H     PUBLIC    VAR       ---     ---   DIO
       00C8CAH     PUBLIC    VAR       ---     ---   can_nod
@@ -1014,14 +1079,14 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       00C8F2H     PUBLIC    VAR       ---     ---   TFlag
       00C8F3H     PUBLIC    VAR       ---     ---   TimerMsFlag
       00C8F4H     PUBLIC    VAR       ---     ---   recv_buf2
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 19
+
+
       00C901H     PUBLIC    VAR       ---     ---   recv_buf1
       C0313AH     PUBLIC    LABEL     ---     ---   read_Data
       C03030H     PUBLIC    LABEL     ---     ---   write_8255
       C03078H     PUBLIC    LABEL     ---     ---   read_8255
       C030ACH     PUBLIC    LABEL     ---     ---   write_Data
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 18
-
-
       C04118H     SYMBOL    VAR       ---     ---   ?tpl?0002
       C04120H     SYMBOL    VAR       ---     ---   ?tpl?0001
 
@@ -1074,14 +1139,14 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C030BCH     LINE      ---       ---     ---   #57
       C030BCH     LINE      ---       ---     ---   #58
       C030CCH     LINE      ---       ---     ---   #59
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 20
+
+
       C030D6H     LINE      ---       ---     ---   #60
       C030E0H     LINE      ---       ---     ---   #61
       C030E6H     LINE      ---       ---     ---   #62
       C030EEH     LINE      ---       ---     ---   #64
       C030F8H     LINE      ---       ---     ---   #66
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 19
-
-
       C03102H     LINE      ---       ---     ---   #67
       C03116H     LINE      ---       ---     ---   #69
       C0311CH     LINE      ---       ---     ---   #70
@@ -1111,117 +1176,117 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C031B8H     LINE      ---       ---     ---   #89
       C031BAH     LINE      ---       ---     ---   #90
       ---         BLOCKEND  LVL=0     ---     ---   
-      C0001EH     PUBLIC    LABEL     ---     ---   DelayMs
-      C00036H     PUBLIC    LABEL     ---     ---   delay
+      C03DC2H     PUBLIC    LABEL     ---     ---   DelayMs
+      C03DDAH     PUBLIC    LABEL     ---     ---   delay
 
-      C0001EH     BLOCK     LVL=0     0018H   ---   DelayMs
+      C03DC2H     BLOCK     LVL=0     0018H   ---   DelayMs
       000008H     SYMBOL    REG       ---     ---   Num
-      C0001EH     BLOCK     LVL=1     0016H   ---   
+      C03DC2H     BLOCK     LVL=1     0016H   ---   
       000005H     SYMBOL    REG       ---     ---   i
       ---         BLOCKEND  LVL=1     ---     ---   
-      C0001EH     LINE      ---       ---     ---   #9
-      C0001EH     LINE      ---       ---     ---   #10
-      C00020H     LINE      ---       ---     ---   #12
-      C00022H     LINE      ---       ---     ---   #13
-      C00026H     LINE      ---       ---     ---   #14
-      C00028H     LINE      ---       ---     ---   #15
-      C0002EH     LINE      ---       ---     ---   #16
-      C00034H     LINE      ---       ---     ---   #17
+      C03DC2H     LINE      ---       ---     ---   #9
+      C03DC2H     LINE      ---       ---     ---   #10
+      C03DC4H     LINE      ---       ---     ---   #12
+      C03DC6H     LINE      ---       ---     ---   #13
+      C03DCAH     LINE      ---       ---     ---   #14
+      C03DCCH     LINE      ---       ---     ---   #15
+      C03DD2H     LINE      ---       ---     ---   #16
+      C03DD8H     LINE      ---       ---     ---   #17
       ---         BLOCKEND  LVL=0     ---     ---   
 
-      C00036H     BLOCK     LVL=0     0016H   ---   delay
+      C03DDAH     BLOCK     LVL=0     0016H   ---   delay
       000048H     SYMBOL    REG       ---     ---   n
-      C00036H     BLOCK     LVL=1     0014H   ---   
+      C03DDAH     BLOCK     LVL=1     0014H   ---   
       000006H     SYMBOL    REG       ---     ---   i
       000005H     SYMBOL    REG       ---     ---   j
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 21
+
+
       ---         BLOCKEND  LVL=1     ---     ---   
-      C00036H     LINE      ---       ---     ---   #19
-      C00036H     LINE      ---       ---     ---   #20
-      C00036H     LINE      ---       ---     ---   #23
-      C0003AH     LINE      ---       ---     ---   #25
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 20
-
-
-      C00040H     LINE      ---       ---     ---   #26
-      C0004AH     LINE      ---       ---     ---   #27
+      C03DDAH     LINE      ---       ---     ---   #19
+      C03DDAH     LINE      ---       ---     ---   #20
+      C03DDAH     LINE      ---       ---     ---   #23
+      C03DDEH     LINE      ---       ---     ---   #25
+      C03DE4H     LINE      ---       ---     ---   #26
+      C03DEEH     LINE      ---       ---     ---   #27
       ---         BLOCKEND  LVL=0     ---     ---   
-      C03C3EH     PUBLIC    LABEL     ---     ---   write_AD_ram
-      C03C5EH     PUBLIC    LABEL     ---     ---   read_AD_ram
+      C03D42H     PUBLIC    LABEL     ---     ---   write_AD_ram
+      C03D62H     PUBLIC    LABEL     ---     ---   read_AD_ram
 
-      C03C3EH     BLOCK     LVL=0     0020H   ---   write_AD_ram
+      C03D42H     BLOCK     LVL=0     0020H   ---   write_AD_ram
       000008H     SYMBOL    REG       ---     ---   adram
-      C03C3EH     BLOCK     LVL=1     001EH   ---   
+      C03D42H     BLOCK     LVL=1     001EH   ---   
       000006H     SYMBOL    REG       ---     ---   i
       ---         BLOCKEND  LVL=1     ---     ---   
-      C03C3EH     LINE      ---       ---     ---   #9
-      C03C3EH     LINE      ---       ---     ---   #10
-      C03C3EH     LINE      ---       ---     ---   #11
-      C03C40H     LINE      ---       ---     ---   #12
-      C03C40H     LINE      ---       ---     ---   #14
-      C03C48H     LINE      ---       ---     ---   #15
-      C03C58H     LINE      ---       ---     ---   #16
-      C03C5CH     LINE      ---       ---     ---   #17
+      C03D42H     LINE      ---       ---     ---   #9
+      C03D42H     LINE      ---       ---     ---   #10
+      C03D42H     LINE      ---       ---     ---   #11
+      C03D44H     LINE      ---       ---     ---   #12
+      C03D44H     LINE      ---       ---     ---   #14
+      C03D4CH     LINE      ---       ---     ---   #15
+      C03D5CH     LINE      ---       ---     ---   #16
+      C03D60H     LINE      ---       ---     ---   #17
       ---         BLOCKEND  LVL=0     ---     ---   
 
-      C03C5EH     BLOCK     LVL=0     0060H   ---   read_AD_ram
+      C03D62H     BLOCK     LVL=0     0060H   ---   read_AD_ram
       000008H     SYMBOL    REG       ---     ---   adram
-      C03C5EH     BLOCK     LVL=1     005EH   ---   
+      C03D62H     BLOCK     LVL=1     005EH   ---   
       000005H     SYMBOL    REG       ---     ---   i
       ---         BLOCKEND  LVL=1     ---     ---   
-      C03C5EH     LINE      ---       ---     ---   #19
-      C03C5EH     LINE      ---       ---     ---   #20
-      C03C5EH     LINE      ---       ---     ---   #21
-      C03C60H     LINE      ---       ---     ---   #22
-      C03C62H     LINE      ---       ---     ---   #24
-      C03C6AH     LINE      ---       ---     ---   #25
-      C03C7CH     LINE      ---       ---     ---   #26
-      C03C84H     LINE      ---       ---     ---   #27
-      C03C88H     LINE      ---       ---     ---   #29
-      C03C90H     LINE      ---       ---     ---   #30
-      C03CA2H     LINE      ---       ---     ---   #31
-      C03CA8H     LINE      ---       ---     ---   #32
-      C03CB0H     LINE      ---       ---     ---   #33
-      C03CBCH     LINE      ---       ---     ---   #35
+      C03D62H     LINE      ---       ---     ---   #19
+      C03D62H     LINE      ---       ---     ---   #20
+      C03D62H     LINE      ---       ---     ---   #21
+      C03D64H     LINE      ---       ---     ---   #22
+      C03D66H     LINE      ---       ---     ---   #24
+      C03D6EH     LINE      ---       ---     ---   #25
+      C03D80H     LINE      ---       ---     ---   #26
+      C03D88H     LINE      ---       ---     ---   #27
+      C03D8CH     LINE      ---       ---     ---   #29
+      C03D94H     LINE      ---       ---     ---   #30
+      C03DA6H     LINE      ---       ---     ---   #31
+      C03DACH     LINE      ---       ---     ---   #32
+      C03DB4H     LINE      ---       ---     ---   #33
+      C03DC0H     LINE      ---       ---     ---   #35
       ---         BLOCKEND  LVL=0     ---     ---   
-      C03A7EH     PUBLIC    LABEL     ---     ---   DIN
-      C03AACH     PUBLIC    LABEL     ---     ---   DERROR
-      C03A38H     PUBLIC    LABEL     ---     ---   DOUT
+      C03B82H     PUBLIC    LABEL     ---     ---   DIN
+      C03BB0H     PUBLIC    LABEL     ---     ---   DERROR
+      C03B3CH     PUBLIC    LABEL     ---     ---   DOUT
 
-      C03A38H     BLOCK     LVL=0     0046H   ---   DOUT
+      C03B3CH     BLOCK     LVL=0     0046H   ---   DOUT
       00000DH     SYMBOL    REG       ---     ---   dio_data
-      C03A38H     LINE      ---       ---     ---   #8
-      C03A3CH     LINE      ---       ---     ---   #10
-      C03A4AH     LINE      ---       ---     ---   #11
-      C03A50H     LINE      ---       ---     ---   #12
-      C03A5EH     LINE      ---       ---     ---   #13
-      C03A64H     LINE      ---       ---     ---   #14
-      C03A74H     LINE      ---       ---     ---   #15
-      C03A7AH     LINE      ---       ---     ---   #16
-      ---         BLOCKEND  LVL=0     ---     ---   
-
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 21
+      C03B3CH     LINE      ---       ---     ---   #8
+      C03B40H     LINE      ---       ---     ---   #10
+      C03B4EH     LINE      ---       ---     ---   #11
+      C03B54H     LINE      ---       ---     ---   #12
+      C03B62H     LINE      ---       ---     ---   #13
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 22
 
 
-      C03A7EH     BLOCK     LVL=0     002EH   ---   DIN
-      00000DH     SYMBOL    REG       ---     ---   dio_data
-      C03A7EH     LINE      ---       ---     ---   #18
-      C03A82H     LINE      ---       ---     ---   #20
-      C03A90H     LINE      ---       ---     ---   #21
-      C03A96H     LINE      ---       ---     ---   #22
-      C03AA2H     LINE      ---       ---     ---   #23
-      C03AA8H     LINE      ---       ---     ---   #24
+      C03B68H     LINE      ---       ---     ---   #14
+      C03B78H     LINE      ---       ---     ---   #15
+      C03B7EH     LINE      ---       ---     ---   #16
       ---         BLOCKEND  LVL=0     ---     ---   
 
-      C03AACH     BLOCK     LVL=0     0042H   ---   DERROR
+      C03B82H     BLOCK     LVL=0     002EH   ---   DIN
       00000DH     SYMBOL    REG       ---     ---   dio_data
-      C03AACH     LINE      ---       ---     ---   #26
-      C03AB0H     LINE      ---       ---     ---   #28
-      C03ABEH     LINE      ---       ---     ---   #29
-      C03AC4H     LINE      ---       ---     ---   #30
-      C03AD0H     LINE      ---       ---     ---   #31
-      C03AD6H     LINE      ---       ---     ---   #32
-      C03AE4H     LINE      ---       ---     ---   #33
-      C03AEAH     LINE      ---       ---     ---   #34
+      C03B82H     LINE      ---       ---     ---   #18
+      C03B86H     LINE      ---       ---     ---   #20
+      C03B94H     LINE      ---       ---     ---   #21
+      C03B9AH     LINE      ---       ---     ---   #22
+      C03BA6H     LINE      ---       ---     ---   #23
+      C03BACH     LINE      ---       ---     ---   #24
+      ---         BLOCKEND  LVL=0     ---     ---   
+
+      C03BB0H     BLOCK     LVL=0     0042H   ---   DERROR
+      00000DH     SYMBOL    REG       ---     ---   dio_data
+      C03BB0H     LINE      ---       ---     ---   #26
+      C03BB4H     LINE      ---       ---     ---   #28
+      C03BC2H     LINE      ---       ---     ---   #29
+      C03BC8H     LINE      ---       ---     ---   #30
+      C03BD4H     LINE      ---       ---     ---   #31
+      C03BDAH     LINE      ---       ---     ---   #32
+      C03BE8H     LINE      ---       ---     ---   #33
+      C03BEEH     LINE      ---       ---     ---   #34
       ---         BLOCKEND  LVL=0     ---     ---   
       C03432H     PUBLIC    LABEL     ---     ---   read_sink_port
       C03330H     PUBLIC    LABEL     ---     ---   mvb_init
@@ -1254,14 +1319,14 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       ---         BLOCKEND  LVL=0     ---     ---   
 
       C033C8H     BLOCK     LVL=0     006AH   ---   write_source_port
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 23
+
+
       00004EH     SYMBOL    REG       ---     ---   port_num
       00000DH     SYMBOL    REG       ---     ---   src_buffer
       C033D2H     BLOCK     LVL=1     0058H   ---   
       00004FH     SYMBOL    REG       ---     ---   i
       ---         BLOCKEND  LVL=1     ---     ---   
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 22
-
-
       C033C8H     LINE      ---       ---     ---   #27
       C033D2H     LINE      ---       ---     ---   #28
       C033D2H     LINE      ---       ---     ---   #29
@@ -1300,65 +1365,65 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C03486H     LINE      ---       ---     ---   #64
       C0348CH     LINE      ---       ---     ---   #65
       ---         BLOCKEND  LVL=0     ---     ---   
-      C038E8H     PUBLIC    LABEL     ---     ---   canReceive
-      C03878H     PUBLIC    LABEL     ---     ---   canSend
+      C039ECH     PUBLIC    LABEL     ---     ---   canReceive
+      C0397CH     PUBLIC    LABEL     ---     ---   canSend
       C040FDH     SYMBOL    VAR       ---     ---   ?tpl?0002
       C0410AH     SYMBOL    VAR       ---     ---   ?tpl?0001
 
-      C03878H     BLOCK     LVL=0     0070H   ---   canSend
+      C0397CH     BLOCK     LVL=0     0070H   ---   canSend
       000048H     SYMBOL    REG       ---     ---   port
       000009H     SYMBOL    REG       ---     ---   m
-      C0387CH     BLOCK     LVL=1     0066H   ---   
+      C03980H     BLOCK     LVL=1     0066H   ---   
       000000H     SYMBOL    AUTO      ---     ---   databuf
       00008EH     SYMBOL    REG       ---     ---   i
       000088H     SYMBOL    REG       ---     ---   state
       ---         BLOCKEND  LVL=1     ---     ---   
-      C03878H     LINE      ---       ---     ---   #23
-      C0387CH     LINE      ---       ---     ---   #24
-      C0387CH     LINE      ---       ---     ---   #25
-      C0388CH     LINE      ---       ---     ---   #28
-      C03890H     LINE      ---       ---     ---   #29
-      C03896H     LINE      ---       ---     ---   #30
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 23
+      C0397CH     LINE      ---       ---     ---   #23
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 24
 
 
-      C0389CH     LINE      ---       ---     ---   #31
-      C038A8H     LINE      ---       ---     ---   #33
-      C038B2H     LINE      ---       ---     ---   #34
-      C038BAH     LINE      ---       ---     ---   #36
-      C038BCH     LINE      ---       ---     ---   #38
-      C038CEH     LINE      ---       ---     ---   #39
-      C038D6H     LINE      ---       ---     ---   #41
-      C038E2H     LINE      ---       ---     ---   #43
-      C038E2H     LINE      ---       ---     ---   #44
+      C03980H     LINE      ---       ---     ---   #24
+      C03980H     LINE      ---       ---     ---   #25
+      C03990H     LINE      ---       ---     ---   #28
+      C03994H     LINE      ---       ---     ---   #29
+      C0399AH     LINE      ---       ---     ---   #30
+      C039A0H     LINE      ---       ---     ---   #31
+      C039ACH     LINE      ---       ---     ---   #33
+      C039B6H     LINE      ---       ---     ---   #34
+      C039BEH     LINE      ---       ---     ---   #36
+      C039C0H     LINE      ---       ---     ---   #38
+      C039D2H     LINE      ---       ---     ---   #39
+      C039DAH     LINE      ---       ---     ---   #41
+      C039E6H     LINE      ---       ---     ---   #43
+      C039E6H     LINE      ---       ---     ---   #44
       ---         BLOCKEND  LVL=0     ---     ---   
 
-      C038E8H     BLOCK     LVL=0     0090H   ---   canReceive
+      C039ECH     BLOCK     LVL=0     0090H   ---   canReceive
       000048H     SYMBOL    REG       ---     ---   port
       00000DH     SYMBOL    REG       ---     ---   m
-      C038F0H     BLOCK     LVL=1     0080H   ---   
+      C039F4H     BLOCK     LVL=1     0080H   ---   
       000000H     SYMBOL    AUTO      ---     ---   databuf
       00008AH     SYMBOL    REG       ---     ---   i
       00008EH     SYMBOL    REG       ---     ---   state
       ---         BLOCKEND  LVL=1     ---     ---   
-      C038E8H     LINE      ---       ---     ---   #46
-      C038F0H     LINE      ---       ---     ---   #47
-      C038F0H     LINE      ---       ---     ---   #48
-      C03900H     LINE      ---       ---     ---   #51
-      C0390CH     LINE      ---       ---     ---   #53
-      C03910H     LINE      ---       ---     ---   #54
-      C03914H     LINE      ---       ---     ---   #56
-      C0391EH     LINE      ---       ---     ---   #58
-      C03924H     LINE      ---       ---     ---   #59
-      C0392CH     LINE      ---       ---     ---   #61
-      C03932H     LINE      ---       ---     ---   #63
-      C03934H     LINE      ---       ---     ---   #65
-      C03946H     LINE      ---       ---     ---   #66
-      C0394EH     LINE      ---       ---     ---   #67
-      C03956H     LINE      ---       ---     ---   #68
-      C0395CH     LINE      ---       ---     ---   #69
-      C0396EH     LINE      ---       ---     ---   #71
-      C03970H     LINE      ---       ---     ---   #72
+      C039ECH     LINE      ---       ---     ---   #46
+      C039F4H     LINE      ---       ---     ---   #47
+      C039F4H     LINE      ---       ---     ---   #48
+      C03A04H     LINE      ---       ---     ---   #51
+      C03A10H     LINE      ---       ---     ---   #53
+      C03A14H     LINE      ---       ---     ---   #54
+      C03A18H     LINE      ---       ---     ---   #56
+      C03A22H     LINE      ---       ---     ---   #58
+      C03A28H     LINE      ---       ---     ---   #59
+      C03A30H     LINE      ---       ---     ---   #61
+      C03A36H     LINE      ---       ---     ---   #63
+      C03A38H     LINE      ---       ---     ---   #65
+      C03A4AH     LINE      ---       ---     ---   #66
+      C03A52H     LINE      ---       ---     ---   #67
+      C03A5AH     LINE      ---       ---     ---   #68
+      C03A60H     LINE      ---       ---     ---   #69
+      C03A72H     LINE      ---       ---     ---   #71
+      C03A74H     LINE      ---       ---     ---   #72
       ---         BLOCKEND  LVL=0     ---     ---   
       C018E2H     PUBLIC    LABEL     ---     ---   ReadSJAReg
       C01944H     PUBLIC    LABEL     ---     ---   WriteSJARegBlock
@@ -1374,14 +1439,14 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C01A96H     PUBLIC    LABEL     ---     ---   SJAQuitResetMode_BCan
       C01BC0H     PUBLIC    LABEL     ---     ---   SJASetClockDivision
       C01B66H     PUBLIC    LABEL     ---     ---   SJATestRstMode
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 25
+
+
       C01A1CH     PUBLIC    LABEL     ---     ---   SJAEntryResetMode_BCan
       C01B7CH     PUBLIC    LABEL     ---     ---   SJASetOutControl
       C01CC8H     PUBLIC    LABEL     ---     ---   SJASetAccMask
       C01994H     PUBLIC    LABEL     ---     ---   SJATestInterface
       C01B32H     PUBLIC    LABEL     ---     ---   ClearBitMask
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 24
-
-
       C01A58H     PUBLIC    LABEL     ---     ---   SJAQuitResetMode
       C01C30H     PUBLIC    LABEL     ---     ---   SJASetAccCode
       C01902H     PUBLIC    LABEL     ---     ---   WriteSJAReg
@@ -1434,14 +1499,14 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C01948H     BLOCK     LVL=1     0024H   ---   
       000084H     SYMBOL    REG       ---     ---   i
       ---         BLOCKEND  LVL=1     ---     ---   
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 26
+
+
       C01944H     LINE      ---       ---     ---   #68
       C01948H     LINE      ---       ---     ---   #70
       C01948H     LINE      ---       ---     ---   #72
       C0194EH     LINE      ---       ---     ---   #73
       C01952H     LINE      ---       ---     ---   #76
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 25
-
-
       C01962H     LINE      ---       ---     ---   #77
       C0196AH     LINE      ---       ---     ---   #78
       C0196AH     LINE      ---       ---     ---   #79
@@ -1494,14 +1559,14 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C019CAH     LINE      ---       ---     ---   #135
       C019CAH     LINE      ---       ---     ---   #136
       C019D0H     LINE      ---       ---     ---   #138
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 27
+
+
       C019D4H     LINE      ---       ---     ---   #139
       C019D8H     LINE      ---       ---     ---   #141
       C019D8H     LINE      ---       ---     ---   #142
       C019DAH     LINE      ---       ---     ---   #143
       ---         BLOCKEND  LVL=0     ---     ---   
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 26
-
-
 
       C019DEH     BLOCK     LVL=0     003EH   ---   SJAEntryResetMode
       C019E4H     BLOCK     LVL=1     0030H   ---   
@@ -1554,14 +1619,14 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       00004DH     SYMBOL    REG       ---     ---   status
       00004FH     SYMBOL    REG       ---     ---   ErrorFlag
       00004EH     SYMBOL    REG       ---     ---   ErrorCount
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 28
+
+
       ---         BLOCKEND  LVL=1     ---     ---   
       C01A58H     LINE      ---       ---     ---   #202
       C01A5EH     LINE      ---       ---     ---   #203
       C01A5EH     LINE      ---       ---     ---   #204
       C01A60H     LINE      ---       ---     ---   #205
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 27
-
-
       C01A62H     LINE      ---       ---     ---   #206
       C01A66H     LINE      ---       ---     ---   #207
       C01A68H     LINE      ---       ---     ---   #208
@@ -1614,14 +1679,14 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C01AF6H     LINE      ---       ---     ---   #258
       C01AF8H     LINE      ---       ---     ---   #259
       ---         BLOCKEND  LVL=0     ---     ---   
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 29
+
+
 
       C01AFCH     BLOCK     LVL=0     0036H   ---   SetBitMask
       00008EH     SYMBOL    REG       ---     ---   RegAdr
       000049H     SYMBOL    REG       ---     ---   BitValue
       C01AFEH     BLOCK     LVL=1     0032H   ---   
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 28
-
-
       000082H     SYMBOL    REG       ---     ---   status
       000084H     SYMBOL    REG       ---     ---   temp
       ---         BLOCKEND  LVL=1     ---     ---   
@@ -1674,14 +1739,14 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C01B74H     LINE      ---       ---     ---   #341
       C01B76H     LINE      ---       ---     ---   #343
       C01B78H     LINE      ---       ---     ---   #344
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 30
+
+
       C01B78H     LINE      ---       ---     ---   #345
       C01B7AH     LINE      ---       ---     ---   #346
       ---         BLOCKEND  LVL=0     ---     ---   
 
       C01B7CH     BLOCK     LVL=0     0044H   ---   SJASetOutControl
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 29
-
-
       000082H     SYMBOL    REG       ---     ---   OutCtrl
       C01B80H     BLOCK     LVL=1     003CH   ---   
       000084H     SYMBOL    REG       ---     ---   status
@@ -1734,14 +1799,14 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C01C18H     LINE      ---       ---     ---   #409
       C01C1AH     LINE      ---       ---     ---   #410
       C01C1CH     LINE      ---       ---     ---   #411
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 31
+
+
       C01C22H     LINE      ---       ---     ---   #413
       C01C26H     LINE      ---       ---     ---   #414
       C01C2AH     LINE      ---       ---     ---   #415
       C01C2AH     LINE      ---       ---     ---   #417
       C01C2CH     LINE      ---       ---     ---   #418
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 30
-
-
       ---         BLOCKEND  LVL=0     ---     ---   
 
       C01C30H     BLOCK     LVL=0     0098H   ---   SJASetAccCode
@@ -1794,14 +1859,14 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C01CC8H     LINE      ---       ---     ---   #485
       C01CCEH     LINE      ---       ---     ---   #488
       C01CCEH     LINE      ---       ---     ---   #489
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 32
+
+
       C01CD0H     LINE      ---       ---     ---   #490
       C01CD2H     LINE      ---       ---     ---   #491
       C01CD6H     LINE      ---       ---     ---   #492
       C01CDEH     LINE      ---       ---     ---   #493
       C01CE2H     LINE      ---       ---     ---   #494
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 31
-
-
       C01CE4H     LINE      ---       ---     ---   #496
       C01CE6H     LINE      ---       ---     ---   #497
       C01CF0H     LINE      ---       ---     ---   #498
@@ -1854,14 +1919,14 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C01DD8H     BLOCK     LVL=0     0064H   ---   SJASystemPrgCMD
       00008EH     SYMBOL    REG       ---     ---   cmd
       C01DDAH     BLOCK     LVL=1     0060H   ---   
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 33
+
+
       000082H     SYMBOL    REG       ---     ---   status
       ---         BLOCKEND  LVL=1     ---     ---   
       C01DD8H     LINE      ---       ---     ---   #597
       C01DDAH     LINE      ---       ---     ---   #598
       C01DDAH     LINE      ---       ---     ---   #599
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 32
-
-
       C01DDCH     LINE      ---       ---     ---   #601
       C01DFCH     LINE      ---       ---     ---   #602
       C01DFCH     LINE      ---       ---     ---   #603
@@ -1914,14 +1979,14 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C01E80H     LINE      ---       ---     ---   #668
       C01EA0H     LINE      ---       ---     ---   #669
       C01EA0H     LINE      ---       ---     ---   #670
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 34
+
+
       C01EA8H     LINE      ---       ---     ---   #671
       C01EB4H     LINE      ---       ---     ---   #672
       C01EBAH     LINE      ---       ---     ---   #673
       C01EBCH     LINE      ---       ---     ---   #674
       C01EBCH     LINE      ---       ---     ---   #675
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 33
-
-
       C01EBCH     LINE      ---       ---     ---   #676
       C01EC8H     LINE      ---       ---     ---   #677
       C01ECEH     LINE      ---       ---     ---   #678
@@ -1974,14 +2039,14 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C01F9AH     LINE      ---       ---     ---   #737
       C01F9AH     LINE      ---       ---     ---   #738
       C01F9EH     LINE      ---       ---     ---   #739
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 35
+
+
       C01FAEH     LINE      ---       ---     ---   #740
       C01FB6H     LINE      ---       ---     ---   #741
       C01FB8H     LINE      ---       ---     ---   #742
       C01FB8H     LINE      ---       ---     ---   #744
       C01FC6H     LINE      ---       ---     ---   #745
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 34
-
-
       C01FCEH     LINE      ---       ---     ---   #746
       C01FD0H     LINE      ---       ---     ---   #747
       C01FD4H     LINE      ---       ---     ---   #748
@@ -2034,40 +2099,19 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C0211CH     LINE      ---       ---     ---   #819
       C02132H     LINE      ---       ---     ---   #820
       C0214AH     LINE      ---       ---     ---   #821
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 36
+
+
       C02162H     LINE      ---       ---     ---   #822
       C0217AH     LINE      ---       ---     ---   #823
       C02194H     LINE      ---       ---     ---   #824
       C021AEH     LINE      ---       ---     ---   #825
       C021AEH     LINE      ---       ---     ---   #826
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 35
-
-
       C021B8H     LINE      ---       ---     ---   #827
       C021C0H     LINE      ---       ---     ---   #829
       C021C8H     LINE      ---       ---     ---   #830
       C021CCH     LINE      ---       ---     ---   #831
       C021D4H     LINE      ---       ---     ---   #832
-      ---         BLOCKEND  LVL=0     ---     ---   
-      C000A0H     PUBLIC    LABEL     ---     ---   setTimer
-      C0009EH     PUBLIC    LABEL     ---     ---   initTimer
-      C000A2H     PUBLIC    LABEL     ---     ---   getElapsedTime
-      00C930H     SYMBOL    VAR       ---     ---   last_time_set
-
-      C0009EH     BLOCK     LVL=0     0002H   ---   initTimer
-      C0009EH     LINE      ---       ---     ---   #10
-      C0009EH     LINE      ---       ---     ---   #13
-      ---         BLOCKEND  LVL=0     ---     ---   
-
-      C000A0H     BLOCK     LVL=0     0002H   ---   setTimer
-      000008H     SYMBOL    REG       ---     ---   value
-      C000A0H     LINE      ---       ---     ---   #15
-      C000A0H     LINE      ---       ---     ---   #18
-      ---         BLOCKEND  LVL=0     ---     ---   
-
-      C000A2H     BLOCK     LVL=0     0006H   ---   getElapsedTime
-      C000A2H     LINE      ---       ---     ---   #20
-      C000A2H     LINE      ---       ---     ---   #22
-      C000A6H     LINE      ---       ---     ---   #23
       ---         BLOCKEND  LVL=0     ---     ---   
       C02DB0H     PUBLIC    LABEL     ---     ---   emergencyStop
       C02E36H     PUBLIC    LABEL     ---     ---   EMCY_setError
@@ -2099,9 +2143,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       00000DH     SYMBOL    REG       ---     ---   d
       C02D92H     LINE      ---       ---     ---   #75
       C02D96H     LINE      ---       ---     ---   #77
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 36
-
-
       C02DA4H     LINE      ---       ---     ---   #79
       C02DACH     LINE      ---       ---     ---   #80
       ---         BLOCKEND  LVL=0     ---     ---   
@@ -2118,6 +2159,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       00004AH     SYMBOL    REG       ---     ---   errRegister
       00000BH     SYMBOL    REG       ---     ---   Specific
       00004CH     SYMBOL    REG       ---     ---   SpecificLength
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 37
+
+
       C02DB8H     BLOCK     LVL=1     0078H   ---   
       000000H     SYMBOL    AUTO      ---     ---   m
       ---         BLOCKEND  LVL=1     ---     ---   
@@ -2159,9 +2203,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C02E3CH     LINE      ---       ---     ---   #146
       C02E4EH     LINE      ---       ---     ---   #148
       C02E54H     LINE      ---       ---     ---   #151
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 37
-
-
       C02E58H     LINE      ---       ---     ---   #152
       C02E5EH     LINE      ---       ---     ---   #153
       C02E60H     LINE      ---       ---     ---   #154
@@ -2178,6 +2219,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C02ECAH     LINE      ---       ---     ---   #175
       C02EECH     LINE      ---       ---     ---   #176
       C02EF2H     LINE      ---       ---     ---   #179
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 38
+
+
       C02EFCH     LINE      ---       ---     ---   #180
       C02F20H     LINE      ---       ---     ---   #181
       C02F36H     LINE      ---       ---     ---   #182
@@ -2219,9 +2263,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       ---         BLOCKEND  LVL=0     ---     ---   
 
       C02FF4H     BLOCK     LVL=0     003AH   ---   proceedEMCY
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 38
-
-
       000006H     SYMBOL    REG       ---     ---   d
       000009H     SYMBOL    REG       ---     ---   m
       C02FF6H     BLOCK     LVL=1     0036H   ---   
@@ -2238,6 +2279,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C03008H     LINE      ---       ---     ---   #255
       C0301AH     LINE      ---       ---     ---   #256
       C0301EH     LINE      ---       ---     ---   #257
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 39
+
+
       C0302CH     LINE      ---       ---     ---   #258
       ---         BLOCKEND  LVL=0     ---     ---   
 
@@ -2279,9 +2323,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       000000H     SYMBOL    AUTO      ---     ---   errorCode
       000004H     SYMBOL    AUTO      ---     ---   szData
       000002H     SYMBOL    REG       ---     ---   ptrTable
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 39
-
-
       000008H     SYMBOL    AUTO      ---     ---   Callback
       C02334H     BLOCK     LVL=2     0080H   ---   
       00000AH     SYMBOL    AUTO      ---     ---   ptr
@@ -2298,6 +2339,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C0221CH     LINE      ---       ---     ---   #101
       C02226H     LINE      ---       ---     ---   #103
       C0224AH     LINE      ---       ---     ---   #104
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 40
+
+
       C02256H     LINE      ---       ---     ---   #105
       C02256H     LINE      ---       ---     ---   #107
       C0226CH     LINE      ---       ---     ---   #109
@@ -2339,9 +2383,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       00000EH     SYMBOL    REG       ---     ---   pExpectedSize
       000012H     SYMBOL    AUTO      ---     ---   checkAccess
       000014H     SYMBOL    AUTO      ---     ---   endianize
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 40
-
-
       C023D8H     BLOCK     LVL=1     026EH   ---   
       000000H     SYMBOL    AUTO      ---     ---   szData
       000004H     SYMBOL    AUTO      ---     ---   dataType
@@ -2358,6 +2399,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C02414H     LINE      ---       ---     ---   #192
       C0243AH     LINE      ---       ---     ---   #193
       C02446H     LINE      ---       ---     ---   #194
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 41
+
+
       C02446H     LINE      ---       ---     ---   #197
       C0245CH     LINE      ---       ---     ---   #199
       C02480H     LINE      ---       ---     ---   #200
@@ -2399,9 +2443,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C02652H     LINE      ---       ---     ---   #267
       C02658H     LINE      ---       ---     ---   #269
       C02664H     LINE      ---       ---     ---   #270
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 41
-
-
       ---         BLOCKEND  LVL=0     ---     ---   
 
       C02666H     BLOCK     LVL=0     0048H   ---   RegisterSetODentryCallBack
@@ -2418,6 +2459,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C02674H     LINE      ---       ---     ---   #273
       C02674H     LINE      ---       ---     ---   #278
       C0267EH     LINE      ---       ---     ---   #279
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 42
+
+
       C02698H     LINE      ---       ---     ---   #280
       C026A0H     LINE      ---       ---     ---   #281
       C026A6H     LINE      ---       ---     ---   #282
@@ -2459,9 +2503,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C00A2EH     BLOCK     LVL=2     012CH   ---   
       000008H     SYMBOL    AUTO      ---     ---   dataType
       00000AH     SYMBOL    AUTO      ---     ---   tmp
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 42
-
-
       000008H     SYMBOL    REG       ---     ---   pMappingParameter
       000012H     SYMBOL    AUTO      ---     ---   index
       000014H     SYMBOL    AUTO      ---     ---   Size
@@ -2478,6 +2519,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C00A02H     LINE      ---       ---     ---   #54
       C00A04H     LINE      ---       ---     ---   #55
       C00A0EH     LINE      ---       ---     ---   #56
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 43
+
+
       C00A18H     LINE      ---       ---     ---   #58
       C00A28H     LINE      ---       ---     ---   #59
       C00A2EH     LINE      ---       ---     ---   #65
@@ -2519,9 +2563,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C00B98H     LINE      ---       ---     ---   #124
       C00BA0H     LINE      ---       ---     ---   #125
       C00BA8H     LINE      ---       ---     ---   #127
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 43
-
-
       C00BAEH     LINE      ---       ---     ---   #129
       C00BB2H     LINE      ---       ---     ---   #130
       C00BB2H     LINE      ---       ---     ---   #138
@@ -2537,6 +2578,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C00BFAH     LINE      ---       ---     ---   #157
       C00BFEH     LINE      ---       ---     ---   #158
       ---         BLOCKEND  LVL=0     ---     ---   
+
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 44
+
 
       C00C04H     BLOCK     LVL=0     04E8H   ---   proceedPDO
       00000DH     SYMBOL    REG       ---     ---   d
@@ -2579,9 +2623,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C00C3CH     LINE      ---       ---     ---   #198
       C00C48H     LINE      ---       ---     ---   #199
       C00C54H     LINE      ---       ---     ---   #201
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 44
-
-
       C00C5AH     LINE      ---       ---     ---   #202
       C00C5EH     LINE      ---       ---     ---   #204
       C00C6CH     LINE      ---       ---     ---   #207
@@ -2598,6 +2639,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C00CB2H     LINE      ---       ---     ---   #226
       C00CB2H     LINE      ---       ---     ---   #229
       C00CBEH     LINE      ---       ---     ---   #230
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 45
+
+
       C00CCAH     LINE      ---       ---     ---   #233
       C00CF2H     LINE      ---       ---     ---   #234
       C00CF6H     LINE      ---       ---     ---   #235
@@ -2639,9 +2683,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C00F34H     LINE      ---       ---     ---   #323
       C00F34H     LINE      ---       ---     ---   #328
       C00F50H     LINE      ---       ---     ---   #329
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 45
-
-
       C00F5AH     LINE      ---       ---     ---   #331
       C00F60H     LINE      ---       ---     ---   #332
       C00F64H     LINE      ---       ---     ---   #333
@@ -2658,6 +2699,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C00FACH     LINE      ---       ---     ---   #351
       C00FACH     LINE      ---       ---     ---   #353
       C00FB8H     LINE      ---       ---     ---   #355
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 46
+
+
       C00FD0H     LINE      ---       ---     ---   #360
       C00FEEH     LINE      ---       ---     ---   #361
       C00FF2H     LINE      ---       ---     ---   #362
@@ -2699,9 +2743,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       00008CH     SYMBOL    REG       ---     ---   Vect
       00004DH     SYMBOL    REG       ---     ---   Aligned
       000084H     SYMBOL    REG       ---     ---   BoudaryLimit
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 46
-
-
       000082H     SYMBOL    REG       ---     ---   BitsToCopy
       000084H     SYMBOL    REG       ---     ---   Mask
       000086H     SYMBOL    REG       ---     ---   Filtered
@@ -2718,6 +2759,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C0115CH     LINE      ---       ---     ---   #457
       C01164H     LINE      ---       ---     ---   #460
       C0116CH     LINE      ---       ---     ---   #463
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 47
+
+
       C01176H     LINE      ---       ---     ---   #465
       C01178H     LINE      ---       ---     ---   #466
       C01188H     LINE      ---       ---     ---   #467
@@ -2759,9 +2803,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       ---         BLOCKEND  LVL=2     ---     ---   
       ---         BLOCKEND  LVL=1     ---     ---   
       C011E6H     LINE      ---       ---     ---   #510
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 47
-
-
       C011F4H     LINE      ---       ---     ---   #511
       C011F4H     LINE      ---       ---     ---   #514
       C01212H     LINE      ---       ---     ---   #517
@@ -2778,6 +2819,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C01290H     LINE      ---       ---     ---   #553
       C012B4H     LINE      ---       ---     ---   #556
       C012C2H     LINE      ---       ---     ---   #559
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 48
+
+
       C012C6H     LINE      ---       ---     ---   #561
       C012E0H     LINE      ---       ---     ---   #564
       C01326H     LINE      ---       ---     ---   #565
@@ -2819,9 +2863,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C01460H     LINE      ---       ---     ---   #607
       ---         BLOCKEND  LVL=0     ---     ---   
 
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 48
-
-
       C01462H     BLOCK     LVL=0     0266H   ---   _sendPDOevent
       00000DH     SYMBOL    REG       ---     ---   d
       00004EH     SYMBOL    REG       ---     ---   isSyncEvent
@@ -2838,6 +2879,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       ---         BLOCKEND  LVL=1     ---     ---   
       C01462H     LINE      ---       ---     ---   #619
       C01470H     LINE      ---       ---     ---   #620
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 49
+
+
       C01470H     LINE      ---       ---     ---   #621
       C01472H     LINE      ---       ---     ---   #622
       C01474H     LINE      ---       ---     ---   #623
@@ -2879,9 +2923,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C01616H     LINE      ---       ---     ---   #707
       C01656H     LINE      ---       ---     ---   #712
       C01660H     LINE      ---       ---     ---   #713
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 49
-
-
       C01666H     LINE      ---       ---     ---   #714
       C01668H     LINE      ---       ---     ---   #720
       C0166EH     LINE      ---       ---     ---   #721
@@ -2898,6 +2939,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C016A4H     LINE      ---       ---     ---   #733
       C016A6H     LINE      ---       ---     ---   #735
       C016A6H     LINE      ---       ---     ---   #737
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 50
+
+
       C016ACH     LINE      ---       ---     ---   #738
       C016ACH     LINE      ---       ---     ---   #740
       C016BAH     LINE      ---       ---     ---   #741
@@ -2939,9 +2983,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C017A8H     BLOCK     LVL=1     0068H   ---   
       00000FH     SYMBOL    REG       ---     ---   pdoIndex
       00000EH     SYMBOL    REG       ---     ---   offsetObjdict
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 50
-
-
       000000H     SYMBOL    AUTO      ---     ---   lastIndex
       C017C4H     BLOCK     LVL=2     003EH   ---   
       000002H     SYMBOL    AUTO      ---     ---   errorCode
@@ -2958,6 +2999,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C017C4H     LINE      ---       ---     ---   #797
       C017C4H     LINE      ---       ---     ---   #802
       C017D4H     LINE      ---       ---     ---   #803
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 51
+
+
       C017E6H     LINE      ---       ---     ---   #807
       C017EEH     LINE      ---       ---     ---   #809
       C017F6H     LINE      ---       ---     ---   #811
@@ -2999,9 +3043,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C02A5CH     PUBLIC    LABEL     ---     ---   _initialisation
       C026B0H     PUBLIC    LABEL     ---     ---   getState
       C02A5EH     PUBLIC    LABEL     ---     ---   _preOperational
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 51
-
-
       C02A74H     PUBLIC    LABEL     ---     ---   _operational
       C02810H     PUBLIC    LABEL     ---     ---   setNodeId
       C040B0H     SYMBOL    VAR       ---     ---   ?tpl?0003
@@ -3018,6 +3059,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C026B6H     BLOCK     LVL=0     00AAH   ---   canDispatch
       00000DH     SYMBOL    REG       ---     ---   d
       00000EH     SYMBOL    REG       ---     ---   m
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 52
+
+
       C026BEH     BLOCK     LVL=1     009CH   ---   
       000005H     SYMBOL    REG       ---     ---   cob_id
       ---         BLOCKEND  LVL=1     ---     ---   
@@ -3059,9 +3103,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C0275AH     LINE      ---       ---     ---   #117
       C0275AH     LINE      ---       ---     ---   #118
       ---         BLOCKEND  LVL=0     ---     ---   
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 52
-
-
 
       C02760H     BLOCK     LVL=0     0042H   ---   switchCommunicationState
       00000DH     SYMBOL    REG       ---     ---   d
@@ -3078,6 +3119,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       ---         BLOCKEND  LVL=1     ---     ---   
       C027A2H     LINE      ---       ---     ---   #159
       C027AAH     LINE      ---       ---     ---   #161
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 53
+
+
       C027B2H     LINE      ---       ---     ---   #162
       C027C8H     LINE      ---       ---     ---   #163
       C027C8H     LINE      ---       ---     ---   #178
@@ -3119,9 +3163,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       00000DH     SYMBOL    REG       ---     ---   lastIndex
       000000H     SYMBOL    AUTO      ---     ---   cobID
       ---         BLOCKEND  LVL=2     ---     ---   
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 53
-
-
       C02974H     BLOCK     LVL=2     00AAH   ---   
       00004CH     SYMBOL    REG       ---     ---   i
       00000BH     SYMBOL    REG       ---     ---   offset
@@ -3138,6 +3179,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C02830H     LINE      ---       ---     ---   #255
       C02834H     LINE      ---       ---     ---   #257
       C02868H     LINE      ---       ---     ---   #259
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 54
+
+
       C02880H     LINE      ---       ---     ---   #260
       C02880H     LINE      ---       ---     ---   #262
       C028B4H     LINE      ---       ---     ---   #264
@@ -3179,9 +3223,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C02A5EH     BLOCK     LVL=0     0016H   ---   _preOperational
       000005H     SYMBOL    REG       ---     ---   d
       C02A5EH     LINE      ---       ---     ---   #312
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 54
-
-
       C02A60H     LINE      ---       ---     ---   #313
       C02A68H     LINE      ---       ---     ---   #315
       C02A72H     LINE      ---       ---     ---   #316
@@ -3196,113 +3237,113 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       000008H     SYMBOL    REG       ---     ---   d
       C02A76H     LINE      ---       ---     ---   #319
       ---         BLOCKEND  LVL=0     ---     ---   
-      C0375AH     PUBLIC    LABEL     ---     ---   startSYNC
-      C0382EH     PUBLIC    LABEL     ---     ---   sendSYNC
-      C03750H     PUBLIC    LABEL     ---     ---   OnCOB_ID_SyncUpdate
-      C03874H     PUBLIC    LABEL     ---     ---   _post_sync
-      C03876H     PUBLIC    LABEL     ---     ---   _post_TPDO
-      C03806H     PUBLIC    LABEL     ---     ---   sendSYNCMessage
-      C03844H     PUBLIC    LABEL     ---     ---   proceedSYNC
-      C0374AH     PUBLIC    LABEL     ---     ---   SyncAlarm
-      C037D8H     PUBLIC    LABEL     ---     ---   stopSYNC
+      C0375EH     PUBLIC    LABEL     ---     ---   startSYNC
+      C03832H     PUBLIC    LABEL     ---     ---   sendSYNC
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 55
 
-      C0374AH     BLOCK     LVL=0     0006H   ---   SyncAlarm
+
+      C03754H     PUBLIC    LABEL     ---     ---   OnCOB_ID_SyncUpdate
+      C03878H     PUBLIC    LABEL     ---     ---   _post_sync
+      C0387AH     PUBLIC    LABEL     ---     ---   _post_TPDO
+      C0380AH     PUBLIC    LABEL     ---     ---   sendSYNCMessage
+      C03848H     PUBLIC    LABEL     ---     ---   proceedSYNC
+      C0374EH     PUBLIC    LABEL     ---     ---   SyncAlarm
+      C037DCH     PUBLIC    LABEL     ---     ---   stopSYNC
+
+      C0374EH     BLOCK     LVL=0     0006H   ---   SyncAlarm
       000004H     SYMBOL    REG       ---     ---   d
       000009H     SYMBOL    REG       ---     ---   id
-      C0374AH     LINE      ---       ---     ---   #62
-      C0374CH     LINE      ---       ---     ---   #64
-      C0374EH     LINE      ---       ---     ---   #65
+      C0374EH     LINE      ---       ---     ---   #62
+      C03750H     LINE      ---       ---     ---   #64
+      C03752H     LINE      ---       ---     ---   #65
       ---         BLOCKEND  LVL=0     ---     ---   
 
-      C03750H     BLOCK     LVL=0     000AH   ---   OnCOB_ID_SyncUpdate
+      C03754H     BLOCK     LVL=0     000AH   ---   OnCOB_ID_SyncUpdate
       000004H     SYMBOL    REG       ---     ---   d
       000009H     SYMBOL    REG       ---     ---   unsused_indextable
       00004AH     SYMBOL    REG       ---     ---   unsused_bSubindex
-      C03750H     LINE      ---       ---     ---   #76
-      C03752H     LINE      ---       ---     ---   #78
-      C03754H     LINE      ---       ---     ---   #79
-      C03758H     LINE      ---       ---     ---   #80
+      C03754H     LINE      ---       ---     ---   #76
+      C03756H     LINE      ---       ---     ---   #78
+      C03758H     LINE      ---       ---     ---   #79
+      C0375CH     LINE      ---       ---     ---   #80
       ---         BLOCKEND  LVL=0     ---     ---   
 
-      C0375AH     BLOCK     LVL=0     007EH   ---   startSYNC
+      C0375EH     BLOCK     LVL=0     007EH   ---   startSYNC
       00000DH     SYMBOL    REG       ---     ---   d
-      C0375AH     LINE      ---       ---     ---   #87
-      C0375EH     LINE      ---       ---     ---   #89
-      C03768H     LINE      ---       ---     ---   #90
-      C0376AH     LINE      ---       ---     ---   #91
-      C0376AH     LINE      ---       ---     ---   #93
-      C0377AH     LINE      ---       ---     ---   #94
-      C0378AH     LINE      ---       ---     ---   #96
-      C037A6H     LINE      ---       ---     ---   #103
-      C037D4H     LINE      ---       ---     ---   #104
+      C0375EH     LINE      ---       ---     ---   #87
+      C03762H     LINE      ---       ---     ---   #89
+      C0376CH     LINE      ---       ---     ---   #90
+      C0376EH     LINE      ---       ---     ---   #91
+      C0376EH     LINE      ---       ---     ---   #93
+      C0377EH     LINE      ---       ---     ---   #94
+      C0378EH     LINE      ---       ---     ---   #96
+      C037AAH     LINE      ---       ---     ---   #103
+      C037D8H     LINE      ---       ---     ---   #104
       ---         BLOCKEND  LVL=0     ---     ---   
 
-      C037D8H     BLOCK     LVL=0     002EH   ---   stopSYNC
+      C037DCH     BLOCK     LVL=0     002EH   ---   stopSYNC
       00000DH     SYMBOL    REG       ---     ---   d
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 55
-
-
-      C037D8H     LINE      ---       ---     ---   #112
-      C037DCH     LINE      ---       ---     ---   #114
-      C037E8H     LINE      ---       ---     ---   #115
-      C037F6H     LINE      ---       ---     ---   #116
-      C03802H     LINE      ---       ---     ---   #117
+      C037DCH     LINE      ---       ---     ---   #112
+      C037E0H     LINE      ---       ---     ---   #114
+      C037ECH     LINE      ---       ---     ---   #115
+      C037FAH     LINE      ---       ---     ---   #116
+      C03806H     LINE      ---       ---     ---   #117
       ---         BLOCKEND  LVL=0     ---     ---   
 
-      C03806H     BLOCK     LVL=0     0028H   ---   sendSYNCMessage
+      C0380AH     BLOCK     LVL=0     0028H   ---   sendSYNCMessage
       000008H     SYMBOL    REG       ---     ---   d
-      C0380AH     BLOCK     LVL=1     001EH   ---   
+      C0380EH     BLOCK     LVL=1     001EH   ---   
       000000H     SYMBOL    AUTO      ---     ---   m
       ---         BLOCKEND  LVL=1     ---     ---   
-      C03806H     LINE      ---       ---     ---   #128
-      C0380AH     LINE      ---       ---     ---   #129
-      C0380AH     LINE      ---       ---     ---   #134
-      C03812H     LINE      ---       ---     ---   #135
-      C03818H     LINE      ---       ---     ---   #136
-      C0381CH     LINE      ---       ---     ---   #138
-      C03828H     LINE      ---       ---     ---   #139
+      C0380AH     LINE      ---       ---     ---   #128
+      C0380EH     LINE      ---       ---     ---   #129
+      C0380EH     LINE      ---       ---     ---   #134
+      C03816H     LINE      ---       ---     ---   #135
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 56
+
+
+      C0381CH     LINE      ---       ---     ---   #136
+      C03820H     LINE      ---       ---     ---   #138
+      C0382CH     LINE      ---       ---     ---   #139
       ---         BLOCKEND  LVL=0     ---     ---   
 
-      C0382EH     BLOCK     LVL=0     0016H   ---   sendSYNC
+      C03832H     BLOCK     LVL=0     0016H   ---   sendSYNC
       00000DH     SYMBOL    REG       ---     ---   d
-      C03834H     BLOCK     LVL=1     000AH   ---   
+      C03838H     BLOCK     LVL=1     000AH   ---   
       00004EH     SYMBOL    REG       ---     ---   res
       ---         BLOCKEND  LVL=1     ---     ---   
-      C0382EH     LINE      ---       ---     ---   #150
-      C03834H     LINE      ---       ---     ---   #151
-      C03834H     LINE      ---       ---     ---   #153
-      C03838H     LINE      ---       ---     ---   #154
-      C0383CH     LINE      ---       ---     ---   #155
-      C0383EH     LINE      ---       ---     ---   #156
+      C03832H     LINE      ---       ---     ---   #150
+      C03838H     LINE      ---       ---     ---   #151
+      C03838H     LINE      ---       ---     ---   #153
+      C0383CH     LINE      ---       ---     ---   #154
+      C03840H     LINE      ---       ---     ---   #155
+      C03842H     LINE      ---       ---     ---   #156
       ---         BLOCKEND  LVL=0     ---     ---   
 
-      C03844H     BLOCK     LVL=0     0030H   ---   proceedSYNC
+      C03848H     BLOCK     LVL=0     0030H   ---   proceedSYNC
       00000DH     SYMBOL    REG       ---     ---   d
-      C0384AH     BLOCK     LVL=1     0024H   ---   
+      C0384EH     BLOCK     LVL=1     0024H   ---   
       00004EH     SYMBOL    REG       ---     ---   res
       ---         BLOCKEND  LVL=1     ---     ---   
-      C03844H     LINE      ---       ---     ---   #166
-      C0384AH     LINE      ---       ---     ---   #167
-      C0384AH     LINE      ---       ---     ---   #173
-      C03850H     LINE      ---       ---     ---   #176
-      C03856H     LINE      ---       ---     ---   #177
-      C0385AH     LINE      ---       ---     ---   #179
-      C03864H     LINE      ---       ---     ---   #182
-      C0386CH     LINE      ---       ---     ---   #184
-      C0386EH     LINE      ---       ---     ---   #186
+      C03848H     LINE      ---       ---     ---   #166
+      C0384EH     LINE      ---       ---     ---   #167
+      C0384EH     LINE      ---       ---     ---   #173
+      C03854H     LINE      ---       ---     ---   #176
+      C0385AH     LINE      ---       ---     ---   #177
+      C0385EH     LINE      ---       ---     ---   #179
+      C03868H     LINE      ---       ---     ---   #182
+      C03870H     LINE      ---       ---     ---   #184
+      C03872H     LINE      ---       ---     ---   #186
       ---         BLOCKEND  LVL=0     ---     ---   
 
-      C03874H     BLOCK     LVL=0     0002H   ---   _post_sync
+      C03878H     BLOCK     LVL=0     0002H   ---   _post_sync
       000008H     SYMBOL    REG       ---     ---   d
-      C03874H     LINE      ---       ---     ---   #189
+      C03878H     LINE      ---       ---     ---   #189
       ---         BLOCKEND  LVL=0     ---     ---   
 
-      C03876H     BLOCK     LVL=0     0002H   ---   _post_TPDO
+      C0387AH     BLOCK     LVL=0     0002H   ---   _post_TPDO
       000008H     SYMBOL    REG       ---     ---   d
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 56
-
-
-      C03876H     LINE      ---       ---     ---   #190
+      C0387AH     LINE      ---       ---     ---   #190
       ---         BLOCKEND  LVL=0     ---     ---   
       C00086H     PUBLIC    LABEL     ---     ---   masterSendNMTstateChange
       C0007EH     PUBLIC    LABEL     ---     ---   _post_SlaveStateChange
@@ -3317,6 +3358,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       000049H     SYMBOL    REG       ---     ---   heartbeatID
       C0007AH     LINE      ---       ---     ---   #12
       ---         BLOCKEND  LVL=0     ---     ---   
+
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 57
+
 
       C0007CH     BLOCK     LVL=0     0002H   ---   _post_SlaveBootup
       000008H     SYMBOL    REG       ---     ---   d
@@ -3359,9 +3403,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C02A78H     PUBLIC    LABEL     ---     ---   SetAlarm
       C02BF4H     PUBLIC    LABEL     ---     ---   DelAlarm
       00C7AAH     PUBLIC    VAR       ---     ---   last_timer_raw
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 57
-
-
       00C7ACH     PUBLIC    VAR       ---     ---   total_sleep_time
       00C7B0H     PUBLIC    VAR       ---     ---   timers
       00C840H     PUBLIC    VAR       ---     ---   tdcount
@@ -3378,6 +3419,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C02AACH     BLOCK     LVL=2     0110H   ---   
       000004H     SYMBOL    AUTO      ---     ---   real_timer_value
       000008H     SYMBOL    AUTO      ---     ---   elapsed_time
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 58
+
+
       ---         BLOCKEND  LVL=2     ---     ---   
       ---         BLOCKEND  LVL=1     ---     ---   
       C02A78H     LINE      ---       ---     ---   #57
@@ -3419,9 +3463,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
 
       C02C18H     BLOCK     LVL=0     014AH   ---   TimeDispatch
       C02C20H     BLOCK     LVL=1     0138H   ---   
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 58
-
-
       00000EH     SYMBOL    REG       ---     ---   i
       000000H     SYMBOL    AUTO      ---     ---   next_wakeup
       000004H     SYMBOL    AUTO      ---     ---   overrun
@@ -3438,6 +3479,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C02C54H     LINE      ---       ---     ---   #137
       C02C62H     LINE      ---       ---     ---   #139
       C02C6EH     LINE      ---       ---     ---   #141
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 59
+
+
       C02C72H     LINE      ---       ---     ---   #142
       C02C74H     LINE      ---       ---     ---   #147
       C02CA4H     LINE      ---       ---     ---   #148
@@ -3461,94 +3505,91 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C02D4CH     LINE      ---       ---     ---   #181
       C02D58H     LINE      ---       ---     ---   #182
       ---         BLOCKEND  LVL=0     ---     ---   
-      C03746H     PUBLIC    LABEL     ---     ---   analog_output_handler
-      C03742H     PUBLIC    LABEL     ---     ---   analog_input_handler
-      C03694H     PUBLIC    LABEL     ---     ---   digital_output_handler
-      C03602H     PUBLIC    LABEL     ---     ---   digital_input_handler
+      C0374AH     PUBLIC    LABEL     ---     ---   analog_output_handler
+      C03746H     PUBLIC    LABEL     ---     ---   analog_input_handler
+      C03698H     PUBLIC    LABEL     ---     ---   digital_output_handler
+      C03606H     PUBLIC    LABEL     ---     ---   digital_input_handler
 
-      C03602H     BLOCK     LVL=0     0092H   ---   digital_input_handler
+      C03606H     BLOCK     LVL=0     0092H   ---   digital_input_handler
       000006H     SYMBOL    REG       ---     ---   d
       000009H     SYMBOL    REG       ---     ---   newInput
       00004AH     SYMBOL    REG       ---     ---   size
-      C03604H     BLOCK     LVL=1     008EH   ---   
+      C03608H     BLOCK     LVL=1     008EH   ---   
       000086H     SYMBOL    REG       ---     ---   loops
       00008EH     SYMBOL    REG       ---     ---   i
       000082H     SYMBOL    REG       ---     ---   input
       000084H     SYMBOL    REG       ---     ---   transmission
       ---         BLOCKEND  LVL=1     ---     ---   
-      C03602H     LINE      ---       ---     ---   #28
-      C03604H     LINE      ---       ---     ---   #29
-      C03604H     LINE      ---       ---     ---   #30
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 59
+      C03606H     LINE      ---       ---     ---   #28
+      C03608H     LINE      ---       ---     ---   #29
+      C03608H     LINE      ---       ---     ---   #30
+      C0360AH     LINE      ---       ---     ---   #32
+      C03618H     LINE      ---       ---     ---   #34
+      C0361CH     LINE      ---       ---     ---   #36
+      C03626H     LINE      ---       ---     ---   #37
+      C0362EH     LINE      ---       ---     ---   #39
+      C03634H     LINE      ---       ---     ---   #41
+      C03672H     LINE      ---       ---     ---   #44
+      C03674H     LINE      ---       ---     ---   #45
+      C03674H     LINE      ---       ---     ---   #47
+      C03678H     LINE      ---       ---     ---   #48
+      C03678H     LINE      ---       ---     ---   #49
+      C0367AH     LINE      ---       ---     ---   #50
+      C03680H     LINE      ---       ---     ---   #51
+      C03684H     LINE      ---       ---     ---   #54
+      C0368EH     LINE      ---       ---     ---   #55
+      C03694H     LINE      ---       ---     ---   #56
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 60
 
 
-      C03606H     LINE      ---       ---     ---   #32
-      C03614H     LINE      ---       ---     ---   #34
-      C03618H     LINE      ---       ---     ---   #36
-      C03622H     LINE      ---       ---     ---   #37
-      C0362AH     LINE      ---       ---     ---   #39
-      C03630H     LINE      ---       ---     ---   #41
-      C0366EH     LINE      ---       ---     ---   #44
-      C03670H     LINE      ---       ---     ---   #45
-      C03670H     LINE      ---       ---     ---   #47
-      C03674H     LINE      ---       ---     ---   #48
-      C03674H     LINE      ---       ---     ---   #49
-      C03676H     LINE      ---       ---     ---   #50
-      C0367CH     LINE      ---       ---     ---   #51
-      C03680H     LINE      ---       ---     ---   #54
-      C0368AH     LINE      ---       ---     ---   #55
-      C03690H     LINE      ---       ---     ---   #56
-      C03690H     LINE      ---       ---     ---   #58
-      C03692H     LINE      ---       ---     ---   #59
+      C03694H     LINE      ---       ---     ---   #58
+      C03696H     LINE      ---       ---     ---   #59
       ---         BLOCKEND  LVL=0     ---     ---   
 
-      C03694H     BLOCK     LVL=0     00AEH   ---   digital_output_handler
+      C03698H     BLOCK     LVL=0     00AEH   ---   digital_output_handler
       00000EH     SYMBOL    REG       ---     ---   d
       00000DH     SYMBOL    REG       ---     ---   newOutput
       00004AH     SYMBOL    REG       ---     ---   size
-      C036A2H     BLOCK     LVL=1     0094H   ---   
+      C036A6H     BLOCK     LVL=1     0094H   ---   
       000000H     SYMBOL    AUTO      ---     ---   loops
       00004FH     SYMBOL    REG       ---     ---   i
       000002H     SYMBOL    AUTO      ---     ---   error
       000004H     SYMBOL    AUTO      ---     ---   type
       000006H     SYMBOL    AUTO      ---     ---   varsize
       ---         BLOCKEND  LVL=1     ---     ---   
-      C03694H     LINE      ---       ---     ---   #61
-      C036A2H     LINE      ---       ---     ---   #62
-      C036A2H     LINE      ---       ---     ---   #64
-      C036A8H     LINE      ---       ---     ---   #66
-      C036B4H     LINE      ---       ---     ---   #68
-      C036B8H     LINE      ---       ---     ---   #70
-      C036DCH     LINE      ---       ---     ---   #71
-      C036ECH     LINE      ---       ---     ---   #73
-      C0370AH     LINE      ---       ---     ---   #74
-      C03718H     LINE      ---       ---     ---   #75
-      C03718H     LINE      ---       ---     ---   #76
-      C03728H     LINE      ---       ---     ---   #77
-      C0372AH     LINE      ---       ---     ---   #78
-      C03734H     LINE      ---       ---     ---   #79
-      C03736H     LINE      ---       ---     ---   #80
+      C03698H     LINE      ---       ---     ---   #61
+      C036A6H     LINE      ---       ---     ---   #62
+      C036A6H     LINE      ---       ---     ---   #64
+      C036ACH     LINE      ---       ---     ---   #66
+      C036B8H     LINE      ---       ---     ---   #68
+      C036BCH     LINE      ---       ---     ---   #70
+      C036E0H     LINE      ---       ---     ---   #71
+      C036F0H     LINE      ---       ---     ---   #73
+      C0370EH     LINE      ---       ---     ---   #74
+      C0371CH     LINE      ---       ---     ---   #75
+      C0371CH     LINE      ---       ---     ---   #76
+      C0372CH     LINE      ---       ---     ---   #77
+      C0372EH     LINE      ---       ---     ---   #78
+      C03738H     LINE      ---       ---     ---   #79
+      C0373AH     LINE      ---       ---     ---   #80
       ---         BLOCKEND  LVL=0     ---     ---   
 
-      C03742H     BLOCK     LVL=0     0004H   ---   analog_input_handler
+      C03746H     BLOCK     LVL=0     0004H   ---   analog_input_handler
       000008H     SYMBOL    REG       ---     ---   d
       000009H     SYMBOL    REG       ---     ---   newInput
       00004AH     SYMBOL    REG       ---     ---   size
-      C03742H     LINE      ---       ---     ---   #82
-      C03742H     LINE      ---       ---     ---   #84
-      C03744H     LINE      ---       ---     ---   #85
+      C03746H     LINE      ---       ---     ---   #82
+      C03746H     LINE      ---       ---     ---   #84
+      C03748H     LINE      ---       ---     ---   #85
       ---         BLOCKEND  LVL=0     ---     ---   
 
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 60
-
-
-      C03746H     BLOCK     LVL=0     0004H   ---   analog_output_handler
+      C0374AH     BLOCK     LVL=0     0004H   ---   analog_output_handler
       000008H     SYMBOL    REG       ---     ---   d
       000009H     SYMBOL    REG       ---     ---   newOutput
       00004AH     SYMBOL    REG       ---     ---   size
-      C03746H     LINE      ---       ---     ---   #87
-      C03746H     LINE      ---       ---     ---   #89
-      C03748H     LINE      ---       ---     ---   #90
+      C0374AH     LINE      ---       ---     ---   #87
+      C0374AH     LINE      ---       ---     ---   #89
+      C0374CH     LINE      ---       ---     ---   #90
       ---         BLOCKEND  LVL=0     ---     ---   
       C031DCH     PUBLIC    LABEL     ---     ---   ObjDict_scanIndexOD
       C031C0H     PUBLIC    LABEL     ---     ---   ObjDict_valueRangeTest
@@ -3558,6 +3599,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       00C244H     PUBLIC    VAR       ---     ---   ObjDict_PDO_status
       00C256H     PUBLIC    VAR       ---     ---   ObjDict_obj1011_Restore_All_Default_Parameters
       00C25AH     PUBLIC    VAR       ---     ---   ObjDict_obj1010_Save_All_Parameters
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 61
+
+
       00C25EH     PUBLIC    VAR       ---     ---   ObjDict_ObjdictSize
       00C260H     PUBLIC    VAR       ---     ---   ObjDict_obj1800_Event_Timer
       00C262H     PUBLIC    VAR       ---     ---   ObjDict_Index100A
@@ -3599,9 +3643,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       00C46CH     PUBLIC    VAR       ---     ---   ObjDict_obj1800_COB_ID_used_by_PDO
       00C470H     PUBLIC    VAR       ---     ---   ObjDict_Index1001
       00C478H     PUBLIC    VAR       ---     ---   ObjDict_Index1010
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 61
-
-
       00C4A0H     PUBLIC    VAR       ---     ---   ObjDict_Index1000
       00C4A8H     PUBLIC    VAR       ---     ---   ObjDict_obj1400_COB_ID_used_by_PDO
       00C4ACH     PUBLIC    VAR       ---     ---   ObjDict_lastIndex
@@ -3618,6 +3659,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       00C4E8H     PUBLIC    VAR       ---     ---   ObjDict_obj1018_Revision_Number
       00C4ECH     PUBLIC    VAR       ---     ---   ObjDict_obj1009
       00C4F6H     PUBLIC    VAR       ---     ---   ObjDict_obj1200_COB_ID_Server_to_Client_Transmit_SDO
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 62
+
+
       00C4FAH     PUBLIC    VAR       ---     ---   ObjDict_obj1008
       00C504H     PUBLIC    VAR       ---     ---   ObjDict_obj1017
       00C506H     PUBLIC    VAR       ---     ---   ObjDict_obj1016
@@ -3659,9 +3703,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       00C7A0H     PUBLIC    VAR       ---     ---   ObjDict_highestSubIndex_obj6200
       00C7A1H     PUBLIC    VAR       ---     ---   ObjDict_highestSubIndex_obj1600
       00C7A2H     PUBLIC    VAR       ---     ---   ObjDict_highestSubIndex_obj6000
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 62
-
-
       00C7A3H     PUBLIC    VAR       ---     ---   ObjDict_highestSubIndex_obj1400
       00C7A4H     PUBLIC    VAR       ---     ---   ObjDict_highestSubIndex_obj1003
       00C7A5H     PUBLIC    VAR       ---     ---   ObjDict_obj1400_Transmission_Type
@@ -3678,6 +3719,9 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C031C8H     LINE      ---       ---     ---   #60
       C031D6H     LINE      ---       ---     ---   #61
       C031D6H     LINE      ---       ---     ---   #62
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 63
+
+
       C031D6H     LINE      ---       ---     ---   #63
       C031DAH     LINE      ---       ---     ---   #64
       ---         BLOCKEND  LVL=0     ---     ---   
@@ -3719,9 +3763,6 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C032E4H     LINE      ---       ---     ---   #454
       C032EAH     LINE      ---       ---     ---   #455
       C032F0H     LINE      ---       ---     ---   #456
-L166 LINKER/LOCATER V5.25                                                             09/03/2014  10:38:12  PAGE 63
-
-
       C032F6H     LINE      ---       ---     ---   #457
       C032FCH     LINE      ---       ---     ---   #458
       C03302H     LINE      ---       ---     ---   #459
@@ -3733,23 +3774,26 @@ SYMBOL TABLE OF MODULE:  .\obj\EBCU_CPU (?C_STARTUP)
       C03320H     LINE      ---       ---     ---   #465
       C0332EH     LINE      ---       ---     ---   #466
       ---         BLOCKEND  LVL=0     ---     ---   
-      C03AEEH     PUBLIC    LABEL     ---     ---   ?C_LMUL
+      C03BF2H     PUBLIC    LABEL     ---     ---   ?C_LMUL
 
-      C03AEEH     BLOCK     LVL=0     0018H   ---   ?C_LMUL
+      C03BF2H     BLOCK     LVL=0     0018H   ---   ?C_LMUL
       ---         BLOCKEND  LVL=0     ---     ---   
-      C03B06H     PUBLIC    LABEL     ---     ---   ?C_ULDIV
+      C03C0AH     PUBLIC    LABEL     ---     ---   ?C_ULDIV
+L166 LINKER/LOCATER V5.25                                                             09/03/2014  17:57:06  PAGE 64
 
-      C03B06H     BLOCK     LVL=0     0092H   ---   ?C_ULDIV
-      ---         BLOCKEND  LVL=0     ---     ---   
-      C00090H     PUBLIC    LABEL     ---     ---   memcpy
 
-      C00090H     BLOCK     LVL=0     000EH   ---   memcpy
-      ---         BLOCKEND  LVL=0     ---     ---   
-      C0004CH     PUBLIC    LABEL     ---     ---   memcmp
 
-      C0004CH     BLOCK     LVL=0     001CH   ---   memcmp
+      C03C0AH     BLOCK     LVL=0     0092H   ---   ?C_ULDIV
       ---         BLOCKEND  LVL=0     ---     ---   
-      C00068H     PUBLIC    LABEL     ---     ---   memset
+      C000AAH     PUBLIC    LABEL     ---     ---   memcpy
+
+      C000AAH     BLOCK     LVL=0     000EH   ---   memcpy
+      ---         BLOCKEND  LVL=0     ---     ---   
+      C0005EH     PUBLIC    LABEL     ---     ---   memcmp
+
+      C0005EH     BLOCK     LVL=0     001CH   ---   memcmp
+      ---         BLOCKEND  LVL=0     ---     ---   
+      C00098H     PUBLIC    LABEL     ---     ---   memset
       C009B6H     PUBLIC    VAR       ---     ---   ?C_ENDINIT
 
 
@@ -3761,5 +3805,5 @@ FUNCTION . . . . . . . . . . . . . . REG MASK
 =============================================
 
 
-Program Size: data=2867(near=2867) const=2623(near=309) code=13670
+Program Size: data=2867(near=2867) const=2623(near=309) code=13874
 L166 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

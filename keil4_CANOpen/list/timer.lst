@@ -1,4 +1,4 @@
-C166 COMPILER V7.53.0.0, TIMER                                                             09/03/2014 10:38:11 PAGE 1   
+C166 COMPILER V7.53.0.0, TIMER                                                             09/03/2014 17:57:06 PAGE 1   
 
 
 C166 COMPILER V7.53.0.0, COMPILATION OF MODULE TIMER
@@ -50,7 +50,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\timer.c MODV2 BROWSE
    39         s_timer_entry timers[MAX_NB_TIMER] = {{TIMER_FREE, NULL, NULL, 0, 0, 0},};
    40         
    41         TIMEVAL total_sleep_time = TIMEVAL_MAX;
-   42         TIMER_HANDLE last_timer_raw = -1;
+   42         TIMER_HANDLE last_timer_raw = -1;  //最后一个存在的timer的编号
    43         
    44         #define min_val(a,b) ((a<b)?a:b)
    45         
@@ -62,7 +62,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\timer.c MODV2 BROWSE
    51         ** @param callback
    52         ** @param value
    53         ** @param period
-C166 COMPILER V7.53.0.0, TIMER                                                             09/03/2014 10:38:11 PAGE 2   
+C166 COMPILER V7.53.0.0, TIMER                                                             09/03/2014 17:57:06 PAGE 2   
 
    54         **
    55         ** @return
@@ -82,9 +82,9 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\timer.c MODV2 BROWSE
    68  3            TIMEVAL real_timer_value;
    69  3            TIMEVAL elapsed_time;
    70  3      
-   71  3            if (row_number == last_timer_raw + 1) last_timer_raw++;
+   71  3            if (row_number == last_timer_raw + 1) last_timer_raw++; //如果前面的都被占了，则加一个新的timer
    72  3      
-   73  3            elapsed_time = getElapsedTime();
+   73  3            elapsed_time = getElapsedTime(); //获取当前时间
    74  3            /* set next wakeup alarm if new entry is sooner than others, or if it is alone */
    75  3            real_timer_value = value;
    76  3            real_timer_value = min_val(real_timer_value, TIMEVAL_MAX);
@@ -92,7 +92,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\timer.c MODV2 BROWSE
    78  3            if (total_sleep_time > elapsed_time && total_sleep_time - elapsed_time > real_timer_value)
    79  3            {
    80  4              total_sleep_time = elapsed_time + real_timer_value;
-   81  4              setTimer(real_timer_value);
+   81  4              setTimer(real_timer_value); //重设时钟
    82  4            }
    83  3            row->callback = callback;
    84  3            row->d = d;
@@ -126,7 +126,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\timer.c MODV2 BROWSE
   112  2        }
   113  1        return TIMER_NONE;
   114  1      }
-C166 COMPILER V7.53.0.0, TIMER                                                             09/03/2014 10:38:11 PAGE 3   
+C166 COMPILER V7.53.0.0, TIMER                                                             09/03/2014 17:57:06 PAGE 3   
 
   115         
   116         /*!
@@ -176,7 +176,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\timer.c MODV2 BROWSE
   160  4              if(row->val < next_wakeup)
   161  4                next_wakeup = row->val;
   162  4            }
-  163  3          }
+  163  3          } 
   164  2        }
   165  1      
   166  1        /* Remember how much time we should sleep. */
@@ -190,7 +190,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\timer.c MODV2 BROWSE
   174  1        {
   175  2          if (row->state & TIMER_TRIG)
   176  2          {
-C166 COMPILER V7.53.0.0, TIMER                                                             09/03/2014 10:38:11 PAGE 4   
+C166 COMPILER V7.53.0.0, TIMER                                                             09/03/2014 17:57:06 PAGE 4   
 
   177  3            row->state &= ~TIMER_TRIG; /* reset trig state (will be free if not periodic) */
   178  3            if(row->callback)

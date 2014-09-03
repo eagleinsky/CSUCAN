@@ -8,7 +8,7 @@
 \par \plain\f4\fs22\cf0 Compiler: \tab\tab\b Keil
 \par \plain\f4\fs22\cf0 Memory Model: \tab\b SMALL
 \par 
-\par \plain\f4\fs22\cf0 Date: \tab\tab\tab\b 2014/7/1 15:42:51
+\par \plain\f4\fs22\cf0 Date: \tab\tab\tab\b 2014/9/3 17:56:09
 \par 
 \par 
 \par \plain\f4\fs22\cf2\b Please read this document carefully and note
@@ -26,6 +26,8 @@
 \par \tab\tab\tab IO.C
 \par \tab\tab\tab GPT1.H
 \par \tab\tab\tab GPT1.C
+\par \tab\tab\tab GPT2.H
+\par \tab\tab\tab GPT2.C
 \par \tab\tab\tab CC2.H
 \par \tab\tab\tab CC2.C
 \par \tab\tab\tab EBCU_CPU.ASM
@@ -420,7 +422,7 @@
 
 \par \tab \tab GPT1_TIMER_3
 
-\par \tab \tab GPT1_TIMER_4
+\par \tab \tab CANOpen_TIMER
 
 \par \plain\f4\fs20\cf0 \tab Returnvalue:
 \par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
@@ -448,7 +450,7 @@
 
 \par \tab \tab GPT1_TIMER_3
 
-\par \tab \tab GPT1_TIMER_4
+\par \tab \tab CANOpen_TIMER
 
 \par \plain\f4\fs20\cf0 \tab Returnvalue:
 \par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
@@ -476,7 +478,7 @@
 
 \par \tab \tab GPT1_TIMER_3
 
-\par \tab \tab GPT1_TIMER_4
+\par \tab \tab CANOpen_TIMER
 
 \par \plain\f4\fs20\cf0 \tab Returnvalue:
 \par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
@@ -485,6 +487,70 @@
 \tab \tab TimerNr:
 
 \par \tab \tab The name of the timer to be cleared
+
+\par
+\par
+\par \plain\f4\fs20\cf0 \tab Macro:
+\par \plain\f4\fs20\cf0\b \tab \tab GPT1_uwReadTmr(TimerNr)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This macro returns the contents of the selected GPT1 timer.
+
+\par \tab \tab The timer is not stopped. Access of the CPU to the
+
+\par \tab \tab registers of the timer is of higher priority than a timer
+
+\par \tab \tab increment, a reload or a capture event. The following
+
+\par \tab \tab definitions are available for TimerNr:
+
+\par \tab \tab GPT1_TIMER_2
+
+\par \tab \tab GPT1_TIMER_3
+
+\par \tab \tab CANOpen_TIMER
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b Current 16-bit value of the timer\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab TimerNr:
+
+\par \tab \tab The name of the timer to be readed
+
+\par
+\par
+\par \plain\f4\fs20\cf0 \tab Macro:
+\par \plain\f4\fs20\cf0\b \tab \tab GPT1_vLoadTmr(TimerNr, Value)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This macro loads the selected GPT1 timer with the forwarded
+
+\par \tab \tab value. The timer is not stopped. The access of the CPU to
+
+\par \tab \tab the registers of the timers is of higher priority than a
+
+\par \tab \tab timer increment, a reload or a capture event. The following
+
+\par \tab \tab definitions are available for TimerNr:
+
+\par \tab \tab GPT1_TIMER_2
+
+\par \tab \tab GPT1_TIMER_3
+
+\par \tab \tab CANOpen_TIMER
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab TimerNr:
+
+\par \tab \tab The name of the timer to be loaded
+
+\par \tab \tab Value:
+
+\par \tab \tab 16-bit value to be loaded
 
 \par \plain\f4\fs24\cf0 Functions:\f4\fs20\cf0
 \par
@@ -557,6 +623,33 @@
 \tab \tab None
 
 \par
+\par \plain\f4\fs20\cf0 \tab Function:
+\par \plain\f4\fs20\cf0\b \tab \tab void GPT1_viTmr4(void)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This is the interrupt service routine for the GPT1 timer 4.
+
+\par \tab \tab It is called up in the case of over or underflow of the
+
+\par \tab \tab timer 4 register.
+
+\par \tab \tab If the incremental interface mode is selected and the
+
+\par \tab \tab interrupt for this mode is not disabled it is called up if
+
+\par \tab \tab count edge or count direction was detected.
+
+\par \tab \tab Please note that you have to add application specific code
+
+\par \tab \tab to this function.
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab None
+
+\par
 \par \plain\f4\fs24\cf0 Initialization:
 \par \plain\f4\fs20\cf0\b
 \par
@@ -566,7 +659,7 @@
 \tab Configuration of the GPT1 Core Timer 3:\par 
 \tab - timer 3 works in timer mode\par 
 \tab - external up/down control is disabled\par 
-\tab - prescaler factor is 32\par 
+\tab - prescaler factor is 128\par 
 \tab - up/down control bit is reset\par 
 \tab - alternate output function T3OUT (P3.3) is disabled\par 
 \tab - timer 3 output toggle latch (T3OTL) is set to 0\par 
@@ -580,29 +673,109 @@
 \tab Configuration of the GPT1 Auxiliary Timer 4:\par 
 \tab - timer 4 works in timer mode\par 
 \tab - external up/down control is disabled\par 
-\tab - prescaler factor is 32\par 
-\tab - up/down control bit is reset\par 
-\tab - timer 4 run bit is reset\par 
+\tab - prescaler factor is 128\par 
+\tab - up/down control bit is set\par 
 \par 
 \tab Configuration of the used GPT1 Port Pins:\par 
 \par 
 \tab Configuration of the used GPT1 Interrupts:\par 
 \tab timer 2 service request node configuration:\par 
-\tab - timer 2 interrupt priority level (ILVL) = 14\par 
+\tab - timer 2 interrupt priority level (ILVL) = 6\par 
 \tab - timer 2 interrupt group level (GLVL) = 0\par 
 \tab - timer 2 group priority extension (GPX) = 0\par 
 \par 
-\tab Use PEC channel 0 for GPT1 T2 INT:\par 
-\tab - normal interrupt\par 
-\tab - pointers are not modified\par 
-\tab - transfer a word\par 
-\tab - service End of PEC interrrupt by a EOP interrupt node is disabled\par 
-\tab - channel link mode is disabled\par 
-\par 
 \tab timer 3 service request node configuration:\par 
-\tab - timer 3 interrupt priority level (ILVL) = 13\par 
+\tab - timer 3 interrupt priority level (ILVL) = 9\par 
 \tab - timer 3 interrupt group level (GLVL) = 0\par 
 \tab - timer 3 group priority extension (GPX) = 0\par 
+\par 
+\tab timer 4 service request node configuration:\par 
+\tab - timer 4 interrupt priority level (ILVL) = 10\par 
+\tab - timer 4 interrupt group level (GLVL) = 0\par 
+\tab - timer 4 group priority extension (GPX) = 0\par 
+\par 
+
+\par \plain\f4\fs20\cf0
+\par \plain\f4\fs28\cf0\ul General Purpose Timer Unit (GPT2)
+\par
+\par \plain\f4\fs24\cf0 Macros:\f4\fs20\cf0
+\par \plain\f4\fs24\cf0 Functions:\f4\fs20\cf0
+\par
+\par \plain\f4\fs20\cf0 \tab Function:
+\par \plain\f4\fs20\cf0\b \tab \tab void GPT2_vInit(void)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This is the initialization function of the GPT2 function
+
+\par \tab \tab library. It is assumed that the SFRs used by this library
+
+\par \tab \tab are in its reset state.
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab None
+
+\par
+\par \plain\f4\fs20\cf0 \tab Function:
+\par \plain\f4\fs20\cf0\b \tab \tab void GPT2_viTmr5(void)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This is the interrupt service routine for the GPT2 timer 5.
+
+\par \tab \tab It is called up in the case of over or underflow of the
+
+\par \tab \tab timer 5 register.
+
+\par \tab \tab Please note that you have to add application specific code
+
+\par \tab \tab to this function.
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab None
+
+\par
+\par \plain\f4\fs24\cf0 Initialization:
+\par \plain\f4\fs20\cf0\b
+\par
+\tab Configuration of Timer Block Prescaler 2:\par 
+\tab - prescaler for timer block 2 is 4\par 
+\par 
+\tab Configuration of the GPT2 Core Timer 5:\par 
+\tab - timer 5 works in timer mode\par 
+\tab - prescaler factor is 32\par 
+\tab - up/down control bit is reset\par 
+\tab - external up/down control is disabled\par 
+\tab - timer 5 remote control is disabled\par 
+\par 
+\tab Configuration of the GPT2 Core Timer 6:\par 
+\tab - timer 6 works in timer mode\par 
+\tab - prescaler factor is 4\par 
+\tab - up/down control bit is reset\par 
+\tab - external up/down control is disabled\par 
+\tab - alternate output function T6OUT (P3.1) is disabled\par 
+\tab - timer 6 output toggle latch (T6OTL) is set to 0\par 
+\tab - timer 6 run bit is reset\par 
+\tab - timer 6 is not cleared on a capture\par 
+\par 
+\tab Configuration of the GPT2 CAPREL:\par 
+\tab - capture T5 into CAPREL is disabled\par 
+\tab - capture trigger from pin CAPIN\par 
+\tab - capure is disabled\par 
+\tab - timer 5 is not cleared on a capture\par 
+\tab - timer 5 is just captured without any correction\par 
+\par 
+\tab Configuration of the used GPT2 Port Pins:\par 
+\par 
+\tab Configuration of the used GPT2 Interrupts:\par 
+\tab timer 5 service request node configuration:\par 
+\tab - timer 5 interrupt priority level (ILVL) = 5\par 
+\tab - timer 5 interrupt group level (GLVL) = 0\par 
+\tab - timer 5 group priority extension (GPX) = 0\par 
 \par 
 
 \par \plain\f4\fs20\cf0
@@ -763,12 +936,12 @@
 \par 
 \tab Configuration of the used CAPCOM2 Channels Interrupts:\par 
 \tab CC16 service request node configuration:\par 
-\tab - CC16 interrupt priority level (ILVL) = 12\par 
+\tab - CC16 interrupt priority level (ILVL) = 7\par 
 \tab - CC16 interrupt group level (GLVL) = 0\par 
 \tab - CC16 group priority extension (GPX) = 0\par 
 \par 
 \tab CC17 service request node configuration:\par 
-\tab - CC17 interrupt priority level (ILVL) = 11\par 
+\tab - CC17 interrupt priority level (ILVL) = 8\par 
 \tab - CC17 interrupt group level (GLVL) = 0\par 
 \tab - CC17 group priority extension (GPX) = 0\par 
 \par 

@@ -1,4 +1,4 @@
-C166 COMPILER V7.53.0.0, TEMP                                                              09/03/2014 10:38:11 PAGE 1   
+C166 COMPILER V7.53.0.0, TEMP                                                              09/03/2014 17:57:06 PAGE 1   
 
 
 C166 COMPILER V7.53.0.0, COMPILATION OF MODULE TEMP
@@ -62,7 +62,7 @@ MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
   FAR-CONST SIZE   =    --------     --------
   HUGE-CONST SIZE  =    --------     --------
   XHUGE-CONST SIZE =    --------     --------
-C166 COMPILER V7.53.0.0, TEMP                                                              09/03/2014 10:38:11 PAGE 2   
+C166 COMPILER V7.53.0.0, TEMP                                                              09/03/2014 17:57:06 PAGE 2   
 
   NEAR-DATA SIZE   =    --------     --------
   FAR-DATA SIZE    =    --------     --------

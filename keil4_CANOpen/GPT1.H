@@ -13,7 +13,7 @@
 //                the GPT1 module.
 //
 //----------------------------------------------------------------------------
-// @Date          2014/7/1 15:42:50
+// @Date          2014/9/3 17:56:09
 //
 //****************************************************************************
 
@@ -55,7 +55,7 @@
 #define GPT1_TIMER_3 3
 
 //   This parameter identifies GPT1 timer 4
-#define GPT1_TIMER_4 4
+#define CANOpen_TIMER 4
 
 
 // USER CODE BEGIN (GPT1_Header,4)
@@ -111,7 +111,7 @@ void GPT1_vInit(void);
 //                definitions are available for TimerNr:
 //                GPT1_TIMER_2
 //                GPT1_TIMER_3
-//                GPT1_TIMER_4
+//                CANOpen_TIMER
 //
 //----------------------------------------------------------------------------
 // @Returnvalue   None
@@ -121,14 +121,14 @@ void GPT1_vInit(void);
 //                the name of the timer to be started
 //
 //----------------------------------------------------------------------------
-// @Date          2014/7/1
+// @Date          2014/9/3
 //
 //****************************************************************************
 
 #define GPT1_vStartTmr(TimerNr) GPT1_vStartTmr_##TimerNr()
 #define GPT1_vStartTmr_GPT1_TIMER_2() GPT12E_T2CON_T2R = 1
 #define GPT1_vStartTmr_GPT1_TIMER_3() GPT12E_T3CON_T3R = 1
-#define GPT1_vStartTmr_GPT1_TIMER_4() GPT12E_T4CON_T4R = 1
+#define GPT1_vStartTmr_CANOpen_TIMER() GPT12E_T4CON_T4R = 1
 
 
 //****************************************************************************
@@ -141,7 +141,7 @@ void GPT1_vInit(void);
 //                are available for TimerNr:
 //                GPT1_TIMER_2
 //                GPT1_TIMER_3
-//                GPT1_TIMER_4
+//                CANOpen_TIMER
 //
 //----------------------------------------------------------------------------
 // @Returnvalue   None
@@ -151,14 +151,14 @@ void GPT1_vInit(void);
 //                The name of the timer to be stopped
 //
 //----------------------------------------------------------------------------
-// @Date          2014/7/1
+// @Date          2014/9/3
 //
 //****************************************************************************
 
 #define GPT1_vStopTmr(TimerNr) GPT1_vStopTmr_##TimerNr()
 #define GPT1_vStopTmr_GPT1_TIMER_2() GPT12E_T2CON_T2R = 0; GPT12E_T2CON_T2RC = 0
 #define GPT1_vStopTmr_GPT1_TIMER_3() GPT12E_T3CON_T3R = 0
-#define GPT1_vStopTmr_GPT1_TIMER_4() GPT12E_T4CON_T4R = 0; GPT12E_T4CON_T4RC = 0
+#define GPT1_vStopTmr_CANOpen_TIMER() GPT12E_T4CON_T4R = 0; GPT12E_T4CON_T4RC = 0
 
 
 //****************************************************************************
@@ -171,7 +171,7 @@ void GPT1_vInit(void);
 //                TimerNr:
 //                GPT1_TIMER_2
 //                GPT1_TIMER_3
-//                GPT1_TIMER_4
+//                CANOpen_TIMER
 //
 //----------------------------------------------------------------------------
 // @Returnvalue   None
@@ -181,14 +181,78 @@ void GPT1_vInit(void);
 //                The name of the timer to be cleared
 //
 //----------------------------------------------------------------------------
-// @Date          2014/7/1
+// @Date          2014/9/3
 //
 //****************************************************************************
 
 #define GPT1_vClearTmr(TimerNr) GPT1_vClearTmr_##TimerNr()
 #define GPT1_vClearTmr_GPT1_TIMER_2() GPT12E_T2CON_T2R = 0; GPT12E_T2 = 0x0000; GPT12E_T2CON_T2RC = 0
 #define GPT1_vClearTmr_GPT1_TIMER_3() GPT12E_T3CON_T3R = 0; GPT12E_T3 = 0x0000
-#define GPT1_vClearTmr_GPT1_TIMER_4() GPT12E_T4CON_T4R = 0; GPT12E_T4 = 0x0000; GPT12E_T4CON_T4RC = 0
+#define GPT1_vClearTmr_CANOpen_TIMER() GPT12E_T4CON_T4R = 0; GPT12E_T4 = 0x0000; GPT12E_T4CON_T4RC = 0
+
+
+//****************************************************************************
+// @Macro         GPT1_uwReadTmr(TimerNr) 
+//
+//----------------------------------------------------------------------------
+// @Description   This macro returns the contents of the selected GPT1 timer. 
+//                The timer is not stopped. Access of the CPU to the 
+//                registers of the timer is of higher priority than a timer 
+//                increment, a reload or a capture event. The following 
+//                definitions are available for TimerNr:
+//                GPT1_TIMER_2
+//                GPT1_TIMER_3
+//                CANOpen_TIMER
+//
+//----------------------------------------------------------------------------
+// @Returnvalue   Current 16-bit value of the timer
+//
+//----------------------------------------------------------------------------
+// @Parameters    TimerNr: 
+//                The name of the timer to be readed
+//
+//----------------------------------------------------------------------------
+// @Date          2014/9/3
+//
+//****************************************************************************
+
+#define GPT1_uwReadTmr(TimerNr) GPT1_uwReadTmr_##TimerNr()
+#define GPT1_uwReadTmr_GPT1_TIMER_2() GPT12E_T2
+#define GPT1_uwReadTmr_GPT1_TIMER_3() GPT12E_T3
+#define GPT1_uwReadTmr_CANOpen_TIMER() GPT12E_T4
+
+
+//****************************************************************************
+// @Macro         GPT1_vLoadTmr(TimerNr, Value) 
+//
+//----------------------------------------------------------------------------
+// @Description   This macro loads the selected GPT1 timer with the forwarded 
+//                value. The timer is not stopped. The access of the CPU to 
+//                the registers of the timers is of higher priority than a 
+//                timer increment, a reload or a capture event. The following 
+//                definitions are available for TimerNr:
+//                GPT1_TIMER_2
+//                GPT1_TIMER_3
+//                CANOpen_TIMER
+//
+//----------------------------------------------------------------------------
+// @Returnvalue   None
+//
+//----------------------------------------------------------------------------
+// @Parameters    TimerNr: 
+//                The name of the timer to be loaded
+// @Parameters    Value: 
+//                16-bit value to be loaded
+//
+//----------------------------------------------------------------------------
+// @Date          2014/9/3
+//
+//****************************************************************************
+
+#define GPT1_vLoadTmr(TimerNr, Value) GPT1_vLoadTmr_##TimerNr(Value)
+#define GPT1_vLoadTmr_GPT1_TIMER_2(Value) GPT12E_T2 = Value
+#define GPT1_vLoadTmr_GPT1_TIMER_3(Value) GPT12E_T3 = Value
+#define GPT1_vLoadTmr_CANOpen_TIMER(Value) GPT12E_T4 = Value
 
 
 //****************************************************************************
@@ -197,6 +261,7 @@ void GPT1_vInit(void);
 
 #define T2INT 0x22
 #define T3INT 0x23
+#define T4INT 0x24
 
 // USER CODE BEGIN (GPT1_Header,9)
 

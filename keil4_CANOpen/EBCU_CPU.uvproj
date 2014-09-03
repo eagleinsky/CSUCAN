@@ -313,6 +313,11 @@
               <FileType>1</FileType>
               <FilePath>.\CC2.C</FilePath>
             </File>
+            <File>
+              <FileName>GPT2.C</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\GPT2.C</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -362,11 +367,6 @@
               <FileName>PELI.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\CANopen\drivers\XC164\PELI.c</FilePath>
-            </File>
-            <File>
-              <FileName>timer_XC164.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\CANopen\drivers\XC164\timer_XC164.c</FilePath>
             </File>
           </Files>
         </Group>

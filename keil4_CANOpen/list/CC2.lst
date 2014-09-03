@@ -1,4 +1,4 @@
-C166 COMPILER V7.53.0.0, CC2                                                               09/03/2014 10:38:09 PAGE 1   
+C166 COMPILER V7.53.0.0, CC2                                                               09/03/2014 17:57:04 PAGE 1   
 
 
 C166 COMPILER V7.53.0.0, COMPILATION OF MODULE CC2
@@ -22,7 +22,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CC2.C MODV2 BROWSE INCDIR(.\sour
    12         // @Description   This file contains functions that use the CC2 module.
    13         //
    14         //----------------------------------------------------------------------------
-   15         // @Date          2014/7/1 15:42:51
+   15         // @Date          2014/9/3 17:56:09
    16         //
    17         //****************************************************************************
    18         
@@ -62,7 +62,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CC2.C MODV2 BROWSE INCDIR(.\sour
    52         
    53         
    54         //****************************************************************************
-C166 COMPILER V7.53.0.0, CC2                                                               09/03/2014 10:38:09 PAGE 2   
+C166 COMPILER V7.53.0.0, CC2                                                               09/03/2014 17:57:04 PAGE 2   
 
    55         // @Typedefs
    56         //****************************************************************************
@@ -123,10 +123,10 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CC2.C MODV2 BROWSE INCDIR(.\sour
   111         // @Parameters    None
   112         //
   113         //----------------------------------------------------------------------------
-  114         // @Date          2014/7/1
+  114         // @Date          2014/9/3
   115         //
   116         //****************************************************************************
-C166 COMPILER V7.53.0.0, CC2                                                               09/03/2014 10:38:09 PAGE 3   
+C166 COMPILER V7.53.0.0, CC2                                                               09/03/2014 17:57:04 PAGE 3   
 
   117         
   118         // USER CODE BEGIN (Init,1)
@@ -190,7 +190,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CC2.C MODV2 BROWSE INCDIR(.\sour
   176  1        ///  - CC16 allocated to CAPCOM2 timer 7
   177  1        ///  - single event mode is enabled
   178  1        ///  - single event is disabled
-C166 COMPILER V7.53.0.0, CC2                                                               09/03/2014 10:38:09 PAGE 4   
+C166 COMPILER V7.53.0.0, CC2                                                               09/03/2014 17:57:04 PAGE 4   
 
   179  1      
   180  1      
@@ -254,7 +254,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CC2.C MODV2 BROWSE INCDIR(.\sour
   238  1        ///  -----------------------------------------------------------------------
   239  1        ///  - channel 24 is disabled
   240  1      
-C166 COMPILER V7.53.0.0, CC2                                                               09/03/2014 10:38:09 PAGE 5   
+C166 COMPILER V7.53.0.0, CC2                                                               09/03/2014 17:57:04 PAGE 5   
 
   241  1        CC2_CC24       =  0x0000;      // load CAPCOM2 channel 24 register
   242  1      
@@ -318,7 +318,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CC2.C MODV2 BROWSE INCDIR(.\sour
   300  1      
   301  1        CC2_SEE        =  0x0002;      // load CAPCOM2 single event enable register
   302  1      
-C166 COMPILER V7.53.0.0, CC2                                                               09/03/2014 10:38:09 PAGE 6   
+C166 COMPILER V7.53.0.0, CC2                                                               09/03/2014 17:57:04 PAGE 6   
 
   303  1        CC2_OUT        =  0x0000;      // load CAPCOM2 compare output register
   304  1      
@@ -333,19 +333,19 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CC2.C MODV2 BROWSE INCDIR(.\sour
   313  1        ///  Configuration of the used CAPCOM2 Channels Interrupts:
   314  1        ///  -----------------------------------------------------------------------
   315  1        ///  CC16 service request node configuration:
-  316  1        ///  - CC16 interrupt priority level (ILVL) = 12
+  316  1        ///  - CC16 interrupt priority level (ILVL) = 7
   317  1        ///  - CC16 interrupt group level (GLVL) = 0
   318  1        ///  - CC16 group priority extension (GPX) = 0
   319  1      
-  320  1        CC2_CC16IC     =  0x0070;     
+  320  1        CC2_CC16IC     =  0x005C;     
   321  1      
   322  1      
   323  1        ///  CC17 service request node configuration:
-  324  1        ///  - CC17 interrupt priority level (ILVL) = 11
+  324  1        ///  - CC17 interrupt priority level (ILVL) = 8
   325  1        ///  - CC17 interrupt group level (GLVL) = 0
   326  1        ///  - CC17 group priority extension (GPX) = 0
   327  1      
-  328  1        CC2_CC17IC     =  0x006C;     
+  328  1        CC2_CC17IC     =  0x0060;     
   329  1      
   330  1      
   331  1      
@@ -376,17 +376,17 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CC2.C MODV2 BROWSE INCDIR(.\sour
   356         // @Parameters    None
   357         //
   358         //----------------------------------------------------------------------------
-  359         // @Date          2014/7/1
+  359         // @Date          2014/9/3
   360         //
   361         //****************************************************************************
   362         
   363         // USER CODE BEGIN (CC16,1)
   364         
-C166 COMPILER V7.53.0.0, CC2                                                               09/03/2014 10:38:09 PAGE 7   
+C166 COMPILER V7.53.0.0, CC2                                                               09/03/2014 17:57:04 PAGE 7   
 
   365         // USER CODE END
   366         
-  367         void CC2_viCC16(void) interrupt CC2_CC16INT using RB_LEVEL12
+  367         void CC2_viCC16(void) interrupt CC2_CC16INT using RB_LEVEL7
   368         {
   369  1        // USER CODE BEGIN (CC16,2)
   370  1        can1_recv_flag=1;
@@ -415,7 +415,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CC2.C MODV2 BROWSE INCDIR(.\sour
   393         // @Parameters    None
   394         //
   395         //----------------------------------------------------------------------------
-  396         // @Date          2014/7/1
+  396         // @Date          2014/9/3
   397         //
   398         //****************************************************************************
   399         
@@ -423,7 +423,7 @@ COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CC2.C MODV2 BROWSE INCDIR(.\sour
   401         
   402         // USER CODE END
   403         
-  404         void CC2_viCC17(void) interrupt CC2_CC17INT using RB_LEVEL11
+  404         void CC2_viCC17(void) interrupt CC2_CC17INT using RB_LEVEL8
   405         {
   406  1        // USER CODE BEGIN (CC17,2)
   407  1        can2_recv_flag=1; 
@@ -446,7 +446,7 @@ MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
   FAR-CONST SIZE   =    --------     --------
   HUGE-CONST SIZE  =    --------     --------
   XHUGE-CONST SIZE =    --------     --------
-C166 COMPILER V7.53.0.0, CC2                                                               09/03/2014 10:38:09 PAGE 8   
+C166 COMPILER V7.53.0.0, CC2                                                               09/03/2014 17:57:04 PAGE 8   
 
   NEAR-DATA SIZE   =    --------     --------
   FAR-DATA SIZE    =    --------     --------
