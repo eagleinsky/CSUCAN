@@ -1,0 +1,59 @@
+C166 COMPILER V7.53.0.0, DELAY                                                             09/03/2014 10:38:09 PAGE 1   
+
+
+C166 COMPILER V7.53.0.0, COMPILATION OF MODULE DELAY
+OBJECT MODULE PLACED IN .\obj\delay.obj
+COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE source\delay.c MODV2 BROWSE INCDIR(.\source;.\CANopen\include;.\CANopen\
+                    -include\XC164_CANopen;..\keil4;.\CANopen\examples\XC164\Slave) MODV2 DEBUG PRINT(.\list\delay.lst) TABS(2) OBJECT(.\obj\
+                    -delay.obj) 
+
+ stmt lvl     source
+
+    1          /*****************************************************************
+    2         *FileName: delay.c
+    3         *Author: jiangxiaojiang   Version:V1.0    Date:20/6/2014
+    4         *Description: 
+    5         *      该头文件声明了部分用户自定义的全局变量。
+    6         ******************************************************************/
+    7         #include "MAIN.h"
+    8         
+    9         void DelayMs(UINT16 Num)
+   10         {UINT16 i = 0;
+   11  1      
+   12  1       for(i=0;i<Num;i++)
+   13  1        {TimerMsFlag = 0;           //计时标志清零
+   14  2         GPT1_vStartTmr(GPT1_TIMER_2);   //开始计时
+   15  2         while(!TimerMsFlag);       //等待计时结束
+   16  2        }
+   17  1      }
+   18         
+   19         void delay(UINT8 n)    //delay一小段时间
+   20         {
+   21  1       UINT16 i,j;
+   22  1      
+   23  1       for(i=0;i<n;i++)
+   24  1        {
+   25  2         for(j=0;j<10;j++);
+   26  2        }
+   27  1      }
+
+
+MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
+  CODE SIZE        =          46     --------
+  NEAR-CONST SIZE  =    --------     --------
+  FAR-CONST SIZE   =    --------     --------
+  HUGE-CONST SIZE  =    --------     --------
+  XHUGE-CONST SIZE =    --------     --------
+  NEAR-DATA SIZE   =    --------     --------
+  FAR-DATA SIZE    =    --------     --------
+  XHUGE-DATA SIZE  =    --------     --------
+  IDATA-DATA SIZE  =    --------     --------
+  SDATA-DATA SIZE  =    --------     --------
+  BDATA-DATA SIZE  =    --------     --------
+  HUGE-DATA SIZE   =    --------     --------
+  BIT SIZE         =    --------     --------
+  INIT'L SIZE      =    --------     --------
+END OF MODULE INFORMATION.
+
+
+C166 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

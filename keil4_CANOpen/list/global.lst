@@ -1,0 +1,54 @@
+C166 COMPILER V7.53.0.0, GLOBAL                                                            09/03/2014 10:38:09 PAGE 1   
+
+
+C166 COMPILER V7.53.0.0, COMPILATION OF MODULE GLOBAL
+OBJECT MODULE PLACED IN .\obj\global.obj
+COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE source\global.c MODV2 BROWSE INCDIR(.\source;.\CANopen\include;.\CANopen
+                    -\include\XC164_CANopen;..\keil4;.\CANopen\examples\XC164\Slave) MODV2 DEBUG PRINT(.\list\global.lst) TABS(2) OBJECT(.\ob
+                    -j\global.obj) 
+
+ stmt lvl     source
+
+    1          /*****************************************************************
+    2         *FileName: global.c
+    3         *Author: jiangxiaojiang   Version:V1.0    Date:20/6/2014
+    4         *Description: 
+    5         *      该头文件声明了部分用户自定义的全局变量。
+    6         ******************************************************************/
+    7         #include "Main.h"
+    8         
+    9         struct DIO_DATA_S DIO;
+   10         struct AD_DATA ADIO;
+   11         UINT8 TimerMsFlag = 0;    //1MS 定时器标志位
+   12         UINT8 TFlag = 0; //控制周期定时器标志 10MS
+   13         
+   14         struct AD_DATA * dpram_data=&ADIO;     //AD板双口RAM数据
+   15         struct DIO_DATA_S  * DIO_ALL=&DIO;     //IO板双口输入输出数据
+   16         UINT16 can_nod=0;            //编码器值
+   17         UINT8 can1_recv_flag=0;        //CAN1通信有接收数据标志位
+   18         UINT8 can2_recv_flag=0;          //CAN2通信有接收数据标志位
+   19         UINT8 recv_buf1[13]={0};
+   20         UINT8 recv_buf2[13]={0};
+   21         
+   22         
+
+
+MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
+  CODE SIZE        =    --------     --------
+  NEAR-CONST SIZE  =    --------     --------
+  FAR-CONST SIZE   =    --------     --------
+  HUGE-CONST SIZE  =    --------     --------
+  XHUGE-CONST SIZE =    --------     --------
+  NEAR-DATA SIZE   =          76     --------
+  FAR-DATA SIZE    =    --------     --------
+  XHUGE-DATA SIZE  =    --------     --------
+  IDATA-DATA SIZE  =    --------     --------
+  SDATA-DATA SIZE  =    --------     --------
+  BDATA-DATA SIZE  =    --------     --------
+  HUGE-DATA SIZE   =    --------     --------
+  BIT SIZE         =    --------     --------
+  INIT'L SIZE      =          78     --------
+END OF MODULE INFORMATION.
+
+
+C166 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

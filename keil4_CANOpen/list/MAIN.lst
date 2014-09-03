@@ -1,0 +1,453 @@
+C166 COMPILER V7.53.0.0, MAIN                                                              09/03/2014 10:38:08 PAGE 1   
+
+
+C166 COMPILER V7.53.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\obj\MAIN.obj
+COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE MAIN.C MODV2 BROWSE INCDIR(.\source;.\CANopen\include;.\CANopen\include\
+                    -XC164_CANopen;..\keil4;.\CANopen\examples\XC164\Slave) MODV2 DEBUG PRINT(.\list\MAIN.lst) TABS(2) OBJECT(.\obj\MAIN.obj)
+                    - 
+
+ stmt lvl     source
+
+    1         //****************************************************************************
+    2         // @Module        Project Settings
+    3         // @Filename      MAIN.C
+    4         // @Project       EBCU_CPU.dav
+    5         //----------------------------------------------------------------------------
+    6         // @Controller    Infineon XC164CS-16F20
+    7         //
+    8         // @Compiler      Keil
+    9         //
+   10         // @Codegenerator 3.0
+   11         //
+   12         // @Description   This file contains the project initialization function.
+   13         //
+   14         //----------------------------------------------------------------------------
+   15         // @Date          2014/7/1 15:42:50
+   16         //
+   17         //****************************************************************************
+   18         
+   19         // USER CODE BEGIN (MAIN_General,1)
+   20         
+   21         // USER CODE END
+   22         
+   23         
+   24         
+   25         //****************************************************************************
+   26         // @Project Includes
+   27         //****************************************************************************
+   28         
+   29         #include "MAIN.H"
+   30         
+   31         // USER CODE BEGIN (MAIN_General,2)
+   32         #include "canfestival.h"
+   33         
+   34         #include "ObjDict.h"
+   35         #include "ds401.h"
+   36         
+   37         // USER CODE END
+   38         
+   39         
+   40         //****************************************************************************
+   41         // @Macros
+   42         //****************************************************************************
+   43         
+   44         // USER CODE BEGIN (MAIN_General,3)
+   45         
+   46         // USER CODE END
+   47         
+   48         
+   49         //****************************************************************************
+   50         // @Defines
+   51         //****************************************************************************
+   52         
+   53         // USER CODE BEGIN (MAIN_General,4)
+C166 COMPILER V7.53.0.0, MAIN                                                              09/03/2014 10:38:08 PAGE 2   
+
+   54         
+   55         // USER CODE END
+   56         
+   57         
+   58         //****************************************************************************
+   59         // @Typedefs
+   60         //****************************************************************************
+   61         
+   62         // USER CODE BEGIN (MAIN_General,5)
+   63         
+   64         // USER CODE END
+   65         
+   66         
+   67         //****************************************************************************
+   68         // @Imported Global Variables
+   69         //****************************************************************************
+   70         
+   71         // USER CODE BEGIN (MAIN_General,6)
+   72         
+   73         // USER CODE END
+   74         
+   75         
+   76         //****************************************************************************
+   77         // @Global Variables
+   78         //****************************************************************************
+   79         
+   80         // USER CODE BEGIN (MAIN_General,7)
+   81         
+   82         // USER CODE END
+   83         
+   84         
+   85         //****************************************************************************
+   86         // @External Prototypes
+   87         //****************************************************************************
+   88         
+   89         // USER CODE BEGIN (MAIN_General,8)
+   90         
+   91         // USER CODE END
+   92         
+   93         
+   94         //****************************************************************************
+   95         // @Prototypes Of Local Functions
+   96         //****************************************************************************
+   97         
+   98         // USER CODE BEGIN (MAIN_General,9)
+   99         
+  100         // USER CODE END
+  101         
+  102         
+  103         //****************************************************************************
+  104         // @Function      void MAIN_vInit(void) 
+  105         //
+  106         //----------------------------------------------------------------------------
+  107         // @Description   This function initializes the microcontroller.
+  108         //
+  109         //----------------------------------------------------------------------------
+  110         // @Returnvalue   None
+  111         //
+  112         //----------------------------------------------------------------------------
+  113         // @Parameters    None
+  114         //
+  115         //----------------------------------------------------------------------------
+C166 COMPILER V7.53.0.0, MAIN                                                              09/03/2014 10:38:08 PAGE 3   
+
+  116         // @Date          2014/7/1
+  117         //
+  118         //****************************************************************************
+  119         
+  120         // USER CODE BEGIN (Init,1)
+  121         
+  122         // USER CODE END
+  123         
+  124         void MAIN_vInit(void)
+  125         {
+  126  1        // USER CODE BEGIN (Init,2)
+  127  1      
+  128  1        // USER CODE END
+  129  1      
+  130  1        ///  -----------------------------------------------------------------------
+  131  1        ///  Configuration of the System Clock:
+  132  1        ///  -----------------------------------------------------------------------
+  133  1        ///  - VCO clock used, input clock is connected
+  134  1        ///  - input frequency is 8 MHz
+  135  1        ///  - VCO output frequency 100 .. 150 MHz
+  136  1        ///  - system clock is 20 MHz
+  137  1      
+  138  1        MAIN_vUnlockProtecReg();       // unlock write security
+  139  1        PLLCON         =  0x7814;      // load PLL control register
+  140  1      
+  141  1      
+  142  1        //// -----------------------------------------------------------------------
+  143  1        //// Begin of Important Settings for the Start-Up File
+  144  1        //// -----------------------------------------------------------------------
+  145  1        ///  All following settings must be set in the start-up file. You can use 
+  146  1        ///  DAvE's project file (*.dpt) to include this register values into your 
+  147  1        ///  compiler EDE.
+  148  1      
+  149  1          ///  ---------------------------------------------------------------------
+  150  1          ///  Initialization of the CPUCON1 Register:
+  151  1          ///  ---------------------------------------------------------------------
+  152  1          ///  - space between two vectors is 2 words
+  153  1          ///  - DISWDT executable until End of Init
+  154  1          ///  - segmentation is enabled
+  155  1          ///  - switch context is interruptible
+  156  1          ///  - branch prediction is enabled
+  157  1          ///  - zero cycle jump function is enabled
+  158  1      
+  159  1          //// this register must be set in the start-up file
+  160  1          //// CPUCON1  =  0x0007
+  161  1      
+  162  1          ///  ---------------------------------------------------------------------
+  163  1          ///  Initialization of the VECSEG Register:
+  164  1          ///  ---------------------------------------------------------------------
+  165  1          ///  - start from internal program memory
+  166  1      
+  167  1          //// this register must be set in the start-up file
+  168  1          //// VECSEG  =  0x00C0
+  169  1      
+  170  1          ///  ---------------------------------------------------------------------
+  171  1          ///  Initialization of the SYSCON0 Register:
+  172  1          ///  ---------------------------------------------------------------------
+  173  1      
+  174  1          //// this register must be set in the start-up file
+  175  1          //// SYSCON0  =  0x0000
+  176  1      
+  177  1          ///  ---------------------------------------------------------------------
+C166 COMPILER V7.53.0.0, MAIN                                                              09/03/2014 10:38:08 PAGE 4   
+
+  178  1          ///  Initialization of the SYSCON1 Register:
+  179  1          ///  ---------------------------------------------------------------------
+  180  1          ///  clock prescaler for system is fpll / 1
+  181  1      
+  182  1          //// this register must be set in the start-up file
+  183  1          //// SYSCON1  =  0x0000
+  184  1      
+  185  1          ///  ---------------------------------------------------------------------
+  186  1          ///  Initialization of the SYSCON3 Register:
+  187  1          ///  ---------------------------------------------------------------------
+  188  1      
+  189  1          //// this register must be set in the start-up file
+  190  1          //// SYSCON3  =  0x0000
+  191  1      
+  192  1          ///  ---------------------------------------------------------------------
+  193  1          ///  Initialization of EBC
+  194  1          ///  ---------------------------------------------------------------------
+  195  1      
+  196  1          //// this register must be set in the start-up file
+  197  1          //// EBCMOD1  =  0x0040
+  198  1      
+  199  1          ///  EBC is enabled
+  200  1          ///  pin #BHE is disabled
+  201  1          ///  pin ALE is disabled
+  202  1          ///  as segment address are 4 pins enabled ( A[19] .. A[16] )
+  203  1          ///  no chip select pin enabled
+  204  1          ///  pin #READY is disabled
+  205  1          ///  bus arbitration is disabled, P6.7 .. P6.5 may used for general 
+  206  1          ///  purpose IO
+  207  1      
+  208  1          //// this register must be set in the start-up file
+  209  1          //// EBCMOD0  =  0x7004
+  210  1      
+  211  1          ///  ---------------------------------------------------------------------
+  212  1          ///  ---------- chip select 0 is enabled ----------
+  213  1          ///  ---------------------------------------------------------------------
+  214  1          ///  - 8-bit Demultiplexed Bus
+  215  1          ///  access time is controlled by bitfield PHE0
+  216  1      
+  217  1          //// this register must be set in the start-up file
+  218  1          //// FCONCS0  =  0x0001
+  219  1      
+  220  1          ///  Phase A: 3 clock cycles
+  221  1          ///  Phase B: 2 clock cycles
+  222  1          ///  Phase C: 1 clock cycles
+  223  1          ///  Phase D: 1 clock cycles
+  224  1          ///  Phase E: 15 clock cycles
+  225  1          ///  Read Phase F: 1 clock cycles
+  226  1          ///  Write Phase F: 3 clock cycles
+  227  1      
+  228  1          //// this register must be set in the start-up file
+  229  1          //// TCONCS0  =  0x6BAF
+  230  1      
+  231  1          ///  ---------------------------------------------------------------------
+  232  1          ///  ---------- chip select 1 is disabled ----------
+  233  1          ///  ---------------------------------------------------------------------
+  234  1      
+  235  1      
+  236  1          ///  ---------------------------------------------------------------------
+  237  1          ///  ---------- chip select 2 is disabled ----------
+  238  1          ///  ---------------------------------------------------------------------
+  239  1      
+C166 COMPILER V7.53.0.0, MAIN                                                              09/03/2014 10:38:08 PAGE 5   
+
+  240  1      
+  241  1          ///  ---------------------------------------------------------------------
+  242  1          ///  ---------- chip select 3 is disabled ----------
+  243  1          ///  ---------------------------------------------------------------------
+  244  1      
+  245  1      
+  246  1        //// -----------------------------------------------------------------------
+  247  1        //// End of Important Settings for the Start-Up File
+  248  1        //// -----------------------------------------------------------------------
+  249  1      
+  250  1      
+  251  1        //   -----------------------------------------------------------------------
+  252  1        //   Initialization of the Peripherals:
+  253  1        //   -----------------------------------------------------------------------
+  254  1      
+  255  1        //   initializes the Parallel Ports
+  256  1        IO_vInit();
+  257  1      
+  258  1        //   initializes the General Purpose Timer Unit (GPT1)
+  259  1        GPT1_vInit();
+  260  1      
+  261  1        //   initializes the Capture / Compare Unit 2 (CAPCOM2)
+  262  1        CC2_vInit();
+  263  1      
+  264  1        // USER CODE BEGIN (Init,3)
+  265  1      
+  266  1        // USER CODE END
+  267  1      
+  268  1        //   globally enable interrupts
+  269  1        PSW_IEN        =  1;          
+  270  1      
+  271  1      } //  End of function MAIN_vInit
+  272         
+  273         
+  274         //****************************************************************************
+  275         // @Function      void MAIN_vUnlockProtecReg(void) 
+  276         //
+  277         //----------------------------------------------------------------------------
+  278         // @Description   This function makes it possible to write one protected 
+  279         //                register. After calling of this function and write on the 
+  280         //                protected register is the security level set to low 
+  281         //                protected mode.
+  282         //
+  283         //----------------------------------------------------------------------------
+  284         // @Returnvalue   None
+  285         //
+  286         //----------------------------------------------------------------------------
+  287         // @Parameters    None
+  288         //
+  289         //----------------------------------------------------------------------------
+  290         // @Date          2014/7/1
+  291         //
+  292         //****************************************************************************
+  293         
+  294         // USER CODE BEGIN (UnlockProtecReg,1)
+  295         
+  296         // USER CODE END
+  297         
+  298         void MAIN_vUnlockProtecReg(void)
+  299         {
+  300  1        uword uwPASSWORD;
+  301  1      
+C166 COMPILER V7.53.0.0, MAIN                                                              09/03/2014 10:38:08 PAGE 6   
+
+  302  1        if((SCUSLS & 0x1800) == 0x0800)      // if low protected mode
+  303  1        {
+  304  2      
+  305  2          uwPASSWORD = SCUSLS & 0x00FF;
+  306  2          uwPASSWORD = (~uwPASSWORD) & 0x00FF;
+  307  2          SCUSLC = 0x8E00 | uwPASSWORD;      // command 4
+  308  2      
+  309  2        }  // end if low protected mode
+  310  1      
+  311  1        if((SCUSLS & 0x1800) == 0x1800)      // if write protected mode
+  312  1        {
+  313  2          SCUSLC = 0xAAAA;                   // command 0
+  314  2          SCUSLC = 0x5554;                   // command 1
+  315  2      
+  316  2          uwPASSWORD = SCUSLS & 0x00FF;
+  317  2          uwPASSWORD = (~uwPASSWORD) & 0x00FF;
+  318  2      
+  319  2          SCUSLC = 0x9600 | uwPASSWORD;      // command 2
+  320  2          SCUSLC = 0x0800;                   // command 3; new PASSWOR is 0x00
+  321  2      
+  322  2          uwPASSWORD = SCUSLS & 0x00FF;
+  323  2          uwPASSWORD = (~uwPASSWORD) & 0x00FF;
+  324  2          SCUSLC = 0x8E00 | uwPASSWORD;      // command 4
+  325  2      
+  326  2        }  // end if write protected mode
+  327  1      
+  328  1      } //  End of function MAIN_vUnlockProtecReg
+  329         
+  330         
+  331         //****************************************************************************
+  332         // @Function      void main(void) 
+  333         //
+  334         //----------------------------------------------------------------------------
+  335         // @Description   This is the main function.
+  336         //
+  337         //----------------------------------------------------------------------------
+  338         // @Returnvalue   None
+  339         //
+  340         //----------------------------------------------------------------------------
+  341         // @Parameters    None
+  342         //
+  343         //----------------------------------------------------------------------------
+  344         // @Date          2014/7/1
+  345         //
+  346         //****************************************************************************
+  347         
+  348         // USER CODE BEGIN (Main,1)
+  349           unsigned char mvb_buf_so1[32] = {0},mvb_buf_so2[32] = {0},mvb_buf_si[32] = {0},mvb_buf_si2[32] = {0};
+  350         // USER CODE END
+  351         
+  352         void main(void)
+  353         {
+  354  1        // USER CODE BEGIN (Main,2)
+  355  1        SJAConfigStruct Chip1_cfg = {1,4,0,0x1,0xffffffff};
+  356  1        Message Sendm={0x200,0,1,0xaa};
+  357  1        Message Rcvm ={0x000,0,1,0xaa};
+  358  1        char i=0;
+  359  1        unsigned char digital_input[1] = {0};
+  360  1        // USER CODE END
+  361  1      
+  362  1        MAIN_vInit();
+  363  1      
+C166 COMPILER V7.53.0.0, MAIN                                                              09/03/2014 10:38:08 PAGE 7   
+
+  364  1        // USER CODE BEGIN (Main,4)
+  365  1        
+  366  1        SJA1000_Config(Chip1_cfg);
+  367  1      
+  368  1        //setState(&ObjDict_Data, Operational);  // ???????
+  369  1      
+  370  1        while(1)
+  371  1        {
+  372  2          if(TFlag)
+  373  2          {
+  374  3            TFlag=0;
+  375  3            i++;
+  376  3            
+  377  3            //Rcvm.data[0] = i;
+  378  3            //canSend(1,&Sendm);    
+  379  3            
+  380  3            //digital_input[0] = i;
+  381  3            //digital_input_handler(&ObjDict_Data, digital_input, sizeof(digital_input));
+  382  3            
+  383  3            proceedPDO(&ObjDict_Data,&Rcvm);
+  384  3          }
+  385  2        if(can1_recv_flag)
+  386  2          {
+  387  3            can1_recv_flag = 0;
+  388  3            if(!canReceive(1,&Rcvm)) //接受成功
+  389  3            {
+  390  4             Sendm = Rcvm;
+  391  4             delay(10);
+  392  4             canSend(1,&Sendm);   
+  393  4            }
+  394  3          }
+  395  2         
+  396  2        }
+  397  1      
+  398  1        // USER CODE END
+  399  1      
+  400  1      } //  End of function main
+  401         
+  402         
+  403         
+  404         // USER CODE BEGIN (MAIN_General,10)
+  405         
+  406         // USER CODE END
+  407         
+
+
+MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
+  CODE SIZE        =         356     --------
+  NEAR-CONST SIZE  =          37     --------
+  FAR-CONST SIZE   =    --------     --------
+  HUGE-CONST SIZE  =    --------     --------
+  XHUGE-CONST SIZE =    --------     --------
+  NEAR-DATA SIZE   =         128     --------
+  FAR-DATA SIZE    =    --------     --------
+  XHUGE-DATA SIZE  =    --------     --------
+  IDATA-DATA SIZE  =    --------     --------
+  SDATA-DATA SIZE  =    --------     --------
+  BDATA-DATA SIZE  =    --------     --------
+  HUGE-DATA SIZE   =    --------     --------
+  BIT SIZE         =    --------     --------
+  INIT'L SIZE      =         144     --------
+END OF MODULE INFORMATION.
+C166 COMPILER V7.53.0.0, MAIN                                                              09/03/2014 10:38:08 PAGE 8   
+
+
+
+C166 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

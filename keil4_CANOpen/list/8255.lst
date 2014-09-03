@@ -1,0 +1,127 @@
+C166 COMPILER V7.53.0.0, 8255                                                              09/03/2014 10:38:09 PAGE 1   
+
+
+C166 COMPILER V7.53.0.0, COMPILATION OF MODULE 8255
+OBJECT MODULE PLACED IN .\obj\8255.obj
+COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE source\8255.c MODV2 BROWSE INCDIR(.\source;.\CANopen\include;.\CANopen\i
+                    -nclude\XC164_CANopen;..\keil4;.\CANopen\examples\XC164\Slave) MODV2 DEBUG PRINT(.\list\8255.lst) TABS(2) OBJECT(.\obj\82
+                    -55.obj) 
+
+ stmt lvl     source
+
+    1          /*****************************************************************
+    2         *FileName: 8255.c
+    3         *Author: jiangxiaojiang   Version:V1.0    Date:20/6/2014
+    4         *Description:
+    5         *      该头文件定义了8255控制函数。
+    6         ******************************************************************/
+    7         #include "main.h"
+    8         #define UNSELECTCS 0x80  //所有片选置位
+    9         
+   10         
+   11         
+   12         //============= 8255读写函数 ===================================
+   13         void write_8255(UINT8 portID,UINT8 Wdata_8255)     // write 8255
+   14         {
+   15  1      
+   16  1        switch(portID)
+   17  1        {
+   18  2         case 'A':
+   19  2            w8255_PA->data = Wdata_8255;break;
+   20  2         case 'B':       
+   21  2            w8255_PB->data = Wdata_8255;break;
+   22  2         case 'C':
+   23  2            w8255_PC->data = Wdata_8255;break;
+   24  2         case 'S':
+   25  2           w8255_CMD->data = Wdata_8255;break;
+   26  2        }
+   27  1      
+   28  1      }
+   29         
+   30         UINT8 read_8255(UINT8 portID)    // read 8255
+   31         {
+   32  1        
+   33  1        UINT8 Rdata_8255;
+   34  1          
+   35  1        switch(portID)
+   36  1        {
+   37  2         case 'A':
+   38  2            Rdata_8255 = w8255_PA->data;break;
+   39  2         case 'B':       
+   40  2            Rdata_8255 = w8255_PB->data;break;
+   41  2         case 'C':
+   42  2            Rdata_8255 = w8255_PC->data;break;
+   43  2         default :
+   44  2            Rdata_8255 = 0;break;
+   45  2        }
+   46  1      
+   47  1        return (Rdata_8255); 
+   48  1      
+   49  1      }
+   50         //============= 输出板辅助引脚 =================================
+   51         
+   52         
+   53         //============= 输入输出板读写函数 =============================
+C166 COMPILER V7.53.0.0, 8255                                                              09/03/2014 10:38:09 PAGE 2   
+
+   54         
+   55         
+   56         void write_Data(UINT8 BoardID,UINT8 ByteID,UINT8 Wdata)   //给输出板写数据
+   57         {  
+   58  1         UINT8 ByteData[8] = {0,1,2,3,4,5,6,7};    
+   59  1         write_8255('S',w_cmd_8255);    //设置A口方向为输出
+   60  1         write_8255('C',0x80);        //OUTOC OUTPE 
+   61  1         DelayMs(1);
+   62  1         write_8255('C',0x00);
+   63  1      
+   64  1         write_8255('B',UNSELECTCS);      //所有片选置位
+   65  1      
+   66  1           write_8255('A',Wdata);       //给数据    
+   67  1         write_8255('B',BoardID|ByteData[ByteID]);  //138数据选择//选通相关CS
+   68  1      
+   69  1         delay(5);
+   70  1         write_8255('B',0x80);      //所有片选置位
+   71  1         write_8255('A',0x00);
+   72  1      }
+   73         
+   74         
+   75         UINT8 read_Data(UINT8 BoardID,UINT8 ByteID)   //读数据
+   76         {  
+   77  1         UINT8 rData = 0;
+   78  1         UINT8 ByteData[8] = {0,1,2,3,4,5,6,7};
+   79  1         write_8255('S',r_cmd_8255);    //设置A口方向为输入
+   80  1         write_8255('B',UNSELECTCS);      //所有片选置位   
+   81  1         write_8255('B',BoardID|ByteData[ByteID]);  //138数据选择//选通相关CS
+   82  1      
+   83  1         rData = read_8255('A');      //读数据
+   84  1         
+   85  1         write_8255('B',UNSELECTCS);      //所有片选置位
+   86  1         write_8255('S',w_cmd_8255);
+   87  1         write_8255('B',UNSELECTCS);      //所有片选置位
+   88  1         write_8255('A',0x00);
+   89  1         return rData;
+   90  1      }
+   91         
+   92         
+   93         
+
+
+MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
+  CODE SIZE        =         400     --------
+  NEAR-CONST SIZE  =          16     --------
+  FAR-CONST SIZE   =    --------     --------
+  HUGE-CONST SIZE  =    --------     --------
+  XHUGE-CONST SIZE =    --------     --------
+  NEAR-DATA SIZE   =    --------     --------
+  FAR-DATA SIZE    =    --------     --------
+  XHUGE-DATA SIZE  =    --------     --------
+  IDATA-DATA SIZE  =    --------     --------
+  SDATA-DATA SIZE  =    --------     --------
+  BDATA-DATA SIZE  =    --------     --------
+  HUGE-DATA SIZE   =    --------     --------
+  BIT SIZE         =    --------     --------
+  INIT'L SIZE      =    --------     --------
+END OF MODULE INFORMATION.
+
+
+C166 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

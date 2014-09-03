@@ -1,0 +1,633 @@
+C166 COMPILER V7.53.0.0, SDO                                                               07/21/2014 20:21:49 PAGE 1   
+
+
+C166 COMPILER V7.53.0.0, COMPILATION OF MODULE SDO
+OBJECT MODULE PLACED IN .\obj\sdo.obj
+COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\sdo.c MODV2 BROWSE INCDIR(.\source;.\CANopen\include;.\CANop
+                    -en\include\XC164_CANopen) MODV2 DEBUG PRINT(.\list\sdo.lst) TABS(2) OBJECT(.\obj\sdo.obj) 
+
+ stmt lvl     source
+
+    1         /*
+    2            This file is part of CanFestival, a library implementing CanOpen Stack.
+    3         
+    4            Copyright (C): Edouard TISSERANT and Francis DUPIN
+    5         
+    6            See COPYING file for copyrights details.
+    7         
+    8            This library is free software; you can redistribute it and/or
+    9            modify it under the terms of the GNU Lesser General Public
+   10            License as published by the Free Software Foundation; either
+   11            version 2.1 of the License, or (at your option) any later version.
+   12         
+   13            This library is distributed in the hope that it will be useful,
+   14            but WITHOUT ANY WARRANTY; without even the implied warranty of
+   15            MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   16            Lesser General Public License for more details.
+   17         
+   18            You should have received a copy of the GNU Lesser General Public
+   19            License along with this library; if not, write to the Free Software
+   20            Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+   21            */
+   22         /*!
+   23          ** @file   sdo.c
+   24          ** @author Edouard TISSERANT and Francis DUPIN
+   25          ** @date   Tue Jun  5 09:32:32 2007
+   26          **
+   27          ** @brief
+   28          **
+   29          **
+   30          */
+   31         
+   32         /* #define DEBUG_WAR_CONSOLE_ON */
+   33         /* #define DEBUG_ERR_CONSOLE_ON */
+   34         
+   35         #include <stdlib.h>
+   36         
+   37         #include "canfestival.h"
+   38         #include "sysdep.h"
+   39         
+   40         /* Uncomment if your compiler does not support inline functions */
+   41         #define NO_INLINE
+   42         
+   43         #ifdef NO_INLINE
+   44         #define INLINE
+   45         #else
+              #define INLINE inline
+              #endif
+   48         
+   49         /*Internals prototypes*/
+   50         
+   51         UNS8 GetSDOClientFromNodeId( CO_Data* d, UNS8 nodeId );
+*** ERROR C25 IN LINE 51 OF CANopen\src\sdo.c: syntax error near '*'
+   52         
+   53         /*!
+C166 COMPILER V7.53.0.0, SDO                                                               07/21/2014 20:21:49 PAGE 2   
+
+   54          ** Called by writeNetworkDict
+   55          **
+   56          ** @param d
+   57          ** @param nodeId
+   58          ** @param index
+   59          ** @param subIndex
+   60          ** @param count
+   61          ** @param dataType
+   62          ** @param data
+   63          ** @param Callback
+   64          ** @param endianize
+   65          **
+   66          ** @return
+   67          **/
+   68         INLINE UNS8 _writeNetworkDict (CO_Data* d, UNS8 nodeId, UNS16 index,
+*** ERROR C25 IN LINE 68 OF CANopen\src\sdo.c: syntax error near '*'
+   69             UNS8 subIndex, UNS32 count, UNS8 dataType, void *data, SDOCallback_t Callback, UNS8 endianize, UNS8 useB
+             -lockMode);
+   70         
+   71         /*!
+   72          ** Called by readNetworkDict
+   73          **
+   74          ** @param d
+   75          ** @param nodeId
+   76          ** @param index
+   77          ** @param subIndex
+   78          ** @param dataType
+   79          ** @param Callback
+   80          **
+   81          ** @return
+   82          **/
+   83         INLINE UNS8 _readNetworkDict (CO_Data* d, UNS8 nodeId, UNS16 index, UNS8 subIndex,
+*** ERROR C25 IN LINE 83 OF CANopen\src\sdo.c: syntax error near '*'
+   84             UNS8 dataType, SDOCallback_t Callback, UNS8 useBlockMode);
+   85         
+   86         
+   87         /***************************************************************************/
+   88         /* SDO (un)packing macros */
+   89         
+   90         /** Returns the command specifier (cs, ccs, scs) from the first byte of the SDO
+   91         */
+   92         #define getSDOcs(byte) (byte >> 5)
+   93         
+   94         /** Returns the number of bytes without data from the first byte of the SDO. Coded in 2 bits
+   95         */
+   96         #define getSDOn2(byte) ((byte >> 2) & 3)
+   97         
+   98         /** Returns the number of bytes without data from the first byte of the SDO. Coded in 3 bits
+   99         */
+  100         #define getSDOn3(byte) ((byte >> 1) & 7)
+  101         
+  102         /** Returns the transfer type from the first byte of the SDO
+  103         */
+  104         #define getSDOe(byte) ((byte >> 1) & 1)
+  105         
+  106         /** Returns the size indicator from the first byte of the SDO
+  107         */
+  108         #define getSDOs(byte) (byte & 1)
+  109         
+  110         /** Returns the indicator of end transmission from the first byte of the SDO
+  111         */
+  112         #define getSDOc(byte) (byte & 1)
+C166 COMPILER V7.53.0.0, SDO                                                               07/21/2014 20:21:49 PAGE 3   
+
+  113         
+  114         /** Returns the toggle from the first byte of the SDO
+  115         */
+  116         #define getSDOt(byte) ((byte >> 4) & 1)
+  117         
+  118         /** Returns the index from the bytes 1 and 2 of the SDO
+  119         */
+  120         #define getSDOindex(byte1, byte2) (((UNS16)byte2 << 8) | ((UNS16)byte1))
+  121         
+  122         /** Returns the subIndex from the byte 3 of the SDO
+  123         */
+  124         #define getSDOsubIndex(byte3) (byte3)
+  125         
+  126         /** Returns the subcommand in SDO block transfer
+  127         */
+  128         #define getSDOblockSC(byte) (byte & 3)
+  129         
+  130         
+  131         /*!
+  132          **
+  133          **
+  134          ** @param d
+  135          ** @param id
+  136          **/
+  137         void SDOTimeoutAlarm(CO_Data* d, UNS32 id)
+*** ERROR C25 IN LINE 137 OF CANopen\src\sdo.c: syntax error near '*'
+  138         {
+*** WARNING C35 IN LINE 138 OF CANopen\src\sdo.c: 'SDOTimeoutAlarm': uses old-style declarator
+  139  1        UNS16 offset;
+  140  1        UNS8 nodeId;
+  141  1        /* Get the client->server cobid.*/
+  142  1        offset = d->firstIndex->SDO_CLT;
+*** ERROR C67 IN LINE 142 OF CANopen\src\sdo.c: 'd': undefined identifier
+  143  1        if ((offset == 0) || ((offset+d->transfers[id].CliServNbr) > d->lastIndex->SDO_CLT)) {
+*** ERROR C67 IN LINE 143 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 143 OF CANopen\src\sdo.c: 'id': undefined identifier
+*** ERROR C67 IN LINE 143 OF CANopen\src\sdo.c: 'd': undefined identifier
+  144  2          return ;
+  145  2        }
+  146  1        nodeId = (UNS8) *((UNS32*) d->objdict[offset+d->transfers[id].CliServNbr].pSubindex[3].pObject);
+*** ERROR C67 IN LINE 146 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 146 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 146 OF CANopen\src\sdo.c: 'id': undefined identifier
+  147  1        MSG_ERR(0x1A01, "SDO timeout. SDO response not received.", 0);
+  148  1        MSG_WAR(0x2A02, "server node id : ", nodeId);
+  149  1        MSG_WAR(0x2A02, "         index : ", d->transfers[id].index);
+  150  1        MSG_WAR(0x2A02, "      subIndex : ", d->transfers[id].subIndex);
+  151  1        /* Reset timer handler */
+  152  1        d->transfers[id].timer = TIMER_NONE;
+*** ERROR C67 IN LINE 152 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 152 OF CANopen\src\sdo.c: 'id': undefined identifier
+*** ERROR C67 IN LINE 152 OF CANopen\src\sdo.c: 'TIMER_NONE': undefined identifier
+  153  1        /*Set aborted state*/
+  154  1        d->transfers[id].state = SDO_ABORTED_INTERNAL;
+*** ERROR C67 IN LINE 154 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 154 OF CANopen\src\sdo.c: 'id': undefined identifier
+*** ERROR C67 IN LINE 154 OF CANopen\src\sdo.c: 'SDO_ABORTED_INTERNAL': undefined identifier
+  155  1        /* Sending a SDO abort */
+  156  1        sendSDOabort(d, d->transfers[id].whoami, d->transfers[id].CliServNbr,
+*** ERROR C67 IN LINE 156 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 156 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 156 OF CANopen\src\sdo.c: 'id': undefined identifier
+C166 COMPILER V7.53.0.0, SDO                                                               07/21/2014 20:21:49 PAGE 4   
+
+*** ERROR C67 IN LINE 156 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 156 OF CANopen\src\sdo.c: 'id': undefined identifier
+  157  1            d->transfers[id].index, d->transfers[id].subIndex, SDOABT_TIMED_OUT);
+*** ERROR C67 IN LINE 157 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 157 OF CANopen\src\sdo.c: 'id': undefined identifier
+*** ERROR C67 IN LINE 157 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 157 OF CANopen\src\sdo.c: 'id': undefined identifier
+*** ERROR C67 IN LINE 157 OF CANopen\src\sdo.c: 'SDOABT_TIMED_OUT': undefined identifier
+*** WARNING C140 IN LINE 157 OF CANopen\src\sdo.c: 'sendSDOabort' undefined; assuming 'extern int sendSDOabort()'
+  158  1        d->transfers[id].abortCode = SDOABT_TIMED_OUT;
+*** ERROR C67 IN LINE 158 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 158 OF CANopen\src\sdo.c: 'id': undefined identifier
+*** ERROR C67 IN LINE 158 OF CANopen\src\sdo.c: 'SDOABT_TIMED_OUT': undefined identifier
+  159  1        /* Call the user function to inform of the problem.*/
+  160  1        if(d->transfers[id].Callback)
+*** ERROR C67 IN LINE 160 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 160 OF CANopen\src\sdo.c: 'id': undefined identifier
+  161  1          /*If ther is a callback, it is responsible to close SDO transfer (client)*/
+  162  1          (*d->transfers[id].Callback)(d, nodeId);
+*** ERROR C67 IN LINE 162 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 162 OF CANopen\src\sdo.c: 'id': undefined identifier
+*** ERROR C67 IN LINE 162 OF CANopen\src\sdo.c: 'd': undefined identifier
+  163  1        /*Reset the line if (whoami == SDO_SERVER) or the callback did not close the line.
+  164  1          Otherwise this sdo transfer would never be closed. */
+  165  1        if(d->transfers[id].abortCode == SDOABT_TIMED_OUT) 
+*** ERROR C67 IN LINE 165 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 165 OF CANopen\src\sdo.c: 'id': undefined identifier
+*** ERROR C67 IN LINE 165 OF CANopen\src\sdo.c: 'SDOABT_TIMED_OUT': undefined identifier
+  166  1          resetSDOline(d, (UNS8)id);
+*** ERROR C67 IN LINE 166 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 166 OF CANopen\src\sdo.c: 'id': undefined identifier
+*** WARNING C140 IN LINE 166 OF CANopen\src\sdo.c: 'resetSDOline' undefined; assuming 'extern int resetSDOline()'
+  167  1      }
+*** WARNING C47 IN LINE 137 OF CANopen\src\sdo.c: 'CO_Data': unreferenced parameter
+  168         
+  169         #define StopSDO_TIMER(id) \
+  170           MSG_WAR(0x3A05, "StopSDO_TIMER for line : ", line);\
+  171         d->transfers[id].timer = DelAlarm(d->transfers[id].timer);
+  172         
+  173         #define StartSDO_TIMER(id) \
+  174           MSG_WAR(0x3A06, "StartSDO_TIMER for line : ", line);\
+  175         d->transfers[id].timer = SetAlarm(d,id,&SDOTimeoutAlarm,MS_TO_TIMEVAL(SDO_TIMEOUT_MS),0);
+  176         
+  177         #define RestartSDO_TIMER(id) \
+  178           MSG_WAR(0x3A07, "restartSDO_TIMER for line : ", line);\
+  179         if(d->transfers[id].timer != TIMER_NONE) { StopSDO_TIMER(id) StartSDO_TIMER(id) }
+  180         
+  181         /*!
+  182          ** Reset all sdo buffers
+  183          **
+  184          ** @param d
+  185          **/
+  186         void resetSDO (CO_Data* d)
+*** ERROR C25 IN LINE 186 OF CANopen\src\sdo.c: syntax error near '*'
+  187         {
+*** WARNING C35 IN LINE 187 OF CANopen\src\sdo.c: 'resetSDO': uses old-style declarator
+  188  1        UNS8 j;
+  189  1      
+  190  1        /* transfer structure initialization */
+  191  1        for (j = 0 ; j < SDO_MAX_SIMULTANEOUS_TRANSFERS ; j++)
+  192  1          resetSDOline(d, j);
+*** ERROR C67 IN LINE 192 OF CANopen\src\sdo.c: 'd': undefined identifier
+C166 COMPILER V7.53.0.0, SDO                                                               07/21/2014 20:21:49 PAGE 5   
+
+  193  1      }
+*** WARNING C47 IN LINE 186 OF CANopen\src\sdo.c: 'CO_Data': unreferenced parameter
+  194         
+  195         /*!
+  196          **
+  197          **
+  198          ** @param d
+  199          ** @param line
+  200          **
+  201          ** @return
+  202          **/
+  203         UNS32 SDOlineToObjdict (CO_Data* d, UNS8 line)
+*** ERROR C25 IN LINE 203 OF CANopen\src\sdo.c: syntax error near '*'
+  204         {
+*** WARNING C35 IN LINE 204 OF CANopen\src\sdo.c: 'SDOlineToObjdict': uses old-style declarator
+  205  1        UNS32 size;
+  206  1        UNS32 errorCode;
+  207  1        MSG_WAR(0x3A08, "Enter in SDOlineToObjdict ", line);
+  208  1        /* if SDO initiated with e=0 and s=0 count is null, offset carry effective size*/
+  209  1        if( d->transfers[line].count == 0)
+*** ERROR C67 IN LINE 209 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 209 OF CANopen\src\sdo.c: 'line': undefined identifier
+  210  1          d->transfers[line].count = d->transfers[line].offset;
+*** ERROR C67 IN LINE 210 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 210 OF CANopen\src\sdo.c: 'line': undefined identifier
+*** ERROR C67 IN LINE 210 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 210 OF CANopen\src\sdo.c: 'line': undefined identifier
+  211  1        size = d->transfers[line].count;
+*** ERROR C67 IN LINE 211 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 211 OF CANopen\src\sdo.c: 'line': undefined identifier
+  212  1      
+  213  1      #ifdef SDO_DYNAMIC_BUFFER_ALLOCATION
+                if (size > SDO_MAX_LENGTH_TRANSFER)
+                {
+                  errorCode = setODentry(d, d->transfers[line].index, d->transfers[line].subIndex,
+                      (void *) d->transfers[line].dynamicData, &size, 1);
+                }
+                else
+                {
+                  errorCode = setODentry(d, d->transfers[line].index, d->transfers[line].subIndex,
+                      (void *) d->transfers[line].data, &size, 1);
+                }
+              #else //SDO_DYNAMIC_BUFFER_ALLOCATION
+  225  1        errorCode = setODentry(d, d->transfers[line].index, d->transfers[line].subIndex,
+*** ERROR C67 IN LINE 225 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 225 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 225 OF CANopen\src\sdo.c: 'line': undefined identifier
+*** ERROR C67 IN LINE 225 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 225 OF CANopen\src\sdo.c: 'line': undefined identifier
+  226  1            (void *) d->transfers[line].data, &size, 1);
+*** ERROR C67 IN LINE 226 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 226 OF CANopen\src\sdo.c: 'line': undefined identifier
+*** WARNING C140 IN LINE 226 OF CANopen\src\sdo.c: 'setODentry' undefined; assuming 'extern int setODentry()'
+  227  1      #endif //SDO_DYNAMIC_BUFFER_ALLOCATION
+  228  1      
+  229  1        if (errorCode != OD_SUCCESSFUL)
+*** ERROR C67 IN LINE 229 OF CANopen\src\sdo.c: 'OD_SUCCESSFUL': undefined identifier
+  230  1          return errorCode;
+  231  1        MSG_WAR(0x3A08, "exit of SDOlineToObjdict ", line);
+  232  1        return 0;
+  233  1      
+  234  1      }
+C166 COMPILER V7.53.0.0, SDO                                                               07/21/2014 20:21:49 PAGE 6   
+
+*** WARNING C47 IN LINE 203 OF CANopen\src\sdo.c: 'CO_Data': unreferenced parameter
+  235         
+  236         /*!
+  237          **
+  238          **
+  239          ** @param d
+  240          ** @param line
+  241          **
+  242          ** @return
+  243          **/
+  244         UNS32 objdictToSDOline (CO_Data* d, UNS8 line)
+*** ERROR C25 IN LINE 244 OF CANopen\src\sdo.c: syntax error near '*'
+  245         {
+*** WARNING C35 IN LINE 245 OF CANopen\src\sdo.c: 'objdictToSDOline': uses old-style declarator
+  246  1          UNS32  size = SDO_MAX_LENGTH_TRANSFER;
+  247  1        UNS8  dataType;
+  248  1        UNS32 errorCode;
+  249  1      
+  250  1        MSG_WAR(0x3A05, "objdict->line index : ", d->transfers[line].index);
+  251  1        MSG_WAR(0x3A06, "  subIndex : ", d->transfers[line].subIndex);
+  252  1      
+  253  1      #ifdef SDO_DYNAMIC_BUFFER_ALLOCATION
+                  /* Try to use the static buffer.                                            */
+                errorCode = getODentry(d,   d->transfers[line].index,
+                    d->transfers[line].subIndex,
+                    (void *)d->transfers[line].data,
+                    &size, &dataType, 1);
+                  if (errorCode == SDOABT_OUT_OF_MEMORY) {
+                      /* The static buffer is too small, try again using a dynamic buffer.      *
+                      * 'size' now contains the real size of the requested object.             */
+                      if (size <= SDO_DYNAMIC_BUFFER_ALLOCATION_SIZE) {
+                          d->transfers[line].dynamicData = (UNS8 *) malloc(size * sizeof(UNS8));
+                          if (d->transfers[line].dynamicData != NULL) {
+                              d->transfers[line].dynamicDataSize = size;
+                              errorCode = getODentry(d,
+                              d->transfers[line].index,
+                              d->transfers[line].subIndex,
+                              (void *) d->transfers[line].dynamicData,
+                              &d->transfers[line].dynamicDataSize,
+                              &dataType,
+                              1);
+                          }
+                      }
+                  }
+              #else //SDO_DYNAMIC_BUFFER_ALLOCATION
+  277  1        errorCode = getODentry(d,   d->transfers[line].index,
+*** ERROR C67 IN LINE 277 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 277 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 277 OF CANopen\src\sdo.c: 'line': undefined identifier
+  278  1            d->transfers[line].subIndex,
+*** ERROR C67 IN LINE 278 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 278 OF CANopen\src\sdo.c: 'line': undefined identifier
+  279  1            (void *)d->transfers[line].data,
+*** ERROR C67 IN LINE 279 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 279 OF CANopen\src\sdo.c: 'line': undefined identifier
+  280  1            &size, &dataType, 1);
+*** WARNING C140 IN LINE 280 OF CANopen\src\sdo.c: 'getODentry' undefined; assuming 'extern int getODentry()'
+  281  1      #endif //SDO_DYNAMIC_BUFFER_ALLOCATION
+  282  1      
+  283  1        if (errorCode != OD_SUCCESSFUL)
+*** ERROR C67 IN LINE 283 OF CANopen\src\sdo.c: 'OD_SUCCESSFUL': undefined identifier
+  284  1          return errorCode;
+C166 COMPILER V7.53.0.0, SDO                                                               07/21/2014 20:21:49 PAGE 7   
+
+  285  1      
+  286  1        d->transfers[line].count = size;
+*** ERROR C67 IN LINE 286 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 286 OF CANopen\src\sdo.c: 'line': undefined identifier
+  287  1        d->transfers[line].offset = 0;
+*** ERROR C67 IN LINE 287 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 287 OF CANopen\src\sdo.c: 'line': undefined identifier
+  288  1      
+  289  1        return 0;
+  290  1      }
+*** WARNING C47 IN LINE 244 OF CANopen\src\sdo.c: 'CO_Data': unreferenced parameter
+  291         
+  292         /*!
+  293          **
+  294          **
+  295          ** @param d
+  296          ** @param line
+  297          ** @param nbBytes
+  298          ** @param data
+  299          **
+  300          ** @return
+  301          **/
+  302         UNS8 lineToSDO (CO_Data* d, UNS8 line, UNS32 nbBytes, UNS8* data) {
+*** ERROR C25 IN LINE 302 OF CANopen\src\sdo.c: syntax error near '*'
+*** WARNING C35 IN LINE 302 OF CANopen\src\sdo.c: 'lineToSDO': uses old-style declarator
+  303  1        UNS8 i;
+  304  1        UNS32 offset;
+  305  1      
+  306  1      #ifndef SDO_DYNAMIC_BUFFER_ALLOCATION
+  307  1        if ((d->transfers[line].offset + nbBytes) > SDO_MAX_LENGTH_TRANSFER) {
+*** ERROR C67 IN LINE 307 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 307 OF CANopen\src\sdo.c: 'line': undefined identifier
+*** ERROR C67 IN LINE 307 OF CANopen\src\sdo.c: 'nbBytes': undefined identifier
+  308  2          MSG_ERR(0x1A10,"SDO Size of data too large. Exceed SDO_MAX_LENGTH_TRANSFER", nbBytes);
+  309  2          return 0xFF;
+  310  2        }
+  311  1      #endif //SDO_DYNAMIC_BUFFER_ALLOCATION
+  312  1      
+  313  1        if ((d->transfers[line].offset + nbBytes) > d->transfers[line].count) {
+*** ERROR C67 IN LINE 313 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 313 OF CANopen\src\sdo.c: 'line': undefined identifier
+*** ERROR C67 IN LINE 313 OF CANopen\src\sdo.c: 'nbBytes': undefined identifier
+*** ERROR C67 IN LINE 313 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 313 OF CANopen\src\sdo.c: 'line': undefined identifier
+  314  2          MSG_ERR(0x1A11,"SDO Size of data too large. Exceed count", nbBytes);
+  315  2          return 0xFF;
+  316  2        }
+  317  1        offset = d->transfers[line].offset;
+*** ERROR C67 IN LINE 317 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 317 OF CANopen\src\sdo.c: 'line': undefined identifier
+  318  1      #ifdef SDO_DYNAMIC_BUFFER_ALLOCATION
+                if (d->transfers[line].count <= SDO_MAX_LENGTH_TRANSFER)
+                {
+                  for (i = 0 ; i < nbBytes ; i++)
+                    * (data + i) = d->transfers[line].data[offset + i];
+                }
+                else
+                {
+                  if (d->transfers[line].dynamicData == NULL)
+                  {
+                    MSG_ERR(0x1A11,"SDO's dynamic buffer not allocated. Line", line);
+                    return 0xFF;
+C166 COMPILER V7.53.0.0, SDO                                                               07/21/2014 20:21:49 PAGE 8   
+
+                  }
+                  for (i = 0 ; i < nbBytes ; i++)
+                    * (data + i) = d->transfers[line].dynamicData[offset + i];
+                }
+              #else //SDO_DYNAMIC_BUFFER_ALLOCATION
+  335  1        for (i = 0 ; i < nbBytes ; i++)
+*** ERROR C67 IN LINE 335 OF CANopen\src\sdo.c: 'nbBytes': undefined identifier
+  336  1          * (data + i) = d->transfers[line].data[offset + i];
+*** ERROR C67 IN LINE 336 OF CANopen\src\sdo.c: 'data': undefined identifier
+*** ERROR C67 IN LINE 336 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 336 OF CANopen\src\sdo.c: 'line': undefined identifier
+  337  1      #endif //SDO_DYNAMIC_BUFFER_ALLOCATION
+  338  1        d->transfers[line].offset = d->transfers[line].offset + nbBytes;
+*** ERROR C67 IN LINE 338 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 338 OF CANopen\src\sdo.c: 'line': undefined identifier
+*** ERROR C67 IN LINE 338 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 338 OF CANopen\src\sdo.c: 'line': undefined identifier
+*** ERROR C67 IN LINE 338 OF CANopen\src\sdo.c: 'nbBytes': undefined identifier
+  339  1        return 0;
+  340  1      }
+*** WARNING C47 IN LINE 302 OF CANopen\src\sdo.c: 'CO_Data': unreferenced parameter
+  341         
+  342         /*!
+  343          **
+  344          **
+  345          ** @param d
+  346          ** @param line
+  347          ** @param nbBytes
+  348          ** @param data
+  349          **
+  350          ** @return
+  351          **/
+  352         UNS8 SDOtoLine (CO_Data* d, UNS8 line, UNS32 nbBytes, UNS8* data)
+*** ERROR C25 IN LINE 352 OF CANopen\src\sdo.c: syntax error near '*'
+  353         {
+*** WARNING C35 IN LINE 353 OF CANopen\src\sdo.c: 'SDOtoLine': uses old-style declarator
+  354  1        UNS8 i;
+  355  1        UNS32 offset;
+  356  1      #ifndef SDO_DYNAMIC_BUFFER_ALLOCATION
+  357  1        if ((d->transfers[line].offset + nbBytes) > SDO_MAX_LENGTH_TRANSFER) {
+*** ERROR C67 IN LINE 357 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 357 OF CANopen\src\sdo.c: 'line': undefined identifier
+*** ERROR C67 IN LINE 357 OF CANopen\src\sdo.c: 'nbBytes': undefined identifier
+  358  2          MSG_ERR(0x1A15,"SDO Size of data too large. Exceed SDO_MAX_LENGTH_TRANSFER", nbBytes);
+  359  2          return 0xFF;
+  360  2        }
+  361  1      #endif //SDO_DYNAMIC_BUFFER_ALLOCATION
+  362  1      
+  363  1        offset = d->transfers[line].offset;
+*** ERROR C67 IN LINE 363 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 363 OF CANopen\src\sdo.c: 'line': undefined identifier
+  364  1      #ifdef SDO_DYNAMIC_BUFFER_ALLOCATION
+                {
+                  UNS8* lineData = d->transfers[line].data;
+                  if ((d->transfers[line].offset + nbBytes) > SDO_MAX_LENGTH_TRANSFER) {
+                    if (d->transfers[line].dynamicData == NULL) {
+                      d->transfers[line].dynamicData = (UNS8*) malloc(SDO_DYNAMIC_BUFFER_ALLOCATION_SIZE);
+                      d->transfers[line].dynamicDataSize = SDO_DYNAMIC_BUFFER_ALLOCATION_SIZE;
+              
+                      if (d->transfers[line].dynamicData == NULL) {
+                        MSG_ERR(0x1A15,"SDO allocating dynamic buffer failed, size", SDO_DYNAMIC_BUFFER_ALLOCATION_SIZE);
+                        return 0xFF;
+C166 COMPILER V7.53.0.0, SDO                                                               07/21/2014 20:21:49 PAGE 9   
+
+                      }
+                      //Copy present data
+                      memcpy(d->transfers[line].dynamicData, d->transfers[line].data, offset);
+                    }
+                    else if ((d->transfers[line].offset + nbBytes) > d->transfers[line].dynamicDataSize)
+                    {
+                      UNS8* newDynamicBuffer = (UNS8*) realloc(d->transfers[line].dynamicData, d->transfers[line].dynamicDat
+             -aSize + SDO_DYNAMIC_BUFFER_ALLOCATION_SIZE);
+                      if (newDynamicBuffer == NULL) {
+                        MSG_ERR(0x1A15,"SDO reallocating dynamic buffer failed, size", d->transfers[line].dynamicDataSize + S
+             -DO_DYNAMIC_BUFFER_ALLOCATION_SIZE);
+                        return 0xFF;
+                      }
+                      d->transfers[line].dynamicData = newDynamicBuffer;
+                      d->transfers[line].dynamicDataSize += SDO_DYNAMIC_BUFFER_ALLOCATION_SIZE;
+                    }
+                    lineData = d->transfers[line].dynamicData;
+                  }
+              
+                  for (i = 0 ; i < nbBytes ; i++)
+                    lineData[offset + i] = * (data + i);
+                }
+              #else //SDO_DYNAMIC_BUFFER_ALLOCATION
+  396  1        for (i = 0 ; i < nbBytes ; i++)
+*** ERROR C67 IN LINE 396 OF CANopen\src\sdo.c: 'nbBytes': undefined identifier
+  397  1          d->transfers[line].data[offset + i] = * (data + i);
+*** ERROR C67 IN LINE 397 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 397 OF CANopen\src\sdo.c: 'line': undefined identifier
+*** ERROR C67 IN LINE 397 OF CANopen\src\sdo.c: 'data': undefined identifier
+  398  1      #endif //SDO_DYNAMIC_BUFFER_ALLOCATION
+  399  1      
+  400  1        d->transfers[line].offset = d->transfers[line].offset + nbBytes;
+*** ERROR C67 IN LINE 400 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 400 OF CANopen\src\sdo.c: 'line': undefined identifier
+*** ERROR C67 IN LINE 400 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 400 OF CANopen\src\sdo.c: 'line': undefined identifier
+*** ERROR C67 IN LINE 400 OF CANopen\src\sdo.c: 'nbBytes': undefined identifier
+  401  1        return 0;
+  402  1      }
+*** WARNING C47 IN LINE 352 OF CANopen\src\sdo.c: 'CO_Data': unreferenced parameter
+  403         
+  404         /*!
+  405          **
+  406          **
+  407          ** @param d
+  408          ** @param CliServNbr
+  409          ** @param whoami
+  410          ** @param index
+  411          ** @param subIndex
+  412          ** @param abortCode
+  413          **
+  414          ** @return
+  415          **/
+  416         UNS8 failedSDO (CO_Data* d, UNS8 CliServNbr, UNS8 whoami, UNS16 index,
+*** ERROR C25 IN LINE 416 OF CANopen\src\sdo.c: syntax error near '*'
+  417             UNS8 subIndex, UNS32 abortCode)
+  418         {
+*** WARNING C35 IN LINE 418 OF CANopen\src\sdo.c: 'failedSDO': uses old-style declarator
+  419  1        UNS8 err;
+  420  1        UNS8 line;
+  421  1        err = getSDOlineOnUse( d, CliServNbr, whoami, &line );
+*** ERROR C67 IN LINE 421 OF CANopen\src\sdo.c: 'd': undefined identifier
+C166 COMPILER V7.53.0.0, SDO                                                               07/21/2014 20:21:49 PAGE 10  
+
+*** ERROR C67 IN LINE 421 OF CANopen\src\sdo.c: 'CliServNbr': undefined identifier
+*** ERROR C67 IN LINE 421 OF CANopen\src\sdo.c: 'whoami': undefined identifier
+*** WARNING C140 IN LINE 421 OF CANopen\src\sdo.c: 'getSDOlineOnUse' undefined; assuming 'extern int getSDOlineOnUse()'
+*** WARNING C192 IN LINE 421 OF CANopen\src\sdo.c: '=': value truncated
+  422  1        if (!err) /* If a line on use have been found.*/
+  423  1          MSG_WAR(0x3A20, "FailedSDO : line found : ", line);
+  424  1        if ((! err) && (whoami == SDO_SERVER)) {
+*** ERROR C67 IN LINE 424 OF CANopen\src\sdo.c: 'whoami': undefined identifier
+*** ERROR C67 IN LINE 424 OF CANopen\src\sdo.c: 'SDO_SERVER': undefined identifier
+  425  2          resetSDOline( d, line );
+*** ERROR C67 IN LINE 425 OF CANopen\src\sdo.c: 'd': undefined identifier
+  426  2          MSG_WAR(0x3A21, "FailedSDO : line released : ", line);
+  427  2        }
+  428  1        if ((! err) && (whoami == SDO_CLIENT)) {
+*** ERROR C67 IN LINE 428 OF CANopen\src\sdo.c: 'whoami': undefined identifier
+*** ERROR C67 IN LINE 428 OF CANopen\src\sdo.c: 'SDO_CLIENT': undefined identifier
+  429  2          StopSDO_TIMER(line);
+*** ERROR C67 IN LINE 429 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 429 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** WARNING C140 IN LINE 429 OF CANopen\src\sdo.c: 'DelAlarm' undefined; assuming 'extern int DelAlarm()'
+  430  2          d->transfers[line].state = SDO_ABORTED_INTERNAL;
+*** ERROR C67 IN LINE 430 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 430 OF CANopen\src\sdo.c: 'SDO_ABORTED_INTERNAL': undefined identifier
+  431  2          d->transfers[line].abortCode = abortCode;
+*** ERROR C67 IN LINE 431 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 431 OF CANopen\src\sdo.c: 'abortCode': undefined identifier
+  432  2        }
+  433  1        MSG_WAR(0x3A22, "Sending SDO abort ", 0);
+  434  1        err = sendSDOabort(d, whoami, CliServNbr, index, subIndex, abortCode);
+*** ERROR C67 IN LINE 434 OF CANopen\src\sdo.c: 'd': undefined identifier
+*** ERROR C67 IN LINE 434 OF CANopen\src\sdo.c: 'whoami': undefined identifier
+*** ERROR C67 IN LINE 434 OF CANopen\src\sdo.c: 'CliServNbr': undefined identifier
+*** ERROR C67 IN LINE 434 OF CANopen\src\sdo.c: 'index': undefined identifier
+*** ERROR C67 IN LINE 434 OF CANopen\src\sdo.c: 'subIndex': undefined identifier
+*** ERROR C67 IN LINE 434 OF CANopen\src\sdo.c: 'abortCode': undefined identifier
+*** WARNING C192 IN LINE 434 OF CANopen\src\sdo.c: '=': value truncated
+  435  1        if (err) {
+  436  2          MSG_WAR(0x3A23, "Unable to send the SDO abort", 0);
+  437  2          return 0xFF;
+  438  2        }
+  439  1        return 0;
+  440  1      }
+*** WARNING C47 IN LINE 416 OF CANopen\src\sdo.c: 'CO_Data': unreferenced parameter
+  441         
+  442         /*!
+  443          **
+  444          **
+  445          ** @param d
+  446          ** @param line
+  447          **/
+  448         void resetSDOline ( CO_Data* d, UNS8 line )
+*** ERROR C25 IN LINE 448 OF CANopen\src\sdo.c: syntax error near '*'
+*** ERROR C7 IN LINE 448 OF CANopen\src\sdo.c: compilation aborted
+
+C166 COMPILATION COMPLETE.  22 WARNING(S),  130 ERROR(S)

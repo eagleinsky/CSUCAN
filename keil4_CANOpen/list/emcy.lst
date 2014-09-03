@@ -1,0 +1,313 @@
+C166 COMPILER V7.53.0.0, EMCY                                                              09/03/2014 10:38:10 PAGE 1   
+
+
+C166 COMPILER V7.53.0.0, COMPILATION OF MODULE EMCY
+OBJECT MODULE PLACED IN .\obj\emcy.obj
+COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\emcy.c MODV2 BROWSE INCDIR(.\source;.\CANopen\include;.\CANo
+                    -pen\include\XC164_CANopen;..\keil4;.\CANopen\examples\XC164\Slave) MODV2 DEBUG PRINT(.\list\emcy.lst) TABS(2) OBJECT(.\o
+                    -bj\emcy.obj) 
+
+ stmt lvl     source
+
+    1         /*
+    2           This file is part of CanFestival, a library implementing CanOpen
+    3           Stack.
+    4         
+    5           Copyright (C): Edouard TISSERANT and Francis DUPIN
+    6           Modified by: Jaroslav Fojtik
+    7         
+    8           See COPYING file for copyrights details.
+    9         
+   10           This library is free software; you can redistribute it and/or
+   11           modify it under the terms of the GNU Lesser General Public
+   12           License as published by the Free Software Foundation; either
+   13           version 2.1 of the License, or (at your option) any later version.
+   14         
+   15           This library is distributed in the hope that it will be useful,
+   16           but WITHOUT ANY WARRANTY; without even the implied warranty of
+   17           MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   18           Lesser General Public License for more details.
+   19         
+   20           You should have received a copy of the GNU Lesser General Public
+   21           License along with this library; if not, write to the Free Software
+   22           Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+   23           USA
+   24         */
+   25         
+   26         /*!
+   27         ** @file   emcy.c
+   28         ** @author Luis Jimenez
+   29         ** @date   Wed Sep 26 2007
+   30         **
+   31         ** @brief Definitions of the functions that manage EMCY (emergency) messages
+   32         **
+   33         **
+   34         */
+   35         
+   36         #include <data.h>
+   37         #include "emcy.h"
+   38         #include "canfestival.h"
+   39         #include "sysdep.h"
+   40         
+   41         
+   42         
+   43         UNS32 OnNumberOfErrorsUpdate(CO_Data* d, const indextable * unsused_indextable, UNS8 unsused_bSubindex);
+   44         
+   45         #define Data data  /* temporary fix */
+   46         
+   47         
+   48         /*! This is called when Index 0x1003 is updated.
+   49         **
+   50         **
+   51         ** @param d
+   52         ** @param unsused_indextable
+   53         ** @param unsused_bSubindex
+C166 COMPILER V7.53.0.0, EMCY                                                              09/03/2014 10:38:10 PAGE 2   
+
+   54         **
+   55         ** @return
+   56         **/
+   57         UNS32 OnNumberOfErrorsUpdate(CO_Data* d, const indextable * unsused_indextable, UNS8 unsused_bSubindex)
+   58         {
+   59  1        UNS8 index;
+   60  1        // if 0, reset Pre-defined Error Field
+   61  1        // else, don't change and give an abort message (eeror code: 0609 0030h)
+   62  1        if (*d->error_number == 0)
+   63  1          for (index = 0; index < d->error_history_size; ++index)
+   64  1            *(d->error_first_element + index) = 0;    /* clear all the fields in Pre-defined Error Field (1003h) */
+   65  1        else
+   66  1          ;// abort message
+   67  1        return 0;
+   68  1      }
+*** WARNING C47 IN LINE 57 OF CANopen\src\emcy.c: 'unsused_indextable': unreferenced parameter
+*** WARNING C47 IN LINE 57 OF CANopen\src\emcy.c: 'unsused_bSubindex': unreferenced parameter
+   69         
+   70         /*! start the EMCY mangagement.
+   71         **
+   72         **
+   73         ** @param d
+   74         **/
+   75         void emergencyInit(CO_Data* d)
+   76         {
+   77  1        RegisterSetODentryCallBack(d, 0x1003, 0x00, &OnNumberOfErrorsUpdate);
+   78  1      
+   79  1        *d->error_number = 0;
+   80  1      }
+   81         
+   82         /*!
+   83         **
+   84         **
+   85         ** @param d
+   86         **/
+   87         void emergencyStop(CO_Data* d)
+   88         {
+   89  1        
+   90  1      }
+*** WARNING C47 IN LINE 87 OF CANopen\src\emcy.c: 'd': unreferenced parameter
+   91         
+   92         
+   93         /*!
+   94          **
+   95          ** @param d
+   96          ** @param cob_id
+   97          **
+   98          ** @return
+   99          **/
+  100         UNS8 sendEMCY(CO_Data* d, UNS16 errCode, UNS8 errRegister, const void *Specific, UNS8 SpecificLength)
+  101         {
+  102  1        Message m;
+  103  1        
+  104  1        MSG_WAR(0x3051, "sendEMCY", 0);
+  105  1        
+  106  1        m.cob_id = (UNS16)(*(UNS32*)d->error_cobid);
+  107  1        m.rtr = NOT_A_REQUEST;  
+  108  1        m.Data[0] = errCode & 0xFF;        /* LSB */
+*** WARNING C192 IN LINE 108 OF CANopen\src\emcy.c: '=': value truncated
+  109  1        m.Data[1] = (errCode >> 8) & 0xFF; /* MSB */
+*** WARNING C192 IN LINE 109 OF CANopen\src\emcy.c: '=': value truncated
+  110  1        m.Data[2] = errRegister;
+C166 COMPILER V7.53.0.0, EMCY                                                              09/03/2014 10:38:10 PAGE 3   
+
+  111  1      
+  112  1        if(Specific==NULL)
+  113  1        {
+  114  2          m.Data[3] = 0;    /* Manufacturer specific Error Field omitted */
+  115  2          m.Data[4] = 0;
+  116  2          m.Data[5] = 0;
+  117  2          m.Data[6] = 0;
+  118  2          m.Data[7] = 0;
+  119  2          SpecificLength = 5;
+  120  2        }
+  121  1        else
+  122  1        {
+  123  2                if(SpecificLength>5) SpecificLength = 5;
+  124  2          memcpy(&m.Data[3],Specific,SpecificLength);   
+  125  2        }
+  126  1        m.len = SpecificLength + 3;
+  127  1        
+  128  1        return canSend(d->canHandle,&m);
+  129  1      }
+  130         
+  131         /*! Sets a new error with code errCode. Also sets corresponding bits in Error register (1001h)
+  132          **                                                                                                 
+  133          **  
+  134          ** @param d
+  135          ** @param errCode Code of the error                                                                      
+             -                  
+  136          ** @param errRegister Bits of Error register (1001h) to be set.
+  137          ** @return 1 if error, 0 if successful
+  138          */
+  139         UNS8 EMCY_setError(CO_Data* d, UNS16 errCode, UNS8 errRegMask, UNS16 addInfo)
+  140         {
+  141  1        UNS8 index;
+  142  1        UNS8 errRegister_tmp;
+  143  1        
+  144  1        for (index = 0; index < EMCY_MAX_ERRORS; ++index)
+  145  1        {
+  146  2          if (d->error_data[index].errCode == errCode)    /* error already registered */
+  147  2          {
+  148  3            if (d->error_data[index].active)
+  149  3            {
+  150  4              MSG_WAR(0x3052, "EMCY message already sent", 0);
+  151  4              return 0;
+  152  4            } else d->error_data[index].active = 1;   /* set as active error */
+  153  3            break;
+  154  3          }
+  155  2        }
+  156  1        
+  157  1        if (index == EMCY_MAX_ERRORS)   /* if errCode not already registered */
+  158  1          for (index = 0; index < EMCY_MAX_ERRORS; ++index) if (d->error_data[index].active == 0) break;  /* find f
+             -irst inactive error */
+  159  1        
+  160  1        if (index == EMCY_MAX_ERRORS)   /* error_data full */
+  161  1        {
+  162  2          MSG_ERR(0x3053, "error_data full", 0);
+  163  2          return 1;
+  164  2        }
+  165  1        
+  166  1        d->error_data[index].errCode = errCode;
+  167  1        d->error_data[index].errRegMask = errRegMask;
+  168  1        d->error_data[index].active = 1;
+  169  1        
+  170  1        /* set the new state in the error state machine */
+C166 COMPILER V7.53.0.0, EMCY                                                              09/03/2014 10:38:10 PAGE 4   
+
+  171  1        d->error_state = Error_occurred;
+  172  1      
+  173  1        /* set Error Register (1001h) */
+  174  1        for (index = 0, errRegister_tmp = 0; index < EMCY_MAX_ERRORS; ++index)
+  175  1          if (d->error_data[index].active == 1) errRegister_tmp |= d->error_data[index].errRegMask;
+  176  1        *d->error_register = errRegister_tmp;
+  177  1        
+  178  1        /* set Pre-defined Error Field (1003h) */
+  179  1        for (index = d->error_history_size - 1; index > 0; --index)
+  180  1          *(d->error_first_element + index) = *(d->error_first_element + index - 1);
+  181  1        *(d->error_first_element) = errCode | ((UNS32)addInfo << 16);
+  182  1        if(*d->error_number < d->error_history_size) ++(*d->error_number);
+  183  1        
+  184  1        /* send EMCY message */
+  185  1        if (d->CurrentCommunicationState.csEmergency)
+  186  1          return sendEMCY(d, errCode, *d->error_register, NULL, 0);
+  187  1        else return 1;
+  188  1      }
+  189         
+  190         /*! Deletes error errCode. Also clears corresponding bits in Error register (1001h)
+  191          **                                                                                                 
+  192          **  
+  193          ** @param d
+  194          ** @param errCode Code of the error                                                                      
+             -                  
+  195          ** @param errRegister Bits of Error register (1001h) to be set.
+  196          ** @return 1 if error, 0 if successful
+  197          */
+  198         void EMCY_errorRecovered(CO_Data* d, UNS16 errCode)
+  199         {
+  200  1        UNS8 index;
+  201  1        UNS8 errRegister_tmp;
+  202  1        UNS8 anyActiveError = 0;
+  203  1        
+  204  1        for (index = 0; index < EMCY_MAX_ERRORS; ++index)
+  205  1          if (d->error_data[index].errCode == errCode) break;   /* find the position of the error */
+  206  1      
+  207  1        
+  208  1        if ((index != EMCY_MAX_ERRORS) && (d->error_data[index].active == 1))
+  209  1        {
+  210  2          d->error_data[index].active = 0;
+  211  2          
+  212  2          /* set Error Register (1001h) and check error state machine */
+  213  2          for (index = 0, errRegister_tmp = 0; index < EMCY_MAX_ERRORS; ++index)
+  214  2            if (d->error_data[index].active == 1)
+  215  2            {
+  216  3              anyActiveError = 1;
+  217  3              errRegister_tmp |= d->error_data[index].errRegMask;
+  218  3            }
+  219  2          if(anyActiveError == 0)
+  220  2          {
+  221  3            d->error_state = Error_free;
+  222  3            /* send a EMCY message with code "Error Reset or No Error" */
+  223  3            if (d->CurrentCommunicationState.csEmergency)
+  224  3              sendEMCY(d, 0x0000, 0x00, NULL, 0);
+  225  3          }
+  226  2          *d->error_register = errRegister_tmp;
+  227  2        }
+  228  1        else
+  229  1          MSG_WAR(0x3054, "recovered error was not active", 0);
+  230  1      }
+  231         
+C166 COMPILER V7.53.0.0, EMCY                                                              09/03/2014 10:38:10 PAGE 5   
+
+  232         /*! This function is responsible to process an EMCY canopen-message.
+  233          **
+  234          **
+  235          ** @param d
+  236          ** @param m The CAN-message which has to be analysed.
+  237          **
+  238          **/
+  239         void proceedEMCY(CO_Data* d, Message* m)
+  240         {
+  241  1        UNS8 nodeID;
+  242  1        UNS16 errCode;
+  243  1        UNS8 errReg;
+  244  1        
+  245  1        MSG_WAR(0x3055, "EMCY received. Proceed. ", 0);
+  246  1        
+  247  1        /* Test if the size of the EMCY is ok */
+  248  1        if ( m->len != 8) {
+  249  2          MSG_ERR(0x1056, "Error size EMCY. CobId  : ", m->cob_id);
+  250  2          return;
+  251  2        }
+  252  1        
+  253  1        /* post the received EMCY */
+  254  1        nodeID = m->cob_id & 0x7F;
+*** WARNING C192 IN LINE 254 OF CANopen\src\emcy.c: '=': value truncated
+  255  1        errCode = m->Data[0] | ((UNS16)m->Data[1] << 8);
+  256  1        errReg = m->Data[2];
+  257  1        (*d->post_emcy)(d, nodeID, errCode, errReg);
+  258  1      }
+  259         
+  260         void _post_emcy(CO_Data* d, UNS8 nodeID, UNS16 errCode, UNS8 errReg){}
+*** WARNING C47 IN LINE 260 OF CANopen\src\emcy.c: 'd': unreferenced parameter
+*** WARNING C47 IN LINE 260 OF CANopen\src\emcy.c: 'nodeID': unreferenced parameter
+*** WARNING C47 IN LINE 260 OF CANopen\src\emcy.c: 'errCode': unreferenced parameter
+*** WARNING C47 IN LINE 260 OF CANopen\src\emcy.c: 'errReg': unreferenced parameter
+
+
+MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
+  CODE SIZE        =         718     --------
+  NEAR-CONST SIZE  =    --------     --------
+  FAR-CONST SIZE   =    --------     --------
+  HUGE-CONST SIZE  =    --------     --------
+  XHUGE-CONST SIZE =    --------     --------
+  NEAR-DATA SIZE   =    --------     --------
+  FAR-DATA SIZE    =    --------     --------
+  XHUGE-DATA SIZE  =    --------     --------
+  IDATA-DATA SIZE  =    --------     --------
+  SDATA-DATA SIZE  =    --------     --------
+  BDATA-DATA SIZE  =    --------     --------
+  HUGE-DATA SIZE   =    --------     --------
+  BIT SIZE         =    --------     --------
+  INIT'L SIZE      =    --------     --------
+END OF MODULE INFORMATION.
+
+
+C166 COMPILATION COMPLETE.  10 WARNING(S),  0 ERROR(S)

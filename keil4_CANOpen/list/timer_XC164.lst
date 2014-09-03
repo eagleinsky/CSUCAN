@@ -1,0 +1,57 @@
+C166 COMPILER V7.53.0.0, TIMER_XC164                                                       09/03/2014 10:38:10 PAGE 1   
+
+
+C166 COMPILER V7.53.0.0, COMPILATION OF MODULE TIMER_XC164
+OBJECT MODULE PLACED IN .\obj\timer_XC164.obj
+COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\drivers\XC164\timer_XC164.c MODV2 BROWSE INCDIR(.\source;.\CANop
+                    -en\include;.\CANopen\include\XC164_CANopen;..\keil4;.\CANopen\examples\XC164\Slave) MODV2 DEBUG PRINT(.\list\timer_XC164
+                    -.lst) TABS(2) OBJECT(.\obj\timer_XC164.obj) 
+
+ stmt lvl     source
+
+    1         #include "timer.h"
+    2         
+    3         // ?????????????
+    4         #define TimerAlarm        OCR3B
+    5         #define TimerCounter      TCNT3
+    6         
+    7         // ????????,??????
+    8         static TIMEVAL last_time_set = TIMEVAL_MAX;     
+    9         
+   10         void initTimer(void) // ??????????
+   11         {
+   12  1      ;
+   13  1      }
+   14         
+   15         void setTimer(TIMEVAL value) // ??????????
+   16         {
+   17  1        ;
+   18  1      }
+*** WARNING C47 IN LINE 15 OF CANopen\drivers\XC164\timer_XC164.c: 'value': unreferenced parameter
+   19         
+   20         TIMEVAL getElapsedTime(void) // ??????????????
+   21         {
+   22  1      return 0;
+   23  1      }
+   24         
+
+
+MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
+  CODE SIZE        =          10     --------
+  NEAR-CONST SIZE  =    --------     --------
+  FAR-CONST SIZE   =    --------     --------
+  HUGE-CONST SIZE  =    --------     --------
+  XHUGE-CONST SIZE =    --------     --------
+  NEAR-DATA SIZE   =           4     --------
+  FAR-DATA SIZE    =    --------     --------
+  XHUGE-DATA SIZE  =    --------     --------
+  IDATA-DATA SIZE  =    --------     --------
+  SDATA-DATA SIZE  =    --------     --------
+  BDATA-DATA SIZE  =    --------     --------
+  HUGE-DATA SIZE   =    --------     --------
+  BIT SIZE         =    --------     --------
+  INIT'L SIZE      =           8     --------
+END OF MODULE INFORMATION.
+
+
+C166 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,68 @@
+C166 COMPILER V7.53.0.0, DIO                                                               09/03/2014 10:38:10 PAGE 1   
+
+
+C166 COMPILER V7.53.0.0, COMPILATION OF MODULE DIO
+OBJECT MODULE PLACED IN .\obj\dio.obj
+COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE source\dio.c MODV2 BROWSE INCDIR(.\source;.\CANopen\include;.\CANopen\in
+                    -clude\XC164_CANopen;..\keil4;.\CANopen\examples\XC164\Slave) MODV2 DEBUG PRINT(.\list\dio.lst) TABS(2) OBJECT(.\obj\dio.
+                    -obj) 
+
+ stmt lvl     source
+
+    1          /*****************************************************************
+    2         *FileName: dio.c
+    3         *Author: jiangxiaojiang   Version:V1.0    Date:20/6/2014
+    4         *Description: 
+    5         *      数字量输入输出。
+    6         ******************************************************************/
+    7         #include "MAIN.h"
+    8         void DOUT(struct DIO_DATA_S  * dio_data)
+    9         {
+   10  1        write_Data(DIO1,0,dio_data->dio1_out);  //输入输出板1  输出
+   11  1        delay(10);
+   12  1        write_Data(DIO2,0,dio_data->dio2_out);   //输入输出板2  输出
+   13  1        delay(10);
+   14  1        write_Data(DOUT1,1,dio_data->do_out);    //输出板  输出
+   15  1        delay(10);
+   16  1      }
+   17         
+   18         void DIN(struct DIO_DATA_S  * dio_data)
+   19         {
+   20  1        dio_data->dio1_in = read_Data(DIO1,2);      //输入输出板1  输入
+   21  1        delay(10);
+   22  1          dio_data->dio2_in = read_Data(DIO2,2);     //输入输出板2  输入
+   23  1        delay(10);
+   24  1      }
+   25         
+   26         void DERROR(struct DIO_DATA_S  * dio_data)
+   27         {
+   28  1        dio_data->dio1_err = read_Data(DIO1,1);     //输入输出板1  输入
+   29  1        delay(10);
+   30  1          dio_data->dio2_err = read_Data(DIO2,1);    //输入输出板2  输入
+   31  1        delay(10);
+   32  1        dio_data->do_err = read_Data(DOUT1,0);     //输入输出板2  输入
+   33  1        delay(10);
+   34  1      }
+
+
+MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
+  CODE SIZE        =         182     --------
+  NEAR-CONST SIZE  =    --------     --------
+  FAR-CONST SIZE   =    --------     --------
+  HUGE-CONST SIZE  =    --------     --------
+  XHUGE-CONST SIZE =    --------     --------
+  NEAR-DATA SIZE   =    --------     --------
+  FAR-DATA SIZE    =    --------     --------
+  XHUGE-DATA SIZE  =    --------     --------
+  IDATA-DATA SIZE  =    --------     --------
+  SDATA-DATA SIZE  =    --------     --------
+  BDATA-DATA SIZE  =    --------     --------
+  HUGE-DATA SIZE   =    --------     --------
+  BIT SIZE         =    --------     --------
+  INIT'L SIZE      =    --------     --------
+END OF MODULE INFORMATION.
+
+C166 COMPILER V7.53.0.0, DIO                                                               09/03/2014 10:38:10 PAGE 2   
+
+
+C166 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

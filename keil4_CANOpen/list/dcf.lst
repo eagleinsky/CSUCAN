@@ -1,0 +1,252 @@
+C166 COMPILER V7.53.0.0, DCF                                                               08/20/2014 11:47:51 PAGE 1   
+
+
+C166 COMPILER V7.53.0.0, COMPILATION OF MODULE DCF
+OBJECT MODULE PLACED IN .\obj\dcf.obj
+COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\dcf.c MODV2 BROWSE INCDIR(.\source;.\CANopen\include;.\CANop
+                    -en\include\XC164_CANopen;..\keil4;.\CANopen\examples\XC164\Slave) MODV2 DEBUG PRINT(.\list\dcf.lst) TABS(2) OBJECT(.\obj
+                    -\dcf.obj) 
+
+ stmt lvl     source
+
+    1         /*
+    2           This file is part of CanFestival, a library implementing CanOpen
+    3           Stack.
+    4         
+    5           Copyright (C): Edouard TISSERANT and Francis DUPIN
+    6         
+    7           See COPYING file for copyrights details.
+    8         
+    9           This library is free software; you can redistribute it and/or
+   10           modify it under the terms of the GNU Lesser General Public
+   11           License as published by the Free Software Foundation; either
+   12           version 2.1 of the License, or (at your option) any later version.
+   13         
+   14           This library is distributed in the hope that it will be useful,
+   15           but WITHOUT ANY WARRANTY; without even the implied warranty of
+   16           MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   17           Lesser General Public License for more details.
+   18         
+   19           You should have received a copy of the GNU Lesser General Public
+   20           License along with this library; if not, write to the Free Software
+   21           Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+   22           USA
+   23         */
+   24         
+   25         
+   26         /**
+   27         ** @file   dcf.c
+   28         ** @author Edouard TISSERANT and Francis DUPIN
+   29         ** @date   Mon Jun  4 17:06:12 2007
+   30         **
+   31         ** @brief EXEMPLE OF SOMMARY
+   32         **
+   33         **
+   34         */
+   35         
+   36         
+   37         #include "data.h"
+   38         #include "sysdep.h"
+   39         #include "dcf.h"
+   40         
+   41         typedef struct {
+   42             UNS16 Index;
+   43             UNS8 Subindex;
+   44             UNS32 Size;
+   45             UNS8 *Data;
+   46         } dcf_entry_t;
+   47         
+   48         void SaveNode(CO_Data* d, UNS8 nodeId);
+   49         static UNS8 read_consise_dcf_next_entry(CO_Data* d, UNS8 nodeId);
+   50         static UNS8 write_consise_dcf_next_entry(CO_Data* d, UNS8 nodeId);
+   51         UNS8 init_consise_dcf(CO_Data* d,UNS8 nodeId);
+   52         
+   53         
+C166 COMPILER V7.53.0.0, DCF                                                               08/20/2014 11:47:51 PAGE 2   
+
+   54         #ifdef _MSC_VER
+              #define inline _inline
+              #endif  /* _MSC_VER */
+   57         
+   58         
+   59         inline void start_node(CO_Data* d, UNS8 nodeId){
+*** ERROR C42 IN LINE 59 OF CANopen\src\dcf.c: 'start_node': not in formal parameter list
+*** ERROR C25 IN LINE 59 OF CANopen\src\dcf.c: syntax error near '{'
+   60             /* Ask slave node to go in operational mode */
+   61             masterSendNMTstateChange (d, nodeId, NMT_Start_Node);
+   62             d->NMTable[nodeId] = Operational;
+   63         }
+   64         
+   65         /**
+   66         ** @brief Function to be called from post_SlaveBootup
+   67         **
+   68         ** @param d
+   69         ** @param nodeId
+   70         */
+   71         UNS8 check_and_start_node(CO_Data* d, UNS8 nodeId)
+*** ERROR C42 IN LINE 71 OF CANopen\src\dcf.c: 'd': not in formal parameter list
+*** ERROR C25 IN LINE 71 OF CANopen\src\dcf.c: syntax error near 'unsigned'
+   72         {   
+   73             if(d->dcf_status != DCF_STATUS_INIT)
+   74                 return 0;
+   75             if((init_consise_dcf(d, nodeId) == 0) || (read_consise_dcf_next_entry(d, nodeId) == 0)){
+   76                 start_node(d, nodeId);
+   77                 return 1;
+   78             }
+   79             d->dcf_status = DCF_STATUS_READ_CHECK;
+   80             return 2;
+   81         }
+   82         
+   83         inline void start_and_seek_node(CO_Data* d, UNS8 nodeId){
+*** ERROR C42 IN LINE 83 OF CANopen\src\dcf.c: 'd': not in formal parameter list
+*** ERROR C25 IN LINE 83 OF CANopen\src\dcf.c: syntax error near 'unsigned'
+   84            UNS8 node;
+   85            start_node(d,nodeId);
+   86            /* Look for other nodes waiting to be started */
+   87            for(node = 0 ; node<NMT_MAX_NODE_ID ; node++){
+   88                if(d->NMTable[node] != Initialisation)
+   89                    continue;
+   90                if(check_and_start_node(d, node) == 2)
+   91                    return;
+   92            }
+   93            /* No more node to start. Let's start our own node */
+   94            setState(d, Operational);
+   95         }
+   96         
+   97         /**
+   98         **
+   99         **
+  100         ** @param d
+  101         ** @param nodeId
+  102         */
+  103         static void CheckSDOAndContinue(CO_Data* d, UNS8 nodeId)
+*** ERROR C42 IN LINE 103 OF CANopen\src\dcf.c: 'd': not in formal parameter list
+*** ERROR C25 IN LINE 103 OF CANopen\src\dcf.c: syntax error near 'unsigned'
+  104         {
+  105             UNS32 abortCode = 0;
+  106             UNS8 buf[4], match = 0, node;
+  107             UNS32 size=4;
+C166 COMPILER V7.53.0.0, DCF                                                               08/20/2014 11:47:51 PAGE 3   
+
+  108             if(d->dcf_status == DCF_STATUS_READ_CHECK){
+  109                 // printf("DCF_STATUS_READ_CHECK \n");
+  110                 if(getReadResultNetworkDict (d, nodeId, buf, &size, &abortCode) != SDO_FINISHED)
+  111                     goto dcferror;
+  112                 /* Check if data received match the DCF */
+  113                 if(size == d->dcf_size){
+  114                     match = 1;
+  115                     while(size--)
+  116                         if(buf[size] != d->dcf_data[size])
+  117                             match = 0;
+  118                 }
+  119                 if(match) {
+  120                     if(read_consise_dcf_next_entry(d, nodeId) == 0){
+  121                         start_and_seek_node(d, nodeId);
+  122                     }
+  123                 }
+  124                 else { /* Data received does not match : start rewriting all */
+  125                     if((init_consise_dcf(d, nodeId) == 0) || (write_consise_dcf_next_entry(d, nodeId) == 0))
+  126                         goto dcferror;                
+  127                     d->dcf_status = DCF_STATUS_WRITE;
+  128                 }
+  129             }
+  130             else if(d->dcf_status == DCF_STATUS_WRITE){
+  131                 // printf("DCF_STATUS_WRITE \n");
+  132                 if(getWriteResultNetworkDict (d, nodeId, &abortCode) != SDO_FINISHED)
+  133                     goto dcferror;
+  134                 if(write_consise_dcf_next_entry(d, nodeId) == 0){
+  135         #ifdef DCF_SAVE_NODE
+                          SaveNode(d, nodeId);
+                          d->dcf_status = DCF_STATUS_SAVED;
+              #else //DCF_SAVE_NODE
+  139                     d->dcf_status = DCF_STATUS_INIT;
+  140                    start_and_seek_node(d,nodeId);
+  141         #endif //DCF_SAVE_NODE
+  142                 }
+  143             }
+  144             else if(d->dcf_status == DCF_STATUS_SAVED){
+  145                 // printf("DCF_STATUS_SAVED \n");
+  146                 if(getWriteResultNetworkDict (d, nodeId, &abortCode) != SDO_FINISHED)
+  147                     goto dcferror;
+  148                 masterSendNMTstateChange (d, nodeId, NMT_Reset_Node);
+  149                 d->dcf_status = DCF_STATUS_INIT;
+  150                 d->NMTable[nodeId] = Unknown_state;
+  151             }
+  152             return;
+  153         dcferror:
+  154             MSG_ERR(0x1A01, "SDO error in consise DCF", abortCode);
+  155             MSG_WAR(0x2A02, "server node : ", nodeId);
+  156             d->NMTable[nodeId] = Unknown_state;
+  157         }
+  158         
+  159         /**
+  160         **
+  161         **
+  162         ** @param d
+  163         ** @param nodeId
+  164         **
+  165         ** @return
+  166         */
+  167         UNS8 init_consise_dcf(CO_Data* d,UNS8 nodeId)
+*** ERROR C42 IN LINE 167 OF CANopen\src\dcf.c: 'd': not in formal parameter list
+*** ERROR C25 IN LINE 167 OF CANopen\src\dcf.c: syntax error near 'unsigned'
+C166 COMPILER V7.53.0.0, DCF                                                               08/20/2014 11:47:51 PAGE 4   
+
+  168         {
+  169             /* Fetch DCF OD entry */
+  170             UNS32 errorCode;
+  171             ODCallback_t *Callback;
+*** ERROR C42 IN LINE 171 OF CANopen\src\dcf.c: 'Callback': not in formal parameter list
+  172             UNS8* dcf;
+*** ERROR C42 IN LINE 172 OF CANopen\src\dcf.c: 'dcf': not in formal parameter list
+  173             d->dcf_odentry = (*d->scanIndexOD)(0x1F22, &errorCode, &Callback);
+*** WARNING C34 IN LINE 173 OF CANopen\src\dcf.c: 'd': missing declaration specifiers
+*** ERROR C42 IN LINE 173 OF CANopen\src\dcf.c: 'd': not in formal parameter list
+*** ERROR C25 IN LINE 173 OF CANopen\src\dcf.c: syntax error near '->'
+*** WARNING C34 IN LINE 173 OF CANopen\src\dcf.c: 'd': missing declaration specifiers
+*** ERROR C42 IN LINE 173 OF CANopen\src\dcf.c: 'd': not in formal parameter list
+  174             /* If DCF entry do not exist... Nothing to do.*/
+  175             if (errorCode != OD_SUCCESSFUL) goto DCF_finish;
+  176             /* Fix DCF table overflow */
+  177             if(nodeId > d->dcf_odentry->bSubCount) goto DCF_finish;
+  178             /* If DCF empty... Nothing to do */
+  179             if(! d->dcf_odentry->pSubindex[nodeId].size) goto DCF_finish;
+  180             dcf = *(UNS8**)d->dcf_odentry->pSubindex[nodeId].pObject;
+  181             // printf("%.2x %.2x %.2x %.2x\n",dcf[0],dcf[1],dcf[2],dcf[3]);
+  182             d->dcf_cursor = dcf + 4;
+  183             d->dcf_entries_count = 0;
+  184             d->dcf_status = DCF_STATUS_INIT;
+  185             return 1;
+  186             DCF_finish:
+  187             return 0;
+  188         }
+  189         
+  190         UNS8 get_next_DCF_data(CO_Data* d, dcf_entry_t *dcf_entry, UNS8 nodeId)
+*** WARNING C34 IN LINE 190 OF CANopen\src\dcf.c: 'd': missing declaration specifiers
+*** ERROR C42 IN LINE 190 OF CANopen\src\dcf.c: 'd': not in formal parameter list
+*** ERROR C25 IN LINE 190 OF CANopen\src\dcf.c: syntax error near 'dcf_entry_t'
+*** WARNING C34 IN LINE 190 OF CANopen\src\dcf.c: 'dcf_entry': missing declaration specifiers
+*** ERROR C42 IN LINE 190 OF CANopen\src\dcf.c: 'dcf_entry': not in formal parameter list
+*** ERROR C25 IN LINE 190 OF CANopen\src\dcf.c: syntax error near 'unsigned'
+  191         {
+  192           UNS8* dcfend;
+*** WARNING C34 IN LINE 192 OF CANopen\src\dcf.c: 'dcfend': missing declaration specifiers
+*** ERROR C42 IN LINE 192 OF CANopen\src\dcf.c: 'dcfend': not in formal parameter list
+  193           UNS32 nb_entries;
+*** ERROR C42 IN LINE 193 OF CANopen\src\dcf.c: 'nb_entries': not in formal parameter list
+  194           UNS32 szData;
+*** ERROR C42 IN LINE 194 OF CANopen\src\dcf.c: 'szData': not in formal parameter list
+  195           UNS8* dcf;
+*** ERROR C42 IN LINE 195 OF CANopen\src\dcf.c: 'dcf': not in formal parameter list
+  196           if(!d->dcf_odentry)
+*** ERROR C25 IN LINE 196 OF CANopen\src\dcf.c: syntax error near 'if'
+*** ERROR C25 IN LINE 196 OF CANopen\src\dcf.c: syntax error near '!'
+*** ERROR C25 IN LINE 196 OF CANopen\src\dcf.c: syntax error near '->'
+*** ERROR C7 IN LINE 196 OF CANopen\src\dcf.c: compilation aborted
+*** WARNING C174 IN LINE 49 OF CANopen\src\dcf.c: 'read_consise_dcf_next_entry': unreferenced 'static' function
+*** WARNING C64 IN LINE 49 OF CANopen\src\dcf.c: 'read_consise_dcf_next_entry': static function declared but not defined
+*** WARNING C174 IN LINE 50 OF CANopen\src\dcf.c: 'write_consise_dcf_next_entry': unreferenced 'static' function
+*** WARNING C64 IN LINE 50 OF CANopen\src\dcf.c: 'write_consise_dcf_next_entry': static function declared but not define
+             -d
+
+C166 COMPILATION COMPLETE.  9 WARNING(S),  27 ERROR(S)

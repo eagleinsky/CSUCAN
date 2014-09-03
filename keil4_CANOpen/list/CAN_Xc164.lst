@@ -1,0 +1,115 @@
+C166 COMPILER V7.53.0.0, CAN_XC164                                                         09/03/2014 10:38:10 PAGE 1   
+
+
+C166 COMPILER V7.53.0.0, COMPILATION OF MODULE CAN_XC164
+OBJECT MODULE PLACED IN .\obj\CAN_Xc164.obj
+COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\drivers\XC164\CAN_Xc164.c MODV2 BROWSE INCDIR(.\source;.\CANopen
+                    -\include;.\CANopen\include\XC164_CANopen;..\keil4;.\CANopen\examples\XC164\Slave) MODV2 DEBUG PRINT(.\list\CAN_Xc164.lst
+                    -) TABS(2) OBJECT(.\obj\CAN_Xc164.obj) 
+
+ stmt lvl     source
+
+    1         #include "can_XC164.h"
+    2         #include "canfestival.h"
+    3         
+    4         #define  REG_TXFMINFO_EFF 0x80   // CAN控制器将发送扩展帧
+    5         #define  REG_TXFMINFO_SFF 0x00   // CAN控制器将发送标准帧
+    6         
+    7         #define  REG_TXFMINFO_RTR 0x40   // CAN控制器将发送远程帧
+    8         #define  REG_TXFMINFO_DAT 0x00   // CAN控制器将发送数据帧
+    9         
+   10         
+   11         
+   12         /*
+   13         **********************************************************************************************************
+             -**************
+   14         **函数原型:     UNS8 canSend(CAN_PORT port, Message *m)
+   15         **参数说明:     port  端口号，仅1、2有效
+   16         **              Message 发送信息，见CAN.h
+   17         **返回值:
+   18         **              
+   19         **
+   20         **说明:         仅标准帧
+   21         **********************************************************************************************************
+             -**************
+   22         */
+   23         UNS8 canSend(CAN_PORT port, Message *m)
+   24         {
+   25  1       UNS8 databuf[13] = {0};
+   26  1       UNS8 i,state;
+   27  1       
+   28  1       databuf[0] = 0;   //TX帧信息
+   29  1       if(m->rtr)
+   30  1          {databuf[0] |= REG_TXFMINFO_RTR;}
+   31  1       databuf[0] |= (m->len & 0x0f);
+   32  1       
+   33  1       databuf[1] = (UNS8)(m->cob_id >> 3);  //TX识别码_高八位
+   34  1       databuf[2] = (UNS8)(m->cob_id << 5);  //TX识别码_低三位
+   35  1      
+   36  1       for(i=0;i<8;i++)
+   37  1        {
+   38  2          databuf[i+3] = m->data[i];
+   39  2        }
+   40  1        
+   41  1        state = SJASendData(port,databuf,TR_BIT);
+   42  1      
+   43  1        return state;
+   44  1      }
+   45         
+   46         unsigned char canReceive(CAN_PORT port, Message *m)
+   47         {
+   48  1        UNS8 databuf[13] = {0};
+   49  1        UNS8 i,state;
+   50  1      
+   51  1        state = SJARcvData(port,databuf);
+C166 COMPILER V7.53.0.0, CAN_XC164                                                         09/03/2014 10:38:10 PAGE 2   
+
+   52  1        
+   53  1        if(state)
+   54  1            return state;
+   55  1      
+   56  1        m->len = databuf[0] & 0x0f;
+   57  1      
+   58  1        if(databuf[0] & REG_TXFMINFO_RTR)
+   59  1            m->rtr = 1;
+   60  1        else
+   61  1            m->rtr = 0;
+   62  1        
+   63  1       for(i=0;i<8;i++)
+   64  1        {
+   65  2          m->data[i] = databuf[i+3];
+   66  2        }
+   67  1        m->cob_id = databuf[1];
+   68  1        m->cob_id = m->cob_id << 3;
+   69  1        m->cob_id += (databuf[2] >> 5) &0x07;
+   70  1        
+   71  1        return state;
+   72  1      }
+   73         
+   74         //typedef struct {
+   75         //  UNS16 cob_id; /**< message's ID */
+   76         //  UNS8 rtr;   /**< remote transmission request. (0 if not rtr message, 1 if rtr message) */
+   77         //  UNS8 len;   /**< message's length (0 to 8) */
+   78         //  UNS8 data[8]; /**< message's datas */
+   79         //} Message;
+
+
+MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
+  CODE SIZE        =         256     --------
+  NEAR-CONST SIZE  =          26     --------
+  FAR-CONST SIZE   =    --------     --------
+  HUGE-CONST SIZE  =    --------     --------
+  XHUGE-CONST SIZE =    --------     --------
+  NEAR-DATA SIZE   =    --------     --------
+  FAR-DATA SIZE    =    --------     --------
+  XHUGE-DATA SIZE  =    --------     --------
+  IDATA-DATA SIZE  =    --------     --------
+  SDATA-DATA SIZE  =    --------     --------
+  BDATA-DATA SIZE  =    --------     --------
+  HUGE-DATA SIZE   =    --------     --------
+  BIT SIZE         =    --------     --------
+  INIT'L SIZE      =    --------     --------
+END OF MODULE INFORMATION.
+
+
+C166 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,129 @@
+C166 COMPILER V7.53.0.0, CAN_DEBUG                                                         07/21/2014 20:24:38 PAGE 1   
+
+
+C166 COMPILER V7.53.0.0, COMPILATION OF MODULE CAN_DEBUG
+OBJECT MODULE PLACED IN .\obj\can_debug.obj
+COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE can_debug.c MODV2 BROWSE INCDIR(.\source;.\CANopen\include;.\CANopen\inc
+                    -lude\XC164_CANopen) MODV2 DEBUG PRINT(.\list\can_debug.lst) TABS(2) OBJECT(.\obj\can_debug.obj) 
+
+ stmt lvl     source
+
+    1         #include "main.h"
+    2         
+    3         static unsigned char j = 0, k = 0;
+    4         uchar send_buf[] = {0x08,0xa0,0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,110,120};
+    5         void can_debug(int candeal)
+    6         {
+    7  1        if(candeal==0x10a0)
+    8  1            {
+    9  2            j++;
+   10  2            DIO_ALL->do_out = recv_buf1[4];     
+   11  2            if(j==100)
+   12  2            {
+   13  3            j=0;
+   14  3            send_buf[1] = 0xa0;
+   15  3            send_buf[3] = DIO_ALL->dio1_in;
+   16  3            send_buf[4] = DIO_ALL->dio2_in;
+   17  3            can_send(1,send_buf);
+   18  3            }
+   19  2            }
+   20  1      
+   21  1            if(candeal==0x10a1)
+   22  1            {
+   23  2            j++;
+   24  2            
+   25  2            dpram_data->aout[0]=((UINT16)recv_buf1[4]<<8)+recv_buf1[5];
+   26  2              dpram_data->aout[1]=((UINT16)recv_buf1[6]<<8)+recv_buf1[7];     
+   27  2            if(j==100)
+   28  2            {
+   29  3            j=0;
+   30  3            send_buf[1] = 0xa1;
+   31  3            send_buf[3] = (UINT8)(dpram_data->ain[0]>>8);
+   32  3            send_buf[4] = (UINT8)dpram_data->ain[0];
+   33  3            send_buf[5] = (UINT8)(dpram_data->ain[1]>>8);
+   34  3            send_buf[6] = (UINT8)dpram_data->ain[1];
+   35  3            send_buf[7] = (UINT8)(dpram_data->ain[2]>>8);
+   36  3            send_buf[8] = (UINT8)dpram_data->ain[2];
+   37  3            send_buf[9] = (UINT8)(dpram_data->ain[3]>>8);
+   38  3            send_buf[10] = (UINT8)dpram_data->ain[4];
+   39  3            can_send(1,send_buf);
+   40  3            }
+   41  2            }
+   42  1            if(candeal==0x10a3)
+   43  1            {
+   44  2            j++;
+   45  2            for(k=0;k<8;k++)
+   46  2            {mvb_buf_so1[k]=recv_buf1[k+4]; }
+   47  2                  
+   48  2            if(j==100)
+   49  2            {
+   50  3            j=0;
+   51  3            send_buf[1] = 0xa3;
+   52  3            send_buf[3] = mvb_buf_si[0];
+   53  3            send_buf[4] = mvb_buf_si[1];
+   54  3            send_buf[5] = mvb_buf_si[2];
+C166 COMPILER V7.53.0.0, CAN_DEBUG                                                         07/21/2014 20:24:38 PAGE 2   
+
+   55  3            send_buf[6] = mvb_buf_si[3];
+   56  3            send_buf[7] = mvb_buf_si[4];
+   57  3            send_buf[8] = mvb_buf_si[5];
+   58  3            send_buf[9] = mvb_buf_si[6];
+   59  3            send_buf[10] = mvb_buf_si[7];
+   60  3            can_send(1,send_buf);
+   61  3            }
+   62  2            }
+   63  1            if(candeal==0x10a4)
+   64  1            {
+   65  2            j++;
+   66  2            for(k=0;k<8;k++)
+   67  2            {mvb_buf_so2[k]=recv_buf1[k+4]; }
+   68  2                  
+   69  2            if(j==100)
+   70  2            {
+   71  3            j=0;
+   72  3            send_buf[1] = 0xa4;
+   73  3            send_buf[3] = mvb_buf_si2[0];
+   74  3            send_buf[4] = mvb_buf_si2[1];
+   75  3            send_buf[5] = mvb_buf_si2[2];
+   76  3            send_buf[6] = mvb_buf_si2[3];
+   77  3            send_buf[7] = mvb_buf_si2[4];
+   78  3            send_buf[8] = mvb_buf_si2[5];
+   79  3            send_buf[9] = mvb_buf_si2[6];
+   80  3            send_buf[10] = mvb_buf_si2[7];
+   81  3            can_send(1,send_buf);
+   82  3            }
+   83  2            }
+   84  1            if(candeal==0x10a5)
+   85  1            {
+   86  2            j++;
+   87  2                        
+   88  2            if(j==100)
+   89  2            {
+   90  3            j=0;
+   91  3            send_buf[1] = 0xa5;
+   92  3            send_buf[3] =(UINT8)can_nod;      
+   93  3            can_send(1,send_buf);
+   94  3            }
+   95  2            }
+   96  1      }
+
+
+MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
+  CODE SIZE        =         560     --------
+  NEAR-CONST SIZE  =    --------     --------
+  FAR-CONST SIZE   =    --------     --------
+  HUGE-CONST SIZE  =    --------     --------
+  XHUGE-CONST SIZE =    --------     --------
+  NEAR-DATA SIZE   =          15     --------
+  FAR-DATA SIZE    =    --------     --------
+  XHUGE-DATA SIZE  =    --------     --------
+  IDATA-DATA SIZE  =    --------     --------
+  SDATA-DATA SIZE  =    --------     --------
+  BDATA-DATA SIZE  =    --------     --------
+  HUGE-DATA SIZE   =    --------     --------
+  BIT SIZE         =    --------     --------
+  INIT'L SIZE      =          30     --------
+END OF MODULE INFORMATION.
+
+
+C166 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

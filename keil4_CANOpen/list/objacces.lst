@@ -1,0 +1,339 @@
+C166 COMPILER V7.53.0.0, OBJACCES                                                          09/03/2014 10:38:11 PAGE 1   
+
+
+C166 COMPILER V7.53.0.0, COMPILATION OF MODULE OBJACCES
+OBJECT MODULE PLACED IN .\obj\objacces.obj
+COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\objacces.c MODV2 BROWSE INCDIR(.\source;.\CANopen\include;.\
+                    -CANopen\include\XC164_CANopen;..\keil4;.\CANopen\examples\XC164\Slave) MODV2 DEBUG PRINT(.\list\objacces.lst) TABS(2) OB
+                    -JECT(.\obj\objacces.obj) 
+
+ stmt lvl     source
+
+    1         /*
+    2           This file is part of CanFestival, a library implementing CanOpen
+    3           Stack.
+    4         
+    5           Copyright (C): Edouard TISSERANT and Francis DUPIN
+    6         
+    7           See COPYING file for copyrights details.
+    8         
+    9           This library is free software; you can redistribute it and/or
+   10           modify it under the terms of the GNU Lesser General Public
+   11           License as published by the Free Software Foundation; either
+   12           version 2.1 of the License, or (at your option) any later version.
+   13         
+   14           This library is distributed in the hope that it will be useful,
+   15           but WITHOUT ANY WARRANTY; without even the implied warranty of
+   16           MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   17           Lesser General Public License for more details.
+   18         
+   19           You should have received a copy of the GNU Lesser General Public
+   20           License along with this library; if not, write to the Free Software
+   21           Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+   22           USA
+   23         */
+   24         /*!
+   25         ** @file   objacces.c
+   26         ** @author Edouard TISSERANT and Francis DUPIN
+   27         ** @date   Tue Jun  5 08:55:23 2007
+   28         **
+   29         ** @brief
+   30         **
+   31         **
+   32         */
+   33         
+   34         
+   35         
+   36         
+   37         /* #define DEBUG_WAR_CONSOLE_ON */
+   38         /* #define DEBUG_ERR_CONSOLE_ON */
+   39         
+   40         
+   41         #include "data.h"
+   42         
+   43         //We need the function implementation for linking
+   44         //Only a placeholder with a define isnt enough!
+   45         UNS8 accessDictionaryError(UNS16 index, UNS8 subIndex,
+   46                                    UNS32 sizeDataDict, UNS32 sizeDataGiven, UNS32 code)
+   47         {
+   48  1      #ifdef DEBUG_WAR_CONSOLE_ON
+                MSG_WAR(0x2B09,"Dictionary index : ", index);
+                MSG_WAR(0X2B10,"           subindex : ", subIndex);
+                switch (code) {
+                case  OD_NO_SUCH_OBJECT:
+                  MSG_WAR(0x2B11,"Index not found ", index);
+C166 COMPILER V7.53.0.0, OBJACCES                                                          09/03/2014 10:38:11 PAGE 2   
+
+                  break;
+                case OD_NO_SUCH_SUBINDEX :
+                  MSG_WAR(0x2B12,"SubIndex not found ", subIndex);
+                  break;
+                case OD_WRITE_NOT_ALLOWED :
+                  MSG_WAR(0x2B13,"Write not allowed, data is read only ", index);
+                  break;
+                case OD_LENGTH_DATA_INVALID :
+                  MSG_WAR(0x2B14,"Conflict size data. Should be (bytes)  : ", sizeDataDict);
+                  MSG_WAR(0x2B15,"But you have given the size  : ", sizeDataGiven);
+                  break;
+                case OD_NOT_MAPPABLE :
+                  MSG_WAR(0x2B16,"Not mappable data in a PDO at index    : ", index);
+                  break;
+                case OD_VALUE_TOO_LOW :
+                  MSG_WAR(0x2B17,"Value range error : value too low. SDOabort : ", code);
+                  break;
+                case OD_VALUE_TOO_HIGH :
+                  MSG_WAR(0x2B18,"Value range error : value too high. SDOabort : ", code);
+                  break;
+                default :
+                  MSG_WAR(0x2B20, "Unknown error code : ", code);
+                }
+                #endif
+   78  1      
+   79  1        return 0;
+   80  1      }
+*** WARNING C47 IN LINE 45 OF CANopen\src\objacces.c: 'index': unreferenced parameter
+*** WARNING C47 IN LINE 45 OF CANopen\src\objacces.c: 'subIndex': unreferenced parameter
+*** WARNING C47 IN LINE 46 OF CANopen\src\objacces.c: 'sizeDataDict': unreferenced parameter
+*** WARNING C47 IN LINE 46 OF CANopen\src\objacces.c: 'sizeDataGiven': unreferenced parameter
+*** WARNING C47 IN LINE 46 OF CANopen\src\objacces.c: 'code': unreferenced parameter
+   81         
+   82         UNS32 _getODentry( CO_Data* d,
+   83                            UNS16 wIndex,
+   84                            UNS8 bSubindex,
+   85                            void * pDestData,
+   86                            UNS32 * pExpectedSize,
+   87                            UNS8 * pDataType,
+   88                            UNS8 checkAccess,
+   89                            UNS8 endianize)
+   90         { /* DO NOT USE MSG_ERR because the macro may send a PDO -> infinite
+   91  1          loop if it fails. */
+   92  1        UNS32 errorCode;
+   93  1        UNS32 szData;
+   94  1        const indextable *ptrTable;
+   95  1        ODCallback_t *Callback;
+   96  1      
+   97  1        ptrTable = (*d->scanIndexOD)(wIndex, &errorCode, &Callback);
+   98  1      
+   99  1        if (errorCode != OD_SUCCESSFUL)
+  100  1          return errorCode;
+  101  1        if( ptrTable->bSubCount <= bSubindex ) {
+  102  2          /* Subindex not found */
+  103  2          accessDictionaryError(wIndex, bSubindex, 0, 0, OD_NO_SUCH_SUBINDEX);
+  104  2          return OD_NO_SUCH_SUBINDEX;
+  105  2        }
+  106  1      
+  107  1        if (checkAccess && (ptrTable->pSubindex[bSubindex].bAccessType & WO)) {
+  108  2          MSG_WAR(0x2B30, "Access Type : ", ptrTable->pSubindex[bSubindex].bAccessType);
+  109  2          accessDictionaryError(wIndex, bSubindex, 0, 0, OD_READ_NOT_ALLOWED);
+  110  2          return OD_READ_NOT_ALLOWED;
+C166 COMPILER V7.53.0.0, OBJACCES                                                          09/03/2014 10:38:11 PAGE 3   
+
+  111  2        }
+  112  1      
+  113  1        if (pDestData == 0) {
+  114  2          return SDOABT_GENERAL_ERROR;
+  115  2        }
+  116  1      
+  117  1        if (ptrTable->pSubindex[bSubindex].size > *pExpectedSize) {
+  118  2          /* Requested variable is too large to fit into a transfer line, inform    *
+  119  2           * the caller about the real size of the requested variable.              */
+  120  2          *pExpectedSize = ptrTable->pSubindex[bSubindex].size;
+  121  2          return SDOABT_OUT_OF_MEMORY;
+  122  2        }
+  123  1      
+  124  1        *pDataType = ptrTable->pSubindex[bSubindex].bDataType;
+  125  1        szData = ptrTable->pSubindex[bSubindex].size;
+  126  1      
+  127  1      #  ifdef CANOPEN_BIG_ENDIAN
+                if(endianize && *pDataType > boolean && !(
+                       *pDataType >= visible_string &&
+                       *pDataType <= domain)) {
+                  /* data must be transmited with low byte first */
+                  UNS8 i, j = 0;
+                  MSG_WAR(boolean, "data type ", *pDataType);
+                  MSG_WAR(visible_string, "data type ", *pDataType);
+                  for ( i = szData ; i > 0 ; i--) {
+                    MSG_WAR(i," ", j);
+                    ((UNS8*)pDestData)[j++] =
+                      ((UNS8*)ptrTable->pSubindex[bSubindex].pObject)[i-1];
+                  }
+                  *pExpectedSize = szData;
+                }
+                else /* no endianisation change */
+              #  endif
+  144  1      
+  145  1        if(*pDataType != visible_string) {
+  146  2            memcpy(pDestData, ptrTable->pSubindex[bSubindex].pObject,szData);
+*** WARNING C192 IN LINE 146 OF CANopen\src\objacces.c: 'parameter 3': value truncated
+  147  2            *pExpectedSize = szData;
+  148  2        }else{
+  149  2            /* TODO : CONFORM TO DS-301 :
+  150  2             *  - stop using NULL terminated strings
+  151  2             *  - store string size in td_subindex
+  152  2             * */
+  153  2            /* Copy null terminated string to user, and return discovered size */
+  154  2            UNS8 *ptr = (UNS8*)ptrTable->pSubindex[bSubindex].pObject;
+  155  2            UNS8 *ptr_start = ptr;
+  156  2            /* *pExpectedSize IS < szData . if null, use szData */
+  157  2            UNS8 *ptr_end = ptr + (*pExpectedSize ? *pExpectedSize : szData) ;
+  158  2            UNS8 *ptr_dest = (UNS8*)pDestData;
+  159  2            while( *ptr && ptr < ptr_end){
+  160  3                *(ptr_dest++) = *(ptr++);
+  161  3            }
+  162  2      
+  163  2          *pExpectedSize = (UNS32) (ptr - ptr_start);
+  164  2          /* terminate string if not maximum length */
+  165  2          if (*pExpectedSize < szData)
+  166  2                  *(ptr) = 0;
+  167  2        }
+  168  1      
+  169  1        return OD_SUCCESSFUL;
+  170  1      }
+*** WARNING C47 IN LINE 89 OF CANopen\src\objacces.c: 'endianize': unreferenced parameter
+C166 COMPILER V7.53.0.0, OBJACCES                                                          09/03/2014 10:38:11 PAGE 4   
+
+  171         
+  172         UNS32 _setODentry( CO_Data* d,
+  173                            UNS16 wIndex,
+  174                            UNS8 bSubindex,
+  175                            void * pSourceData,
+  176                            UNS32 * pExpectedSize,
+  177                            UNS8 checkAccess,
+  178                            UNS8 endianize) /*d,目标索引,目标子索引,源数据,长度,chack,大小端*/
+  179         {
+  180  1        UNS32 szData;
+  181  1        UNS8 dataType;
+  182  1        UNS32 errorCode;
+  183  1        const indextable *ptrTable;
+  184  1        ODCallback_t *Callback;
+  185  1      
+  186  1        ptrTable =(*d->scanIndexOD)(wIndex, &errorCode, &Callback); /*查找对象字典条目,返回条目地址*/
+  187  1        if (errorCode != OD_SUCCESSFUL)
+  188  1          return errorCode;
+  189  1      
+  190  1        if( ptrTable->bSubCount <= bSubindex ) { /*目标子索引不存在*/
+  191  2          /* Subindex not found */
+  192  2          accessDictionaryError(wIndex, bSubindex, 0, *pExpectedSize, OD_NO_SUCH_SUBINDEX);
+  193  2          return OD_NO_SUCH_SUBINDEX;
+  194  2        }
+  195  1        
+  196  1        /* (checkAccess) 为1 并且 状态只读 */
+  197  1        if (checkAccess && (ptrTable->pSubindex[bSubindex].bAccessType == RO)) {
+  198  2          MSG_WAR(0x2B25, "Access Type : ", ptrTable->pSubindex[bSubindex].bAccessType);
+  199  2          accessDictionaryError(wIndex, bSubindex, 0, *pExpectedSize, OD_WRITE_NOT_ALLOWED);
+  200  2          return OD_WRITE_NOT_ALLOWED;
+  201  2        }
+  202  1      
+  203  1      //一切顺利，准备改写对象字典
+  204  1        dataType = ptrTable->pSubindex[bSubindex].bDataType;  //数据类型
+  205  1        szData = ptrTable->pSubindex[bSubindex].size;         //数据大小
+  206  1      
+  207  1        if( *pExpectedSize == 0 ||
+  208  1            *pExpectedSize == szData ||
+  209  1            /* allow to store a shorter string than entry size */
+  210  1            (dataType == visible_string && *pExpectedSize < szData))
+  211  1          {
+  212  2      #ifdef CANOPEN_BIG_ENDIAN
+                    /* re-endianize do not occur for bool, strings time and domains */
+                    if(endianize && dataType > boolean && !(
+                          dataType >= visible_string && 
+                          dataType <= domain))
+                      {
+                        /* we invert the data source directly. This let us do range
+                          testing without */
+                        /* additional temp variable */
+                        UNS8 i;
+                        for ( i = 0 ; i < ( ptrTable->pSubindex[bSubindex].size >> 1)  ; i++)
+                          {
+                            UNS8 tmp =((UNS8 *)pSourceData) [(ptrTable->pSubindex[bSubindex].size - 1) - i];
+                            ((UNS8 *)pSourceData) [(ptrTable->pSubindex[bSubindex].size - 1) - i] = ((UNS8 *)pSourceData
+             -)[i];
+                            ((UNS8 *)pSourceData)[i] = tmp;
+                          }
+                      }
+              #endif
+  230  2            errorCode = (*d->valueRangeTest)(dataType, pSourceData);
+  231  2            if (errorCode) {
+C166 COMPILER V7.53.0.0, OBJACCES                                                          09/03/2014 10:38:11 PAGE 5   
+
+  232  3              accessDictionaryError(wIndex, bSubindex, szData, *pExpectedSize, errorCode);
+  233  3              return errorCode;
+  234  3            }
+  235  2            memcpy(ptrTable->pSubindex[bSubindex].pObject,pSourceData, *pExpectedSize);
+*** WARNING C192 IN LINE 235 OF CANopen\src\objacces.c: 'parameter 3': value truncated
+  236  2           /* TODO : CONFORM TO DS-301 : 
+  237  2            *  - stop using NULL terminated strings
+  238  2            *  - store string size in td_subindex 
+  239  2            * */
+  240  2            /* terminate visible_string with '\0' */
+  241  2            if(dataType == visible_string && *pExpectedSize < szData)
+  242  2              ((UNS8*)ptrTable->pSubindex[bSubindex].pObject)[*pExpectedSize] = 0;
+  243  2            
+  244  2            *pExpectedSize = szData;
+  245  2      
+  246  2            /* Callbacks */
+  247  2            if(Callback && Callback[bSubindex]){
+  248  3              errorCode = (Callback[bSubindex])(d, ptrTable, bSubindex);
+  249  3              if(errorCode != OD_SUCCESSFUL)
+  250  3              {
+  251  4                  return errorCode;
+  252  4              }
+  253  3             }
+  254  2      
+  255  2            /* TODO : Store dans NVRAM */
+  256  2            if (ptrTable->pSubindex[bSubindex].bAccessType & TO_BE_SAVE){
+  257  3              (*d->storeODSubIndex)(d, wIndex, bSubindex);
+  258  3            }
+  259  2            return OD_SUCCESSFUL;
+  260  2          }else{
+  261  2            *pExpectedSize = szData;
+  262  2            accessDictionaryError(wIndex, bSubindex, szData, *pExpectedSize, OD_LENGTH_DATA_INVALID);
+  263  2            return OD_LENGTH_DATA_INVALID;
+  264  2          }
+  265  1      }
+*** WARNING C47 IN LINE 178 OF CANopen\src\objacces.c: 'endianize': unreferenced parameter
+  266         
+  267         const indextable * scanIndexOD (CO_Data* d, UNS16 wIndex, UNS32 *errorCode, ODCallback_t **Callback)
+  268         {
+  269  1        return (*d->scanIndexOD)(wIndex, errorCode, Callback);
+  270  1      }
+  271         
+  272         UNS32 RegisterSetODentryCallBack(CO_Data* d, UNS16 wIndex, UNS8 bSubindex, ODCallback_t Callback)
+  273         {
+  274  1      UNS32 errorCode;
+  275  1      ODCallback_t *CallbackList;
+  276  1      const indextable *odentry;
+  277  1      
+  278  1        odentry = scanIndexOD (d, wIndex, &errorCode, &CallbackList);
+  279  1        if(errorCode == OD_SUCCESSFUL  &&  CallbackList  &&  bSubindex < odentry->bSubCount) 
+  280  1          CallbackList[bSubindex] = Callback;
+  281  1        return errorCode;
+  282  1      }
+  283         
+  284         void _storeODSubIndex (CO_Data* d, UNS16 wIndex, UNS8 bSubindex){}
+*** WARNING C47 IN LINE 284 OF CANopen\src\objacces.c: 'd': unreferenced parameter
+*** WARNING C47 IN LINE 284 OF CANopen\src\objacces.c: 'wIndex': unreferenced parameter
+*** WARNING C47 IN LINE 284 OF CANopen\src\objacces.c: 'bSubindex': unreferenced parameter
+
+
+MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
+  CODE SIZE        =        1238     --------
+C166 COMPILER V7.53.0.0, OBJACCES                                                          09/03/2014 10:38:11 PAGE 6   
+
+  NEAR-CONST SIZE  =    --------     --------
+  FAR-CONST SIZE   =    --------     --------
+  HUGE-CONST SIZE  =    --------     --------
+  XHUGE-CONST SIZE =    --------     --------
+  NEAR-DATA SIZE   =    --------     --------
+  FAR-DATA SIZE    =    --------     --------
+  XHUGE-DATA SIZE  =    --------     --------
+  IDATA-DATA SIZE  =    --------     --------
+  SDATA-DATA SIZE  =    --------     --------
+  BDATA-DATA SIZE  =    --------     --------
+  HUGE-DATA SIZE   =    --------     --------
+  BIT SIZE         =    --------     --------
+  INIT'L SIZE      =    --------     --------
+END OF MODULE INFORMATION.
+
+
+C166 COMPILATION COMPLETE.  12 WARNING(S),  0 ERROR(S)

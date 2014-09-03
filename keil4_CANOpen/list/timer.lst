@@ -1,0 +1,221 @@
+C166 COMPILER V7.53.0.0, TIMER                                                             09/03/2014 10:38:11 PAGE 1   
+
+
+C166 COMPILER V7.53.0.0, COMPILATION OF MODULE TIMER
+OBJECT MODULE PLACED IN .\obj\timer.obj
+COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\timer.c MODV2 BROWSE INCDIR(.\source;.\CANopen\include;.\CAN
+                    -open\include\XC164_CANopen;..\keil4;.\CANopen\examples\XC164\Slave) MODV2 DEBUG PRINT(.\list\timer.lst) TABS(2) OBJECT(.
+                    -\obj\timer.obj) 
+
+ stmt lvl     source
+
+    1         /*
+    2         This file is part of CanFestival, a library implementing CanOpen Stack.
+    3         
+    4         Copyright (C): Edouard TISSERANT and Francis DUPIN
+    5         
+    6         See COPYING file for copyrights details.
+    7         
+    8         This library is free software; you can redistribute it and/or
+    9         modify it under the terms of the GNU Lesser General Public
+   10         License as published by the Free Software Foundation; either
+   11         version 2.1 of the License, or (at your option) any later version.
+   12         
+   13         This library is distributed in the hope that it will be useful,
+   14         but WITHOUT ANY WARRANTY; without even the implied warranty of
+   15         MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   16         Lesser General Public License for more details.
+   17         
+   18         You should have received a copy of the GNU Lesser General Public
+   19         License along with this library; if not, write to the Free Software
+   20         Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+   21         */
+   22         /*!
+   23         ** @file   timer.c
+   24         ** @author Edouard TISSERANT and Francis DUPIN
+   25         ** @date   Tue Jun  5 09:32:32 2007
+   26         **
+   27         ** @brief
+   28         **
+   29         **
+   30         */
+   31         
+   32         /* #define DEBUG_WAR_CONSOLE_ON */
+   33         /* #define DEBUG_ERR_CONSOLE_ON */
+   34         
+   35         #include <applicfg.h>
+   36         #include "timer.h"
+   37         
+   38         /*  ---------  The timer table --------- */
+   39         s_timer_entry timers[MAX_NB_TIMER] = {{TIMER_FREE, NULL, NULL, 0, 0, 0},};
+   40         
+   41         TIMEVAL total_sleep_time = TIMEVAL_MAX;
+   42         TIMER_HANDLE last_timer_raw = -1;
+   43         
+   44         #define min_val(a,b) ((a<b)?a:b)
+   45         
+   46         /*!
+   47         ** -------  Use this to declare a new alarm ------
+   48         **
+   49         ** @param d
+   50         ** @param id
+   51         ** @param callback
+   52         ** @param value
+   53         ** @param period
+C166 COMPILER V7.53.0.0, TIMER                                                             09/03/2014 10:38:11 PAGE 2   
+
+   54         **
+   55         ** @return
+   56         **/
+   57         TIMER_HANDLE SetAlarm(CO_Data* d, UNS32 id, TimerCallback_t callback, TIMEVAL value, TIMEVAL period)
+   58         {
+   59  1        TIMER_HANDLE row_number;
+   60  1        s_timer_entry *row;
+   61  1      
+   62  1        /* in order to decide new timer setting we have to run over all timer rows */
+   63  1        for(row_number=0, row=timers; row_number <= last_timer_raw + 1 && row_number < MAX_NB_TIMER; row_number++
+             -, row++)
+   64  1        {
+   65  2          if (callback &&   /* if something to store */
+   66  2             row->state == TIMER_FREE) /* and empty row */
+   67  2          { /* just store */
+   68  3            TIMEVAL real_timer_value;
+   69  3            TIMEVAL elapsed_time;
+   70  3      
+   71  3            if (row_number == last_timer_raw + 1) last_timer_raw++;
+   72  3      
+   73  3            elapsed_time = getElapsedTime();
+   74  3            /* set next wakeup alarm if new entry is sooner than others, or if it is alone */
+   75  3            real_timer_value = value;
+   76  3            real_timer_value = min_val(real_timer_value, TIMEVAL_MAX);
+   77  3      
+   78  3            if (total_sleep_time > elapsed_time && total_sleep_time - elapsed_time > real_timer_value)
+   79  3            {
+   80  4              total_sleep_time = elapsed_time + real_timer_value;
+   81  4              setTimer(real_timer_value);
+   82  4            }
+   83  3            row->callback = callback;
+   84  3            row->d = d;
+   85  3            row->id = id;
+   86  3            row->val = value + elapsed_time;
+   87  3            row->interval = period;
+   88  3            row->state = TIMER_ARMED;
+   89  3            return row_number;
+   90  3          }
+   91  2        }
+   92  1      
+   93  1        return TIMER_NONE;
+   94  1      }
+   95         
+   96         /*!
+   97         **  -----  Use this to remove an alarm ----
+   98         **
+   99         ** @param handle
+  100         **
+  101         ** @return
+  102         **/
+  103         TIMER_HANDLE DelAlarm(TIMER_HANDLE handle)
+  104         {
+  105  1        /* Quick and dirty. system timer will continue to be trigged, but no action will be preformed. */
+  106  1        MSG_WAR(0x3320, "DelAlarm. handle = ", handle);
+  107  1        if(handle != TIMER_NONE)
+  108  1        {
+  109  2          if(handle == last_timer_raw)
+  110  2            last_timer_raw--;
+  111  2          timers[handle].state = TIMER_FREE;
+  112  2        }
+  113  1        return TIMER_NONE;
+  114  1      }
+C166 COMPILER V7.53.0.0, TIMER                                                             09/03/2014 10:38:11 PAGE 3   
+
+  115         
+  116         /*!
+  117         ** ------  TimeDispatch is called on each timer expiration ----
+  118         **
+  119         **/
+  120         int tdcount=0;
+  121         void TimeDispatch(void)
+  122         {
+  123  1        TIMER_HANDLE i;
+  124  1        TIMEVAL next_wakeup = TIMEVAL_MAX; /* used to compute when should normaly occur next wakeup */
+  125  1        /* First run : change timer state depending on time */
+  126  1        /* Get time since timer signal */
+  127  1        UNS32 overrun = (UNS32)getElapsedTime();
+  128  1      
+  129  1        TIMEVAL real_total_sleep_time = total_sleep_time + overrun;
+  130  1      
+  131  1        s_timer_entry *row;
+  132  1      
+  133  1        for(i=0, row = timers; i <= last_timer_raw; i++, row++)
+  134  1        {
+  135  2          if (row->state & TIMER_ARMED) /* if row is active */
+  136  2          {
+  137  3            if (row->val <= real_total_sleep_time) /* to be trigged */
+  138  3            {
+  139  4              if (!row->interval) /* if simply outdated */
+  140  4              {
+  141  5                row->state = TIMER_TRIG; /* ask for trig */
+  142  5              }
+  143  4              else /* or period have expired */
+  144  4              {
+  145  5                /* set val as interval, with 32 bit overrun correction, */
+  146  5                /* modulo for 64 bit not available on all platforms     */
+  147  5                row->val = row->interval - (overrun % (UNS32)row->interval);
+  148  5                row->state = TIMER_TRIG_PERIOD; /* ask for trig, periodic */
+  149  5                /* Check if this new timer value is the soonest */
+  150  5                if(row->val < next_wakeup)
+  151  5                  next_wakeup = row->val;
+  152  5              }
+  153  4            }
+  154  3            else
+  155  3            {
+  156  4              /* Each armed timer value in decremented. */
+  157  4              row->val -= real_total_sleep_time;
+  158  4      
+  159  4              /* Check if this new timer value is the soonest */
+  160  4              if(row->val < next_wakeup)
+  161  4                next_wakeup = row->val;
+  162  4            }
+  163  3          }
+  164  2        }
+  165  1      
+  166  1        /* Remember how much time we should sleep. */
+  167  1        total_sleep_time = next_wakeup;
+  168  1      
+  169  1        /* Set timer to soonest occurence */
+  170  1        setTimer(next_wakeup);
+  171  1      
+  172  1        /* Then trig them or not. */
+  173  1        for(i=0, row = timers; i<=last_timer_raw; i++, row++)
+  174  1        {
+  175  2          if (row->state & TIMER_TRIG)
+  176  2          {
+C166 COMPILER V7.53.0.0, TIMER                                                             09/03/2014 10:38:11 PAGE 4   
+
+  177  3            row->state &= ~TIMER_TRIG; /* reset trig state (will be free if not periodic) */
+  178  3            if(row->callback)
+  179  3              (*row->callback)(row->d, row->id); /* trig ! */
+  180  3          }
+  181  2        }
+  182  1      }
+
+
+MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
+  CODE SIZE        =         746     --------
+  NEAR-CONST SIZE  =    --------     --------
+  FAR-CONST SIZE   =    --------     --------
+  HUGE-CONST SIZE  =    --------     --------
+  XHUGE-CONST SIZE =    --------     --------
+  NEAR-DATA SIZE   =         152     --------
+  FAR-DATA SIZE    =    --------     --------
+  XHUGE-DATA SIZE  =    --------     --------
+  IDATA-DATA SIZE  =    --------     --------
+  SDATA-DATA SIZE  =    --------     --------
+  BDATA-DATA SIZE  =    --------     --------
+  HUGE-DATA SIZE   =    --------     --------
+  BIT SIZE         =    --------     --------
+  INIT'L SIZE      =         168     --------
+END OF MODULE INFORMATION.
+
+
+C166 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

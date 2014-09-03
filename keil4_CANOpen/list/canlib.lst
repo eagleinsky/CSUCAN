@@ -1,0 +1,218 @@
+C166 COMPILER V7.53.0.0, CANLIB                                                            07/21/2014 20:24:38 PAGE 1   
+
+
+C166 COMPILER V7.53.0.0, COMPILATION OF MODULE CANLIB
+OBJECT MODULE PLACED IN .\obj\canlib.obj
+COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE source\canlib.c MODV2 BROWSE INCDIR(.\source;.\CANopen\include;.\CANopen
+                    -\include\XC164_CANopen) MODV2 DEBUG PRINT(.\list\canlib.lst) TABS(2) OBJECT(.\obj\canlib.obj) 
+
+ stmt lvl     source
+
+    1         #include "main.h"
+    2         
+    3         unsigned short can_select;
+    4         unsigned short can_data;
+    5         
+    6         
+    7         uchar read_data(uchar channel,uchar address)
+    8         { 
+    9  1        uchar candata=0; 
+   10  1         if(channel==1)
+   11  1         {
+   12  2          *(can_addr+SELECT_ADDR1)=address;
+   13  2          candata= *(can_addr+DATA_ADDR1);
+   14  2          return candata;
+   15  2        }
+   16  1        else if(channel==2)
+   17  1        {
+   18  2          *(can_addr+SELECT_ADDR2)=address;
+   19  2          candata= *(can_addr+DATA_ADDR2);
+   20  2          return candata;
+   21  2        }
+   22  1        else  return FALSE;
+   23  1      }
+   24         void write_data(uchar channel,uchar address, uchar value )
+   25         {
+   26  1        if(channel==1)
+   27  1         {
+   28  2          *(can_addr+SELECT_ADDR1)=address;
+   29  2          *(can_addr+DATA_ADDR1)=value;
+   30  2        }
+   31  1        else if(channel==2)
+   32  1        {
+   33  2          *(can_addr+SELECT_ADDR2)=address;
+   34  2            *(can_addr+DATA_ADDR2)=value;
+   35  2        }
+   36  1      }
+   37         
+   38         /*************初始化SJA1000芯片***************
+   39         参数为一个数组，包含can初始化参数：
+   40         args[0]: 1配置第一个can通道，2配置第二个can通道
+   41         args[1]: 波特率选择，0代表50k，1代表100k
+   42         args[2-5]: 屏蔽寄存器数组,，如不屏蔽，都设置成0xff
+   43         args[6-9]: 代码寄存器数组，可都设置成0xff
+   44         比如测试第一路can，100k，可以这样初始化：
+   45         can_init(1,1,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff)
+   46         *********************************************/
+   47         uchar can_init(unsigned char *args)
+   48         {
+   49  1        uchar temp = 0;
+   50  1        uchar count = 0;
+   51  1        uchar btr0[] = {0xc7, 0x03};//50k,100k...
+   52  1        uchar btr1[] = {0x3e, 0x3e};//50k,100k...
+   53  1        
+   54  1      //  if (args[0] == 2)
+C166 COMPILER V7.53.0.0, CANLIB                                                            07/21/2014 20:24:38 PAGE 2   
+
+   55  1      //  {
+   56  1      //    can_select = SELECT_ADDR2;
+   57  1      //    can_data = DATA_ADDR2;
+   58  1      //  }
+   59  1      //  else
+   60  1      //  {
+   61  1      //    can_select = SELECT_ADDR1;
+   62  1      //    can_data = DATA_ADDR1;
+   63  1      //  }
+   64  1        temp = read_data(args[0],MOD_OFFSET);
+   65  1        while((read_data(args[0],MOD_OFFSET) & 0x01) == 0 )
+   66  1        {
+   67  2          count++;
+   68  2          if (count >= 10)
+   69  2            return FALSE;
+   70  2          write_data(args[0],MOD_OFFSET, (uchar)(temp | 0x01));/*进入复位模式，初始化SJA1000*/
+   71  2        }
+   72  1        count = 0;
+   73  1        write_data(args[0],CDR_OFFSET, 0x88); /*0x88*//*选择PeilCAN模式，关闭时钟输出*/
+   74  1      
+   75  1        write_data(args[0],AMR0_OFFSET, args[2]); /*11111111,接受屏蔽寄存器0*/
+   76  1        write_data(args[0],AMR1_OFFSET, args[3]); /*11111111,接受屏蔽寄存器1*/
+   77  1        write_data(args[0],AMR2_OFFSET, args[4]); /*11111111,接受屏蔽寄存器2*/
+   78  1        write_data(args[0],AMR3_OFFSET, args[5]); /*11111111,接受屏蔽寄存器3*/
+   79  1        /*接收任何标志符*/
+   80  1        write_data(args[0],ACR0_OFFSET, args[6]); /*00010000,接受代码寄存器0*/
+   81  1        write_data(args[0],ACR1_OFFSET, args[7]); /*00010000,接受代码寄存器1*/
+   82  1        write_data(args[0],ACR2_OFFSET, args[8]); /*00010000,接受代码寄存器2*/
+   83  1        write_data(args[0],ACR3_OFFSET, args[9]); /*00010000,接受代码寄存器3*/
+   84  1        write_data(args[0],BTR0_OFFSET, btr0[args[1]]); 
+   85  1        write_data(args[0],BTR1_OFFSET, btr1[args[1]]);
+   86  1        write_data(args[0],OCR_OFFSET, 0x1a); /*OCR,输出控制寄存器
+   87  1                        TX1悬空，TX0推挽
+   88  1                        正常输出模式*/
+   89  1        write_data(args[0],IEN_OFFSET,0x01);  /////使能SJA1000接收中断
+   90  1      
+   91  1        write_data(args[0],MOD_OFFSET, 0x08); /*0x08*//*设置单滤波器接受方式，并返回工作状态*/
+   92  1      
+   93  1        while (read_data(args[0],MOD_OFFSET) & 0x01 == 0x01)
+   94  1        {
+   95  2          count++;
+   96  2          if (count >= 10)
+   97  2            return FALSE; 
+   98  2        }
+   99  1        return TRUE;
+  100  1      }
+  101         
+  102         /*******************************
+  103         功能描述：发送数据子程序
+  104         入口参数：
+  105                   tdata－－发送缓冲区指针
+  106         出口参数：
+  107         *******************************/
+  108         uchar can_send(uchar channel,uchar *tdata)
+  109         {
+  110  1        uchar count = 0;
+  111  1        uchar offset = TXBuf_OFFSET; 
+  112  1        while(read_data( channel,SR_OFFSET) & 0x20)
+  113  1        {
+  114  2          count++;
+  115  2          if (count >= 10)
+  116  2            return FALSE;   
+C166 COMPILER V7.53.0.0, CANLIB                                                            07/21/2014 20:24:38 PAGE 3   
+
+  117  2        }
+  118  1        /*
+  119  1        write_data(offset++, 0x88);
+  120  1        write_data(offset++, 0x20);
+  121  1        write_data(offset++, 0x20);
+  122  1        write_data(offset++, 0x20);
+  123  1        write_data(offset++, 0x20);
+  124  1        */
+  125  1      
+  126  1        write_data(channel,offset++, tdata[0]);
+  127  1        write_data(channel,offset++, tdata[1]);
+  128  1        write_data(channel,offset++, tdata[2]);
+  129  1        write_data(channel,offset++, tdata[3]);
+  130  1        write_data(channel,offset++, tdata[4]);
+  131  1        write_data(channel,offset++, tdata[5]);
+  132  1        write_data(channel,offset++, tdata[6]);
+  133  1        write_data(channel,offset++, tdata[7]);
+  134  1        write_data(channel,offset++, tdata[8]);
+  135  1        write_data(channel,offset++, tdata[9]);
+  136  1        write_data(channel,offset++, tdata[10]);
+  137  1        write_data(channel,offset++, tdata[11]);
+  138  1        write_data(channel,offset++, tdata[12]);
+  139  1      
+  140  1        write_data(channel, CMR_OFFSET, 0x01);
+  141  1        return TRUE;
+  142  1      
+  143  1      }
+  144         
+  145         /*******************************
+  146         功能描述：接收数据子程序
+  147         入口参数：rdata－－接收缓冲区指针
+  148         出口参数：
+  149         *******************************/
+  150         uchar can_recv(uchar channel,uchar *rdata)
+  151         //EXPORT RECV_BUF CALLBACK can_recv()
+  152         {
+  153  1        uchar offset = RxBuf_OFFSET;
+  154  1        uchar count = 0;
+  155  1        while(( read_data(channel, SR_OFFSET) & 0x01) == 0)
+  156  1        {
+  157  2          count++;
+  158  2          if (count >= 200)
+  159  2            return FALSE; 
+  160  2        }
+  161  1        rdata[0] = read_data(channel,offset);
+  162  1        rdata[1] = read_data(channel,(uchar)(offset + 1));
+  163  1        rdata[2] = read_data(channel,(uchar)(offset + 2));
+  164  1        rdata[3] = read_data(channel,(uchar)(offset + 3));
+  165  1        rdata[4] = read_data(channel,(uchar)(offset + 4));
+  166  1        rdata[5] = read_data(channel,(uchar)(offset + 5));
+  167  1        rdata[6] = read_data(channel,(uchar)(offset + 6));
+  168  1        rdata[7] = read_data(channel,(uchar)(offset + 7));
+  169  1        rdata[8] = read_data(channel,(uchar)(offset + 8));
+  170  1        rdata[9] = read_data(channel,(uchar)(offset + 9));
+  171  1        rdata[10] = read_data(channel,(uchar)(offset + 10));
+  172  1        rdata[11] = read_data(channel,(uchar)(offset + 11));
+  173  1        rdata[12] = read_data(channel,(uchar)(offset + 12));
+  174  1      
+  175  1        write_data(channel,CMR_OFFSET, 0x04);
+  176  1        return TRUE;
+  177  1      }
+  178         
+C166 COMPILER V7.53.0.0, CANLIB                                                            07/21/2014 20:24:38 PAGE 4   
+
+  179         
+  180         
+  181         
+
+
+MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
+  CODE SIZE        =        1042     --------
+  NEAR-CONST SIZE  =           4     --------
+  FAR-CONST SIZE   =    --------     --------
+  HUGE-CONST SIZE  =    --------     --------
+  XHUGE-CONST SIZE =    --------     --------
+  NEAR-DATA SIZE   =           4     --------
+  FAR-DATA SIZE    =    --------     --------
+  XHUGE-DATA SIZE  =    --------     --------
+  IDATA-DATA SIZE  =    --------     --------
+  SDATA-DATA SIZE  =    --------     --------
+  BDATA-DATA SIZE  =    --------     --------
+  HUGE-DATA SIZE   =    --------     --------
+  BIT SIZE         =    --------     --------
+  INIT'L SIZE      =    --------     --------
+END OF MODULE INFORMATION.
+
+
+C166 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

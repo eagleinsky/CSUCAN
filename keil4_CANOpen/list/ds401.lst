@@ -1,0 +1,136 @@
+C166 COMPILER V7.53.0.0, DS401                                                             09/03/2014 10:38:11 PAGE 1   
+
+
+C166 COMPILER V7.53.0.0, COMPILATION OF MODULE DS401
+OBJECT MODULE PLACED IN .\obj\ds401.obj
+COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\examples\XC164\Slave\ds401.c MODV2 BROWSE INCDIR(.\source;.\CANo
+                    -pen\include;.\CANopen\include\XC164_CANopen;..\keil4;.\CANopen\examples\XC164\Slave) MODV2 DEBUG PRINT(.\list\ds401.lst)
+                    - TABS(2) OBJECT(.\obj\ds401.obj) 
+
+ stmt lvl     source
+
+    1         /*
+    2         This file is part of CanFestival, a library implementing CanOpen Stack.
+    3         
+    4         Copyright (C): Andreas GLAUSER
+    5         
+    6         See COPYING file for copyrights details.
+    7         
+    8         This library is free software; you can redistribute it and/or
+    9         modify it under the terms of the GNU Lesser General Public
+   10         License as published by the Free Software Foundation; either
+   11         version 2.1 of the License, or (at your option) any later version.
+   12         
+   13         This library is distributed in the hope that it will be useful,
+   14         but WITHOUT ANY WARRANTY; without even the implied warranty of
+   15         MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   16         Lesser General Public License for more details.
+   17         
+   18         You should have received a copy of the GNU Lesser General Public
+   19         License along with this library; if not, write to the Free Software
+   20         Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+   21         */
+   22         
+   23         // DS 401 Digital IO handling according DS 401 V2.1 "Device Profile for Generic I/O Modules"
+   24         
+   25         // Includes for the Canfestival
+   26         #include "ds401.h"
+   27         
+   28         unsigned char digital_input_handler(CO_Data* d, unsigned char *newInput, unsigned char size)
+   29         {
+   30  1        unsigned char loops, i, input, transmission = 0;
+   31  1      
+   32  1        loops = (sizeof(Read_Inputs_8_Bit) <= size) ? sizeof(Read_Inputs_8_Bit) : size;
+   33  1      
+   34  1        for (i=0; i < loops; i++)
+   35  1        {
+   36  2          input = *newInput ^ Polarity_Input_8_Bit[i];
+   37  2          if (Read_Inputs_8_Bit[i] != input)
+   38  2          {
+   39  3            if (Global_Interrupt_Enable_Digital)
+   40  3            {
+   41  4              if ((Interrupt_Mask_Any_Change_8_Bit[i] & (Read_Inputs_8_Bit[i] ^ input)) 
+   42  4         || (Interrupt_Mask_Low_to_High_8_Bit[i] & ~Read_Inputs_8_Bit[i] & input)
+   43  4         || (Interrupt_Mask_High_to_Low_8_Bit[i] & Read_Inputs_8_Bit[i] & ~input))
+   44  4           transmission = 1;
+   45  4            }
+   46  3            // update object dict
+   47  3            Read_Inputs_8_Bit[i] = input;
+   48  3          }
+   49  2          newInput++;
+   50  2        }
+   51  1        if (transmission)
+   52  1        {
+   53  2        /* force emission of PDO by artificially changing last emitted*/
+C166 COMPILER V7.53.0.0, DS401                                                             09/03/2014 10:38:11 PAGE 2   
+
+   54  2          d->PDO_status[0].last_message.cob_id = 0;
+   55  2          sendPDOevent(d);
+   56  2        }
+   57  1      
+   58  1        return 1;
+   59  1      }
+   60         
+   61         unsigned char digital_output_handler(CO_Data* d, unsigned char *newOutput, unsigned char size)
+   62         {
+   63  1        unsigned char loops, i, error, type;
+   64  1        unsigned char varsize = 1;
+   65  1      
+   66  1        loops = (sizeof(Write_Outputs_8_Bit) <= size) ? sizeof(Write_Outputs_8_Bit) : size;
+   67  1      
+   68  1        for (i=0; i < loops; i++)
+   69  1        {
+   70  2          getODentry(d, 0x1001, 0x0, &error, &varsize, &type, RO);
+*** WARNING C98 IN LINE 70 OF CANopen\examples\XC164\Slave\ds401.c: parameter 5: pointer to different objects
+   71  2          if ((getState(d) == Stopped) || (error != 0)) // node stopped or error
+   72  2          {
+   73  3            Write_Outputs_8_Bit[i] &= (~Error_Mode_Outputs_8_Bit[i] | Error_Value_Outputs_8_Bit[i]);
+   74  3            Write_Outputs_8_Bit[i] |= (Error_Mode_Outputs_8_Bit[i] & Error_Value_Outputs_8_Bit[i]);
+   75  3          }
+   76  2          *newOutput = Write_Outputs_8_Bit[i] ^ Change_Polarity_Outputs_8_Bit[i];
+   77  2          newOutput++;
+   78  2        }
+   79  1        return 1;
+   80  1      }
+   81         
+   82         unsigned char analog_input_handler(CO_Data* d, unsigned int *newInput, unsigned char size)
+   83         {
+   84  1        return 0;
+   85  1      }
+*** WARNING C47 IN LINE 82 OF CANopen\examples\XC164\Slave\ds401.c: 'd': unreferenced parameter
+*** WARNING C47 IN LINE 82 OF CANopen\examples\XC164\Slave\ds401.c: 'newInput': unreferenced parameter
+*** WARNING C47 IN LINE 82 OF CANopen\examples\XC164\Slave\ds401.c: 'size': unreferenced parameter
+   86         
+   87         unsigned char analog_output_handler(CO_Data* d, unsigned int *newOutput, unsigned char size)
+   88         {
+   89  1        return 0;
+   90  1      }
+*** WARNING C47 IN LINE 87 OF CANopen\examples\XC164\Slave\ds401.c: 'd': unreferenced parameter
+*** WARNING C47 IN LINE 87 OF CANopen\examples\XC164\Slave\ds401.c: 'newOutput': unreferenced parameter
+*** WARNING C47 IN LINE 87 OF CANopen\examples\XC164\Slave\ds401.c: 'size': unreferenced parameter
+   91         
+   92         
+   93         
+
+
+MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
+  CODE SIZE        =         328     --------
+  NEAR-CONST SIZE  =    --------     --------
+  FAR-CONST SIZE   =    --------     --------
+  HUGE-CONST SIZE  =    --------     --------
+  XHUGE-CONST SIZE =    --------     --------
+  NEAR-DATA SIZE   =    --------     --------
+  FAR-DATA SIZE    =    --------     --------
+  XHUGE-DATA SIZE  =    --------     --------
+  IDATA-DATA SIZE  =    --------     --------
+  SDATA-DATA SIZE  =    --------     --------
+  BDATA-DATA SIZE  =    --------     --------
+  HUGE-DATA SIZE   =    --------     --------
+C166 COMPILER V7.53.0.0, DS401                                                             09/03/2014 10:38:11 PAGE 3   
+
+  BIT SIZE         =    --------     --------
+  INIT'L SIZE      =    --------     --------
+END OF MODULE INFORMATION.
+
+
+C166 COMPILATION COMPLETE.  7 WARNING(S),  0 ERROR(S)

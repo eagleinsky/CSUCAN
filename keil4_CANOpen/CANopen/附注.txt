@@ -1,0 +1,45 @@
+CO_Data 初始化个各变量所在文件
+
+CO_Data ObjDict_Data = CANOPEN_NODE_DATA_INITIALIZER(ObjDict); //全局变量，在ObjDict.C里
+
+ObjDict.C:
+
+/**************************************************************************/
+/* The node id                                                            */
+/**************************************************************************/
+/* node_id default value.*/
+UNS8 ObjDict_bDeviceNodeId = 0x00;
+
+/**************************************************************************/
+/* Array of message processing information */
+
+const UNS8 ObjDict_iam_a_slave = 1;
+
+TIMER_HANDLE ObjDict_heartBeatTimers[1] = {TIMER_NONE,};
+
+const indextable ObjDict_objdict[] = {....};
+
+const indextable * ObjDict_scanIndexOD (UNS16 wIndex, UNS32 * errorCode, ODCallback_t **callbacks);
+
+s_PDO_status ObjDict_PDO_status[1] = {s_PDO_status_Initializer};
+
+quick_index ObjDict_firstIndex = {
+  13, /* SDO_SVR */
+  0, /* SDO_CLT */
+  14, /* PDO_RCV */
+  15, /* PDO_RCV_MAP */
+  16, /* PDO_TRS */
+  17 /* PDO_TRS_MAP */
+};
+
+quick_index ObjDict_lastIndex = {
+  13, /* SDO_SVR */
+  0, /* SDO_CLT */
+  14, /* PDO_RCV */
+  15, /* PDO_RCV_MAP */
+  16, /* PDO_TRS */
+  17 /* PDO_TRS_MAP */
+};
+
+UNS16 ObjDict_ObjdictSize = sizeof(ObjDict_objdict)/sizeof(ObjDict_objdict[0]);
+ObjDict_valueRangeTest (UNS8 typeValue, void * value);

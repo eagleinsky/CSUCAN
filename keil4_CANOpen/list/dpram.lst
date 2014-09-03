@@ -1,0 +1,69 @@
+C166 COMPILER V7.53.0.0, DPRAM                                                             09/03/2014 10:38:09 PAGE 1   
+
+
+C166 COMPILER V7.53.0.0, COMPILATION OF MODULE DPRAM
+OBJECT MODULE PLACED IN .\obj\dpram.obj
+COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE source\dpram.c MODV2 BROWSE INCDIR(.\source;.\CANopen\include;.\CANopen\
+                    -include\XC164_CANopen;..\keil4;.\CANopen\examples\XC164\Slave) MODV2 DEBUG PRINT(.\list\dpram.lst) TABS(2) OBJECT(.\obj\
+                    -dpram.obj) 
+
+ stmt lvl     source
+
+    1          /*****************************************************************
+    2         *FileName: dpram.c
+    3         *Author: jiangxiaojiang   Version:V1.0    Date:20/6/2014
+    4         *Description: 
+    5         *      Ë«¿ÚRAMÏà¹Ø¶ÁÐ´¡£
+    6         ******************************************************************/
+    7         #include "MAIN.h"
+    8         
+    9         void write_AD_ram(struct AD_DATA *adram)
+   10         {
+   11  1          int i=0;
+   12  1          for(i=0;i<2;i++)
+   13  1          {
+   14  2          while(DRAM_BUSY==0);  
+   15  2          ram_data_ad->aout[i]=adram->aout[i];
+   16  2          }
+   17  1      }
+   18         
+   19         void read_AD_ram(struct AD_DATA *adram)
+   20         {
+   21  1          int i=0;
+   22  1          for(i=0;i<9;i++)
+   23  1          {
+   24  2          while(DRAM_BUSY==0);
+   25  2          adram->ain[i]=ram_data_ad->ain[i];
+   26  2          }
+   27  1          for(i=0;i<4;i++)
+   28  1          {
+   29  2          while(DRAM_BUSY==0);
+   30  2          adram->Speed[i]=ram_data_ad->Speed[i];
+   31  2          }
+   32  1          while(DRAM_BUSY==0);
+   33  1          adram->Pwm_width=ram_data_ad->Pwm_width;
+   34  1      
+   35  1      }
+
+
+MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
+  CODE SIZE        =         128     --------
+  NEAR-CONST SIZE  =    --------     --------
+  FAR-CONST SIZE   =    --------     --------
+  HUGE-CONST SIZE  =    --------     --------
+  XHUGE-CONST SIZE =    --------     --------
+  NEAR-DATA SIZE   =    --------     --------
+  FAR-DATA SIZE    =    --------     --------
+  XHUGE-DATA SIZE  =    --------     --------
+  IDATA-DATA SIZE  =    --------     --------
+  SDATA-DATA SIZE  =    --------     --------
+  BDATA-DATA SIZE  =    --------     --------
+  HUGE-DATA SIZE   =    --------     --------
+  BIT SIZE         =    --------     --------
+  INIT'L SIZE      =    --------     --------
+END OF MODULE INFORMATION.
+C166 COMPILER V7.53.0.0, DPRAM                                                             09/03/2014 10:38:09 PAGE 2   
+
+
+
+C166 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

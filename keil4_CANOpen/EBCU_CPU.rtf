@@ -1,0 +1,776 @@
+{\rtf1\ansi\deff0\deftab720{\fonttbl{\f0\fnil MS Sans Serif;}{\f1\fnil\fcharset2 Symbol;}{\f2\fswiss\fprq2 System;}{\f3\fnil Times New Roman;}{\f4\fswiss\fprq2 Arial;}}
+{\colortbl\red0\green0\blue0;\red0\green0\blue128;\red255\green0\blue0;}
+\deflang1031\pard\plain\f4\fs28\cf0 DAvE's Project Documentation
+\par \plain\f4\fs22\cf0
+\par \plain\f4\fs22\cf0 Project: \tab\tab\b EBCU_CPU.dav
+\par 
+\par \plain\f4\fs22\cf0 Controller: \tab\tab\b XC164CS-16F20
+\par \plain\f4\fs22\cf0 Compiler: \tab\tab\b Keil
+\par \plain\f4\fs22\cf0 Memory Model: \tab\b SMALL
+\par 
+\par \plain\f4\fs22\cf0 Date: \tab\tab\tab\b 2014/7/1 15:42:51
+\par 
+\par 
+\par \plain\f4\fs22\cf2\b Please read this document carefully and note
+\par \plain\f4\fs22\cf2\b the red-colored hints.
+\par 
+\par \plain\f4\fs22\cf2\b If you miss a file in the generated files list
+\par \plain\f4\fs22\cf2\b maybe you have forgotten to select the
+\par \plain\f4\fs22\cf2\b initialisation function of the related module.
+\par 
+\par \plain\f4\fs22\cf0 Generated Files:
+\plain\f4\fs20\cf0\b
+\par \tab\tab\tab MAIN.H
+\par \tab\tab\tab MAIN.C
+\par \tab\tab\tab IO.H
+\par \tab\tab\tab IO.C
+\par \tab\tab\tab GPT1.H
+\par \tab\tab\tab GPT1.C
+\par \tab\tab\tab CC2.H
+\par \tab\tab\tab CC2.C
+\par \tab\tab\tab EBCU_CPU.ASM
+\par 
+\par 
+\par \plain\f4\fs20\cf0
+\par \plain\f4\fs28\cf0\ul Project Settings
+\par
+\par \plain\f4\fs24\cf0 Macros:\f4\fs20\cf0
+\par \plain\f4\fs24\cf0 Functions:\f4\fs20\cf0
+\par
+\par \plain\f4\fs20\cf0 \tab Function:
+\par \plain\f4\fs20\cf0\b \tab \tab void MAIN_vInit(void)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This function initializes the microcontroller.
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab None
+
+\par
+\par \plain\f4\fs20\cf0 \tab Function:
+\par \plain\f4\fs20\cf0\b \tab \tab void MAIN_vUnlockProtecReg(void)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This function makes it possible to write one protected
+
+\par \tab \tab register. After calling of this function and write on the
+
+\par \tab \tab protected register is the security level set to low
+
+\par \tab \tab protected mode.
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab None
+
+\par
+\par \plain\f4\fs20\cf0 \tab Function:
+\par \plain\f4\fs20\cf0\b \tab \tab void main(void)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This is the main function.
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab None
+
+\par
+\par \plain\f4\fs24\cf0 Initialization:
+\par \plain\f4\fs20\cf0\b
+\par
+\tab Configuration of the System Clock:\par 
+\tab - VCO clock used, input clock is connected\par 
+\tab - input frequency is 8 MHz\par 
+\tab - VCO output frequency 100 .. 150 MHz\par 
+\tab - system clock is 20 MHz\par 
+\par 
+\tab \cf2Begin of Important Settings for the Start-Up File\cf0\par 
+\tab All following settings must be set in the start-up file. You can use\par 
+\tab DAvE's project file (*.dpt) to include this register values into your\par 
+\tab compiler EDE.\par 
+\par 
+\tab Initialization of the CPUCON1 Register:\par 
+\tab - space between two vectors is 2 words\par 
+\tab - DISWDT executable until End of Init\par 
+\tab - segmentation is enabled\par 
+\tab - switch context is interruptible\par 
+\tab - branch prediction is enabled\par 
+\tab - zero cycle jump function is enabled\par 
+\par 
+\tab \cf2this register must be set in the start-up file\cf0\par 
+\tab \cf2CPUCON1  =  0x0007\cf0\par 
+\par 
+\tab Initialization of the VECSEG Register:\par 
+\tab - start from internal program memory\par 
+\par 
+\tab \cf2this register must be set in the start-up file\cf0\par 
+\tab \cf2VECSEG  =  0x00C0\cf0\par 
+\par 
+\tab Initialization of the SYSCON0 Register:\par 
+\par 
+\tab \cf2this register must be set in the start-up file\cf0\par 
+\tab \cf2SYSCON0  =  0x0000\cf0\par 
+\par 
+\tab Initialization of the SYSCON1 Register:\par 
+\tab clock prescaler for system is fpll / 1\par 
+\par 
+\tab \cf2this register must be set in the start-up file\cf0\par 
+\tab \cf2SYSCON1  =  0x0000\cf0\par 
+\par 
+\tab Initialization of the SYSCON3 Register:\par 
+\par 
+\tab \cf2this register must be set in the start-up file\cf0\par 
+\tab \cf2SYSCON3  =  0x0000\cf0\par 
+\par 
+\tab Initialization of EBC\par 
+\par 
+\tab \cf2this register must be set in the start-up file\cf0\par 
+\tab \cf2EBCMOD1  =  0x0040\cf0\par 
+\par 
+\tab EBC is enabled\par 
+\tab pin #BHE is disabled\par 
+\tab pin ALE is disabled\par 
+\tab as segment address are 4 pins enabled ( A[19] .. A[16] )\par 
+\tab no chip select pin enabled\par 
+\tab pin #READY is disabled\par 
+\tab bus arbitration is disabled, P6.7 .. P6.5 may used for general\par 
+\tab purpose IO\par 
+\par 
+\tab \cf2this register must be set in the start-up file\cf0\par 
+\tab \cf2EBCMOD0  =  0x7004\cf0\par 
+\par 
+\tab ---------- chip select 0 is enabled ----------\par 
+\tab - 8-bit Demultiplexed Bus\par 
+\tab access time is controlled by bitfield PHE0\par 
+\par 
+\tab \cf2this register must be set in the start-up file\cf0\par 
+\tab \cf2FCONCS0  =  0x0001\cf0\par 
+\par 
+\tab Phase A: 3 clock cycles\par 
+\tab Phase B: 2 clock cycles\par 
+\tab Phase C: 1 clock cycles\par 
+\tab Phase D: 1 clock cycles\par 
+\tab Phase E: 15 clock cycles\par 
+\tab Read Phase F: 1 clock cycles\par 
+\tab Write Phase F: 3 clock cycles\par 
+\par 
+\tab \cf2this register must be set in the start-up file\cf0\par 
+\tab \cf2TCONCS0  =  0x6BAF\cf0\par 
+\par 
+\tab ---------- chip select 1 is disabled ----------\par 
+\par 
+\tab ---------- chip select 2 is disabled ----------\par 
+\par 
+\tab ---------- chip select 3 is disabled ----------\par 
+\par 
+\tab \cf2End of Important Settings for the Start-Up File\cf0\par 
+\par 
+
+\par \plain\f4\fs20\cf0
+\par \plain\f4\fs28\cf0\ul Parallel Ports
+\par
+\par \plain\f4\fs24\cf0 Macros:\f4\fs20\cf0
+\par
+\par
+\par \plain\f4\fs20\cf0 \tab Macro:
+\par \plain\f4\fs20\cf0\b \tab \tab IO_vSetPin(PinName)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This macro sets the chosen portpin to '1'.
+
+\par \tab \tab Note:
+
+\par \tab \tab See the 'Defines for the parameter PinName' section in this
+
+\par \tab \tab header file for the available definitions for the parameter
+
+\par \tab \tab PinName.
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab PinName:
+
+\par \tab \tab Pin to be set to '1'
+
+\par
+\par
+\par \plain\f4\fs20\cf0 \tab Macro:
+\par \plain\f4\fs20\cf0\b \tab \tab IO_vResetPin(PinName)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This macro sets the chosen portpin to '0'.
+
+\par \tab \tab Note:
+
+\par \tab \tab See the 'Defines for the parameter PinName' section in this
+
+\par \tab \tab header file for the available definitions for the parameter
+
+\par \tab \tab PinName.
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab PinName:
+
+\par \tab \tab Pin to be set to '0'
+
+\par
+\par
+\par \plain\f4\fs20\cf0 \tab Macro:
+\par \plain\f4\fs20\cf0\b \tab \tab IO_vSetPortOut(PortName, uwMask)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This macro makes it possible to reconfigure the selected
+
+\par \tab \tab port. The parameter usMask determines which individual port
+
+\par \tab \tab pins are to be used as outputs. Every bit position in the
+
+\par \tab \tab parameter usMask corresponds to a port pin.
+
+\par \tab \tab The following definitions for PortName are available:
+
+\par \tab \tab P0H, P0L, P1H, P1L, P3, P4, P5, P9, P20,
+
+\par \tab \tab Example:
+
+\par \tab \tab IO_vSetPortOut(P0,0x0204);  // sets P0.9 and P0.2 to output
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab PortName:
+
+\par \tab \tab Port to be configured
+
+\par \tab \tab uwMask:
+
+\par \tab \tab Mask for port pins to be configured
+
+\par \plain\f4\fs24\cf0 Functions:\f4\fs20\cf0
+\par
+\par \plain\f4\fs20\cf0 \tab Function:
+\par \plain\f4\fs20\cf0\b \tab \tab void IO_vInit(void)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This is the initialization function of the IO function
+
+\par \tab \tab library. It is assumed that the SFRs used by this library
+
+\par \tab \tab are in its reset state.
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab None
+
+\par
+\par \plain\f4\fs24\cf0 Initialization:
+\par \plain\f4\fs20\cf0\b
+\par
+\tab General Port Settings:\par 
+\par 
+\tab Configuration of Port P0H:\par 
+\tab P0H.3 is used as general purpose output\par 
+\tab - the pin status is low level\par 
+\tab P0H.4 is used as general purpose output\par 
+\tab - the pin status is low level\par 
+\par 
+\tab P0H.0 - P0H.3 output driver characteristic: strong driver\par 
+\tab P0H.4 - P0H.7 output driver characteristic: strong driver\par 
+\par 
+\tab P0H.0 - P0H.3 output edge characteristic: sharp edge mode\par 
+\tab P0H.4 - P0H.7 output edge characteristic: sharp edge mode\par 
+\par 
+\tab Configuration of Port P0L:\par 
+\tab P0L.0 is used as alternate output for the Port Pin (AD0)\par 
+\tab P0L.1 is used as alternate output for the Port Pin (AD1)\par 
+\tab P0L.2 is used as alternate output for the Port Pin (AD2)\par 
+\tab P0L.3 is used as alternate output for the Port Pin (AD3)\par 
+\tab P0L.4 is used as alternate output for the Port Pin (AD4)\par 
+\tab P0L.5 is used as alternate output for the Port Pin (AD5)\par 
+\tab P0L.6 is used as alternate output for the Port Pin (AD6)\par 
+\tab P0L.7 is used as alternate output for the Port Pin (AD7)\par 
+\par 
+\tab P0L.0 - P0L.3 output driver characteristic: strong driver\par 
+\tab P0L.4 - P0L.7 output driver characteristic: strong driver\par 
+\par 
+\tab P0L.0 - P0L.3 output edge characteristic: sharp edge mode\par 
+\tab P0L.4 - P0L.7 output edge characteristic: sharp edge mode\par 
+\par 
+\tab Configuration of Port P1H:\par 
+\tab P1H.0 is used as alternate output for the Port Pin (A8)\par 
+\tab P1H.1 is used as alternate output for the Port Pin (A9)\par 
+\tab P1H.2 is used as alternate output for the Port Pin (A10)\par 
+\tab P1H.3 is used as alternate output for the Port Pin (A11)\par 
+\tab P1H.4 is used as alternate output for the Port Pin (A12)\par 
+\tab P1H.5 is used as alternate output for the Port Pin (A13)\par 
+\tab P1H.6 is used as alternate output for the Port Pin (A14)\par 
+\tab P1H.7 is used as alternate output for the Port Pin (A15)\par 
+\par 
+\tab P1H.0 - P1H.3 output driver characteristic: strong driver\par 
+\tab P1H.4 - P1H.7 output driver characteristic: strong driver\par 
+\par 
+\tab P1H.0 - P1H.3 output edge characteristic: sharp edge mode\par 
+\tab P1H.4 - P1H.7 output edge characteristic: sharp edge mode\par 
+\par 
+\tab Configuration of Port P1L:\par 
+\tab P1L.0 is used as alternate output for the Port Pin (A0)\par 
+\tab P1L.1 is used as alternate output for the Port Pin (A1)\par 
+\tab P1L.1 is used as alternate output for the Port Pin (A1)\par 
+\tab P1L.2 is used as alternate output for the Port Pin (A2)\par 
+\tab P1L.3 is used as alternate output for the Port Pin (A3)\par 
+\tab P1L.4 is used as alternate output for the Port Pin (A4)\par 
+\tab P1L.5 is used as alternate output for the Port Pin (A5)\par 
+\tab P1L.6 is used as alternate output for the Port Pin (A6)\par 
+\tab P1L.7 is used as alternate output for the Port Pin (A7)\par 
+\par 
+\tab P1L.0 - P1L.3 output driver characteristic: strong driver\par 
+\tab P1L.4 - P1L.7 output driver characteristic: strong driver\par 
+\par 
+\tab P1L.0 - P1L.3 output edge characteristic: sharp edge mode\par 
+\tab P1L.4 - P1L.7 output edge characteristic: sharp edge mode\par 
+\par 
+\tab Configuration of Port P3:\par 
+\tab - no pin of port P3 is used\par 
+\par 
+\tab Configuration of Port P4:\par 
+\tab P4.0 is used as alternate input for the Port Pin (A16)\par 
+\tab P4.1 is used as alternate input for the Port Pin (A17)\par 
+\tab P4.2 is used as alternate input for the Port Pin (A18)\par 
+\tab P4.3 is used as alternate input for the Port Pin (A19)\par 
+\tab P4.6 is used as general purpose output\par 
+\tab - push/pull output is selected\par 
+\tab - the pin status is low level\par 
+\tab P4.7 is used as general input\par 
+\par 
+\tab P4.0 - P4.7 threshold type: TTL input\par 
+\par 
+\tab P4.0 - P4.3 output driver characteristic: strong driver\par 
+\tab P4.4 - P4.7 output driver characteristic: strong driver\par 
+\par 
+\tab P4.0 - P4.3 output edge characteristic: sharp edge mode\par 
+\tab P4.4 - P4.7 output edge characteristic: sharp edge mode\par 
+\par 
+\tab Configuration of Port P5:\par 
+\tab P5.0 is used as general input\par 
+\tab P5.1 is used as general input\par 
+\tab P5.2 is used as general input\par 
+\tab P5.3 is used as general input\par 
+\tab P5.4 is used as general input\par 
+\par 
+\tab Configuration of Port P9:\par 
+\tab P9.0 is used as alternate input for the CAPCOM2 Input (CC16IO)\par 
+\tab P9.1 is used as alternate input for the CAPCOM2 Input (CC17IO)\par 
+\par 
+\tab P9.0 - P9.7 threshold type: TTL input\par 
+\par 
+\tab P9.0 - P9.3 output driver characteristic: strong driver\par 
+\tab P9.4 - P9.7 output driver characteristic: strong driver\par 
+\par 
+\tab P9.0 - P9.3 output edge characteristic: sharp edge mode\par 
+\tab P9.4 - P9.7 output edge characteristic: sharp edge mode\par 
+\par 
+\tab Configuration of Port P20:\par 
+\tab P20.12 is used as general purpose output\par 
+\tab - the pin status is low level\par 
+\par 
+\tab P20.0 - P20.7 threshold type: TTL input\par 
+\tab P20.8 - P20.15 threshold type: TTL input\par 
+\par 
+\tab P20.0 - P20.3 output driver characteristic: strong driver\par 
+\tab P20.4 - P20.7 output driver characteristic: strong driver\par 
+\tab P20.12 - P20.15 output driver characteristic: strong driver\par 
+\par 
+\tab P20.0 - P20.3 output edge characteristic: sharp edge mode\par 
+\tab P20.4 - P20.7 output edge characteristic: sharp edge mode\par 
+\tab P20.12 - P20.15 output edge characteristic: sharp edge mode\par 
+\par 
+
+\par \plain\f4\fs20\cf0
+\par \plain\f4\fs28\cf0\ul General Purpose Timer Unit (GPT1)
+\par
+\par \plain\f4\fs24\cf0 Macros:\f4\fs20\cf0
+\par
+\par
+\par \plain\f4\fs20\cf0 \tab Macro:
+\par \plain\f4\fs20\cf0\b \tab \tab GPT1_vStartTmr(TimerNr)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This macro starts the selected GPT1 timer. The timer
+
+\par \tab \tab continues to count from where it had stopped. The following
+
+\par \tab \tab definitions are available for TimerNr:
+
+\par \tab \tab GPT1_TIMER_2
+
+\par \tab \tab GPT1_TIMER_3
+
+\par \tab \tab GPT1_TIMER_4
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab TimerNr:
+
+\par \tab \tab the name of the timer to be started
+
+\par
+\par
+\par \plain\f4\fs20\cf0 \tab Macro:
+\par \plain\f4\fs20\cf0\b \tab \tab GPT1_vStopTmr(TimerNr)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This macro stops the selected GPT1 timer. The contents of
+
+\par \tab \tab the timer register remain unchanged. The remote control of
+
+\par \tab \tab the selected timer is cleared. The following definitions
+
+\par \tab \tab are available for TimerNr:
+
+\par \tab \tab GPT1_TIMER_2
+
+\par \tab \tab GPT1_TIMER_3
+
+\par \tab \tab GPT1_TIMER_4
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab TimerNr:
+
+\par \tab \tab The name of the timer to be stopped
+
+\par
+\par
+\par \plain\f4\fs20\cf0 \tab Macro:
+\par \plain\f4\fs20\cf0\b \tab \tab GPT1_vClearTmr(TimerNr)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This macro stops the selected GPT1 timer and sets the timer
+
+\par \tab \tab register to 0. The remote control of the selected timer is
+
+\par \tab \tab cleared. The following definitions are available for
+
+\par \tab \tab TimerNr:
+
+\par \tab \tab GPT1_TIMER_2
+
+\par \tab \tab GPT1_TIMER_3
+
+\par \tab \tab GPT1_TIMER_4
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab TimerNr:
+
+\par \tab \tab The name of the timer to be cleared
+
+\par \plain\f4\fs24\cf0 Functions:\f4\fs20\cf0
+\par
+\par \plain\f4\fs20\cf0 \tab Function:
+\par \plain\f4\fs20\cf0\b \tab \tab void GPT1_vInit(void)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This is the initialization function of the GPT1 function
+
+\par \tab \tab library. It is assumed that the SFRs used by this library
+
+\par \tab \tab are in its reset state.
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab None
+
+\par
+\par \plain\f4\fs20\cf0 \tab Function:
+\par \plain\f4\fs20\cf0\b \tab \tab void GPT1_viTmr3(void)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This is the interrupt service routine for the GPT1 timer 3.
+
+\par \tab \tab It is called up in the case of over or underflow of the
+
+\par \tab \tab timer 3 register.
+
+\par \tab \tab If the incremental interface mode is selected it is called
+
+\par \tab \tab up if count edge or count direction was detected.
+
+\par \tab \tab Please note that you have to add application specific code
+
+\par \tab \tab to this function.
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab None
+
+\par
+\par \plain\f4\fs20\cf0 \tab Function:
+\par \plain\f4\fs20\cf0\b \tab \tab void GPT1_viTmr2(void)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This is the interrupt service routine for the GPT1 timer 2.
+
+\par \tab \tab It is called up in the case of over or underflow of the
+
+\par \tab \tab timer 2 register.
+
+\par \tab \tab If the incremental interface mode is selected and the
+
+\par \tab \tab interrupt for this mode is not disabled it is called up if
+
+\par \tab \tab count edge or count direction was detected.
+
+\par \tab \tab Please note that you have to add application specific code
+
+\par \tab \tab to this function.
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab None
+
+\par
+\par \plain\f4\fs24\cf0 Initialization:
+\par \plain\f4\fs20\cf0\b
+\par
+\tab Configuration of Timer Block Prescaler 1:\par 
+\tab - prescaler for timer block 1 is 32\par 
+\par 
+\tab Configuration of the GPT1 Core Timer 3:\par 
+\tab - timer 3 works in timer mode\par 
+\tab - external up/down control is disabled\par 
+\tab - prescaler factor is 32\par 
+\tab - up/down control bit is reset\par 
+\tab - alternate output function T3OUT (P3.3) is disabled\par 
+\tab - timer 3 output toggle latch (T3OTL) is set to 0\par 
+\par 
+\tab Configuration of the GPT1 Auxiliary Timer 2:\par 
+\tab - timer 2 works in timer mode\par 
+\tab - external up/down control is disabled\par 
+\tab - prescaler factor is 32\par 
+\tab - up/down control bit is reset\par 
+\par 
+\tab Configuration of the GPT1 Auxiliary Timer 4:\par 
+\tab - timer 4 works in timer mode\par 
+\tab - external up/down control is disabled\par 
+\tab - prescaler factor is 32\par 
+\tab - up/down control bit is reset\par 
+\tab - timer 4 run bit is reset\par 
+\par 
+\tab Configuration of the used GPT1 Port Pins:\par 
+\par 
+\tab Configuration of the used GPT1 Interrupts:\par 
+\tab timer 2 service request node configuration:\par 
+\tab - timer 2 interrupt priority level (ILVL) = 14\par 
+\tab - timer 2 interrupt group level (GLVL) = 0\par 
+\tab - timer 2 group priority extension (GPX) = 0\par 
+\par 
+\tab Use PEC channel 0 for GPT1 T2 INT:\par 
+\tab - normal interrupt\par 
+\tab - pointers are not modified\par 
+\tab - transfer a word\par 
+\tab - service End of PEC interrrupt by a EOP interrupt node is disabled\par 
+\tab - channel link mode is disabled\par 
+\par 
+\tab timer 3 service request node configuration:\par 
+\tab - timer 3 interrupt priority level (ILVL) = 13\par 
+\tab - timer 3 interrupt group level (GLVL) = 0\par 
+\tab - timer 3 group priority extension (GPX) = 0\par 
+\par 
+
+\par \plain\f4\fs20\cf0
+\par \plain\f4\fs28\cf0\ul Capture / Compare Unit 2 (CAPCOM2)
+\par
+\par \plain\f4\fs24\cf0 Macros:\f4\fs20\cf0
+\par \plain\f4\fs24\cf0 Functions:\f4\fs20\cf0
+\par
+\par \plain\f4\fs20\cf0 \tab Function:
+\par \plain\f4\fs20\cf0\b \tab \tab void CC2_vInit(void)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This is the initialization function of the CAPCOM2 function
+
+\par \tab \tab library. It is assumed that the SFRs used by this library
+
+\par \tab \tab are in its reset state.
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab None
+
+\par
+\par \plain\f4\fs20\cf0 \tab Function:
+\par \plain\f4\fs20\cf0\b \tab \tab void CC2_viCC16(void)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This is the interrupt service routine for the CAPCOM2
+
+\par \tab \tab register CC16. If the content of the corresponding compare
+
+\par \tab \tab timer (configurable) equals the content of the
+
+\par \tab \tab capture/compare register CC16 or if a capture event occurs
+
+\par \tab \tab at the associated port pin, the interrupt request flag is
+
+\par \tab \tab set and an interrupt is triggered (only if enabled).
+
+\par \tab \tab Please note that you have to add application specific code
+
+\par \tab \tab to this function.
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab None
+
+\par
+\par \plain\f4\fs20\cf0 \tab Function:
+\par \plain\f4\fs20\cf0\b \tab \tab void CC2_viCC17(void)\plain\f4\fs20\cf0
+\par \tab Description:
+\par \plain\f4\fs20\cf0\i
+\tab \tab This is the interrupt service routine for the CAPCOM2
+
+\par \tab \tab register CC17. If the content of the corresponding compare
+
+\par \tab \tab timer (configurable) equals the content of the
+
+\par \tab \tab capture/compare register CC17 or if a capture event occurs
+
+\par \tab \tab at the associated port pin, the interrupt request flag is
+
+\par \tab \tab set and an interrupt is triggered (only if enabled).
+
+\par \tab \tab Please note that you have to add application specific code
+
+\par \tab \tab to this function.
+
+\par \plain\f4\fs20\cf0 \tab Returnvalue:
+\par \tab \tab \plain\f4\fs20\cf0\b None\plain\f4\fs20\cf0
+\par \plain\f4\fs20\cf0 \tab Parameters:
+\par \plain\f4\fs20\cf0\b 
+\tab \tab None
+
+\par
+\par \plain\f4\fs24\cf0 Initialization:
+\par \plain\f4\fs20\cf0\b
+\par
+\tab Configuration of CAPCOM2 Control:\par 
+\tab - the contents of the port register is changed by the CAPCOM2 unit\par 
+\tab - staggered mode is enabled\par 
+\par 
+\tab Configuration of CAPCOM2 Timer 7:\par 
+\tab - timer 7 works in timer mode\par 
+\tab - prescaler factor is 8\par 
+\tab - timer 7 run bit is reset\par 
+\par 
+\tab Configuration of CAPCOM2 Timer 8:\par 
+\tab - timer 8 works in timer mode\par 
+\tab - prescaler factor is 8\par 
+\tab - timer 8 run bit is reset\par 
+\par 
+\tab Configuration of the used CAPCOM2 Timer Port Pins:\par 
+\par 
+\tab Configuration of the used CAPCOM2 Timer Interrupts:\par 
+\par 
+\tab Configuration of the used CAPCOM2 Channel 16:\par 
+\tab - capture on positive transition (falling edge) at pin CC16IO (P9.0)\par 
+\tab - CC16 allocated to CAPCOM2 timer 7\par 
+\tab - single event mode is enabled\par 
+\tab - single event is disabled\par 
+\par 
+\tab Configuration of the used CAPCOM2 Channel 17:\par 
+\tab - capture on positive transition (falling edge) at pin CC17IO (P9.1)\par 
+\tab - CC17 allocated to CAPCOM2 timer 7\par 
+\tab - single event mode is enabled\par 
+\tab - single event is enabled\par 
+\par 
+\tab Configuration of the used CAPCOM2 Channel 18:\par 
+\tab - channel 18 is disabled\par 
+\par 
+\tab Configuration of the used CAPCOM2 Channel 19:\par 
+\tab - channel 19 is disabled\par 
+\par 
+\tab Configuration of the used CAPCOM2 Channel 20:\par 
+\tab - channel 20 is disabled\par 
+\par 
+\tab Configuration of the used CAPCOM2 Channel 21:\par 
+\tab - channel 21 is disabled\par 
+\par 
+\tab Configuration of the used CAPCOM2 Channel 22:\par 
+\tab - channel 22 is disabled\par 
+\par 
+\tab Configuration of the used CAPCOM2 Channel 23:\par 
+\tab - channel 23 is disabled\par 
+\par 
+\tab Configuration of the used CAPCOM2 Channel 24:\par 
+\tab - channel 24 is disabled\par 
+\par 
+\tab Configuration of the used CAPCOM2 Channel 25:\par 
+\tab - channel 25 is disabled\par 
+\par 
+\tab Configuration of the used CAPCOM2 Channel 26:\par 
+\tab - channel 26 is disabled\par 
+\par 
+\tab Configuration of the used CAPCOM2 Channel 27:\par 
+\tab - channel 27 is disabled\par 
+\par 
+\tab Configuration of the used CAPCOM2 Channel 28:\par 
+\tab - channel 28 is disabled\par 
+\par 
+\tab Configuration of the used CAPCOM2 Channel 29:\par 
+\tab - channel 29 is disabled\par 
+\par 
+\tab Configuration of the used CAPCOM2 Channel 30:\par 
+\tab - channel 30 is disabled\par 
+\par 
+\tab Configuration of the used CAPCOM2 Channel 31:\par 
+\tab - channel 31 is disabled\par 
+\par 
+\tab Configuration of the used CAPCOM2 Channel Port Pins:\par 
+\tab - P9.0 is used for CAPCOM2 Input (CC16IO)\par 
+\tab - P9.1 is used for CAPCOM2 Input (CC17IO)\par 
+\par 
+\tab Configuration of the used CAPCOM2 Channels Interrupts:\par 
+\tab CC16 service request node configuration:\par 
+\tab - CC16 interrupt priority level (ILVL) = 12\par 
+\tab - CC16 interrupt group level (GLVL) = 0\par 
+\tab - CC16 group priority extension (GPX) = 0\par 
+\par 
+\tab CC17 service request node configuration:\par 
+\tab - CC17 interrupt priority level (ILVL) = 11\par 
+\tab - CC17 interrupt group level (GLVL) = 0\par 
+\tab - CC17 group priority extension (GPX) = 0\par 
+\par 
+
+}

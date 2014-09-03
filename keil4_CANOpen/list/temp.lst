@@ -1,0 +1,79 @@
+C166 COMPILER V7.53.0.0, TEMP                                                              09/03/2014 10:38:11 PAGE 1   
+
+
+C166 COMPILER V7.53.0.0, COMPILATION OF MODULE TEMP
+OBJECT MODULE PLACED IN .\obj\temp.obj
+COMPILER INVOKED BY: C:\Keil4\C166\BIN\C166.EXE CANopen\src\temp.c MODV2 BROWSE INCDIR(.\source;.\CANopen\include;.\CANo
+                    -pen\include\XC164_CANopen;..\keil4;.\CANopen\examples\XC164\Slave) MODV2 DEBUG PRINT(.\list\temp.lst) TABS(2) OBJECT(.\o
+                    -bj\temp.obj) 
+
+ stmt lvl     source
+
+    1         #include "data.h"
+    2         
+    3         /*states.c*/
+    4         //void _initialisation(CO_Data* d){}
+    5         //void _preOperational(CO_Data* d){}
+    6         //void _operational(CO_Data* d){}
+    7         //void _stopped(CO_Data* d){}
+    8         
+    9           
+   10         //lifegrd.c
+   11         
+   12         void _heartbeatError(CO_Data* d, UNS8 heartbeatID){}
+*** WARNING C47 IN LINE 12 OF CANopen\src\temp.c: 'd': unreferenced parameter
+*** WARNING C47 IN LINE 12 OF CANopen\src\temp.c: 'heartbeatID': unreferenced parameter
+   13         void _post_SlaveBootup(CO_Data* d, UNS8 SlaveID){}
+*** WARNING C47 IN LINE 13 OF CANopen\src\temp.c: 'd': unreferenced parameter
+*** WARNING C47 IN LINE 13 OF CANopen\src\temp.c: 'SlaveID': unreferenced parameter
+   14         void _post_SlaveStateChange(CO_Data* d, UNS8 nodeId, e_nodeState newNodeState){}
+*** WARNING C47 IN LINE 14 OF CANopen\src\temp.c: 'd': unreferenced parameter
+*** WARNING C47 IN LINE 14 OF CANopen\src\temp.c: 'nodeId': unreferenced parameter
+*** WARNING C47 IN LINE 14 OF CANopen\src\temp.c: 'newNodeState': unreferenced parameter
+   15         void _nodeguardError(CO_Data* d, UNS8 id){}
+*** WARNING C47 IN LINE 15 OF CANopen\src\temp.c: 'd': unreferenced parameter
+*** WARNING C47 IN LINE 15 OF CANopen\src\temp.c: 'id': unreferenced parameter
+   16           
+   17           
+   18         //  nmtSlave.c (src):
+   19         void proceedNMTstateChange(CO_Data* d, Message *m) {}
+*** WARNING C47 IN LINE 19 OF CANopen\src\temp.c: 'd': unreferenced parameter
+*** WARNING C47 IN LINE 19 OF CANopen\src\temp.c: 'm': unreferenced parameter
+   20         
+   21         //Sdo.c (src):
+   22         UNS8 proceedSDO (CO_Data* d, Message *m) {}
+*** WARNING C47 IN LINE 22 OF CANopen\src\temp.c: 'd': unreferenced parameter
+*** WARNING C47 IN LINE 22 OF CANopen\src\temp.c: 'm': unreferenced parameter
+   23           
+   24         //nmtMaster.c (src):
+   25         UNS8 masterSendNMTstateChange(CO_Data* d, UNS8 Node_ID, UNS8 cs) {}
+*** WARNING C47 IN LINE 25 OF CANopen\src\temp.c: 'd': unreferenced parameter
+*** WARNING C47 IN LINE 25 OF CANopen\src\temp.c: 'Node_ID': unreferenced parameter
+*** WARNING C47 IN LINE 25 OF CANopen\src\temp.c: 'cs': unreferenced parameter
+   26         
+   27           
+*** WARNING C135 IN LINE 22 OF CANopen\src\temp.c: 'proceedSDO': no return value
+*** WARNING C135 IN LINE 25 OF CANopen\src\temp.c: 'masterSendNMTstateChange': no return value
+
+
+MODULE INFORMATION:   INITIALIZED  UNINITIALIZED
+  CODE SIZE        =          14     --------
+  NEAR-CONST SIZE  =    --------     --------
+  FAR-CONST SIZE   =    --------     --------
+  HUGE-CONST SIZE  =    --------     --------
+  XHUGE-CONST SIZE =    --------     --------
+C166 COMPILER V7.53.0.0, TEMP                                                              09/03/2014 10:38:11 PAGE 2   
+
+  NEAR-DATA SIZE   =    --------     --------
+  FAR-DATA SIZE    =    --------     --------
+  XHUGE-DATA SIZE  =    --------     --------
+  IDATA-DATA SIZE  =    --------     --------
+  SDATA-DATA SIZE  =    --------     --------
+  BDATA-DATA SIZE  =    --------     --------
+  HUGE-DATA SIZE   =    --------     --------
+  BIT SIZE         =    --------     --------
+  INIT'L SIZE      =    --------     --------
+END OF MODULE INFORMATION.
+
+
+C166 COMPILATION COMPLETE.  18 WARNING(S),  0 ERROR(S)
